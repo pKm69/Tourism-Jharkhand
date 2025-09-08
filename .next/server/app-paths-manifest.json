@@ -1,0 +1,8 @@
+{
+  "/destinations/page": "app/destinations/page.js",
+  "/analytics/page": "app/analytics/page.js",
+  "/feedback/page": "app/feedback/page.js",
+  "/marketplace/page": "app/marketplace/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/ai-features/page": "app/ai-features/page.js"
+}
