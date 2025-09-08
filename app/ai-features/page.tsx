@@ -238,9 +238,11 @@ export default function AIFeaturesPage() {
                 ))}
               </div>
 
-              <Button size="lg" className="group">
-                Try This Feature
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <Button size="lg" className="group" asChild>
+                <Link href={activeDemo === "analytics" ? "/analytics" : "#"}>
+                  Try This Feature
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
             </div>
 
