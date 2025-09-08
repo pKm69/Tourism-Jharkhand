@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Label } from "@/components/ui/label"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import {
@@ -20,10 +21,23 @@ import {
   ArrowRight,
   Play,
   ChevronDown,
+  TrendingUp,
+  MessageCircle,
+  DollarSign,
+  Calendar,
+  Activity,
+  Send,
+  Smile,
+  Frown,
+  Meh
 } from "lucide-react"
 
 export default function HomePage() {
   const [activeFeature, setActiveFeature] = useState(0)
+  const [analyticsData, setAnalyticsData] = useState<any>(null)
+  const [feedbackStats, setFeedbackStats] = useState<any>(null)
+  const [quickFeedback, setQuickFeedback] = useState("")
+  const [selectedEmotion, setSelectedEmotion] = useState("")
 
   // Auto-rotate features
   useEffect(() => {
@@ -32,6 +46,59 @@ export default function HomePage() {
     }, 4000)
     return () => clearInterval(interval)
   }, [])
+
+  // Fetch analytics data
+  useEffect(() => {
+    fetchAnalyticsOverview()
+    fetchFeedbackStats()
+  }, [])
+
+  const fetchAnalyticsOverview = async () => {
+    try {
+      const response = await fetch('/api/analytics')
+      const data = await response.json()
+      setAnalyticsData(data)
+    } catch (error) {
+      console.error('Failed to fetch analytics:', error)
+    }
+  }
+
+  const fetchFeedbackStats = async () => {
+    try {
+      const response = await fetch('/api/feedback')
+      const data = await response.json()
+      setFeedbackStats(data.sentimentStats)
+    } catch (error) {
+      console.error('Failed to fetch feedback stats:', error)
+    }
+  }
+
+  const submitQuickFeedback = async () => {
+    if (!quickFeedback.trim()) return
+
+    try {
+      await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userName: "Anonymous User",
+          location: "General",
+          category: "General",
+          rating: selectedEmotion === "😍" ? 5 : selectedEmotion === "😊" ? 4 : selectedEmotion === "😐" ? 3 : selectedEmotion === "😞" ? 2 : 1,
+          textFeedback: quickFeedback,
+          language: "en",
+          emojiRating: selectedEmotion
+        })
+      })
+      
+      setQuickFeedback("")
+      setSelectedEmotion("")
+      alert("Thank you for your feedback!")
+      fetchFeedbackStats() // Refresh stats
+    } catch (error) {
+      console.error('Failed to submit feedback:', error)
+    }
+  }
 
   const features = [
     {
@@ -68,7 +135,7 @@ export default function HomePage() {
       icon: <BarChart3 className="h-8 w-8" />,
       title: "Analytics Dashboard",
       description: "Tourism insights and impact monitoring for officials",
-      link: "/ai-features#analytics",
+      link: "/analytics",
     },
   ]
 
@@ -240,30 +307,159 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick Stats Section */}
+      {/* Analytics Dashboard Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center p-8">
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Users className="h-8 w-8 text-primary" />
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Live Tourism Analytics
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Real-time insights powered by AI and community feedback
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <Card className="text-center p-6">
+              <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <Users className="h-6 w-6 text-blue-600" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">500+</h3>
-              <p className="text-muted-foreground">Local guides and service providers</p>
+              <h3 className="text-2xl font-bold text-foreground mb-2">
+                {analyticsData ? analyticsData.overview.totalVisitors.toLocaleString() : '30,000+'}
+              </h3>
+              <p className="text-muted-foreground">Monthly Visitors</p>
+              <div className="flex items-center justify-center mt-2 text-green-600">
+                <TrendingUp className="h-4 w-4 mr-1" />
+                <span className="text-sm">+15% this month</span>
+              </div>
             </Card>
-            <Card className="text-center p-8">
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <ShoppingBag className="h-8 w-8 text-primary" />
+
+            <Card className="text-center p-6">
+              <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                <DollarSign className="h-6 w-6 text-green-600" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">200+</h3>
-              <p className="text-muted-foreground">Artisan products and experiences</p>
+              <h3 className="text-2xl font-bold text-foreground mb-2">
+                ₹{analyticsData ? (analyticsData.overview.totalRevenue / 10000000).toFixed(1) : '12.5'}Cr
+              </h3>
+              <p className="text-muted-foreground">Tourism Revenue</p>
+              <div className="flex items-center justify-center mt-2 text-green-600">
+                <TrendingUp className="h-4 w-4 mr-1" />
+                <span className="text-sm">+22% growth</span>
+              </div>
             </Card>
-            <Card className="text-center p-8">
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Leaf className="h-8 w-8 text-primary" />
+
+            <Card className="text-center p-6">
+              <div className="mx-auto w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                <Star className="h-6 w-6 text-yellow-600" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">50+</h3>
-              <p className="text-muted-foreground">Eco-tourism initiatives supported</p>
+              <h3 className="text-2xl font-bold text-foreground mb-2">
+                {analyticsData ? analyticsData.overview.averageSatisfaction.toFixed(1) : '4.6'}/5
+              </h3>
+              <p className="text-muted-foreground">Satisfaction Score</p>
+              <div className="flex items-center justify-center mt-2 text-green-600">
+                <TrendingUp className="h-4 w-4 mr-1" />
+                <span className="text-sm">Excellent rating</span>
+              </div>
+            </Card>
+
+            <Card className="text-center p-6">
+              <div className="mx-auto w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <MessageCircle className="h-6 w-6 text-purple-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-foreground mb-2">
+                {feedbackStats ? feedbackStats.total : '1,247'}
+              </h3>
+              <p className="text-muted-foreground">Tourist Feedback</p>
+              <div className="flex items-center justify-center mt-2">
+                {feedbackStats && (
+                  <div className="flex gap-1">
+                    <Smile className="h-4 w-4 text-green-600" />
+                    <span className="text-sm text-green-600">{feedbackStats.positive}</span>
+                    <Meh className="h-4 w-4 text-yellow-600 ml-2" />
+                    <span className="text-sm text-yellow-600">{feedbackStats.neutral}</span>
+                    <Frown className="h-4 w-4 text-red-600 ml-2" />
+                    <span className="text-sm text-red-600">{feedbackStats.negative}</span>
+                  </div>
+                )}
+              </div>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <Button size="lg" asChild>
+              <Link href="/analytics">
+                View Full Analytics Dashboard
+                <BarChart3 className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Feedback Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto">
+            <Card>
+              <CardHeader className="text-center">
+                <CardTitle className="flex items-center justify-center gap-2">
+                  <MessageCircle className="h-6 w-6 text-primary" />
+                  Quick Feedback
+                </CardTitle>
+                <CardDescription>
+                  Share your experience and help us improve Jharkhand tourism
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label>How was your experience?</Label>
+                  <div className="flex items-center justify-center gap-4 mt-2">
+                    {[
+                      { emoji: "😍", label: "Loved it" },
+                      { emoji: "😊", label: "Good" },
+                      { emoji: "😐", label: "Okay" },
+                      { emoji: "😞", label: "Poor" },
+                      { emoji: "😡", label: "Terrible" }
+                    ].map(({ emoji, label }) => (
+                      <button
+                        key={emoji}
+                        onClick={() => setSelectedEmotion(emoji)}
+                        className={`p-3 rounded-lg border-2 transition-all ${
+                          selectedEmotion === emoji
+                            ? 'border-primary bg-primary/10 scale-110'
+                            : 'border-gray-200 hover:border-gray-300'
+                        }`}
+                        title={label}
+                      >
+                        <span className="text-2xl">{emoji}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="quickFeedback">Tell us more (optional)</Label>
+                  <textarea
+                    id="quickFeedback"
+                    value={quickFeedback}
+                    onChange={(e) => setQuickFeedback(e.target.value)}
+                    placeholder="Share your thoughts about Jharkhand tourism..."
+                    className="w-full px-3 py-2 border rounded-md bg-background min-h-[80px] mt-1"
+                  />
+                </div>
+
+                <div className="flex gap-2">
+                  <Button onClick={submitQuickFeedback} className="flex-1">
+                    <Send className="mr-2 h-4 w-4" />
+                    Submit Feedback
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link href="/feedback">
+                      Detailed Feedback
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
             </Card>
           </div>
         </div>
