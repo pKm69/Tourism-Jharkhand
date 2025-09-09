@@ -28,8 +28,11 @@ export default function Navigation() {
             <Link href="/marketplace" className="text-foreground hover:text-primary transition-colors">
               Marketplace
             </Link>
-            <Link href="/community" className="text-foreground hover:text-primary transition-colors">
-              Community
+            <Link href="/feedback" className="text-foreground hover:text-primary transition-colors">
+              Feedback
+            </Link>
+            <Link href="/analytics" className="text-foreground hover:text-primary transition-colors">
+              Analytics
             </Link>
             <Link href="/about" className="text-foreground hover:text-primary transition-colors">
               About
@@ -57,8 +60,11 @@ export default function Navigation() {
             <Link href="/marketplace" className="block text-foreground hover:text-primary transition-colors">
               Marketplace
             </Link>
-            <Link href="/community" className="block text-foreground hover:text-primary transition-colors">
-              Community
+            <Link href="/feedback" className="block text-foreground hover:text-primary transition-colors">
+              Feedback
+            </Link>
+            <Link href="/analytics" className="block text-foreground hover:text-primary transition-colors">
+              Analytics
             </Link>
             <Link href="/about" className="block text-foreground hover:text-primary transition-colors">
               About
