@@ -1,4 +1,4 @@
-// File: C:\Users\Prachi\Desktop\SIH 2025\Tourism-Jharkhand\app\feedback\page.tsx
+// File: C:\Users\priya\OneDrive\Desktop\SIH\Tourism-Jharkhand\app\feedback\page.tsx
 import * as entry from '../../../../app/feedback/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
