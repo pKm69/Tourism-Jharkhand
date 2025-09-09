@@ -2,7 +2,7 @@
   "/page": "app/page.js",
   "/api/feedback/route": "app/api/feedback/route.js",
   "/api/analytics/route": "app/api/analytics/route.js",
-  "/ai-features/page": "app/ai-features/page.js",
+  "/marketplace/page": "app/marketplace/page.js",
   "/destinations/page": "app/destinations/page.js",
-  "/marketplace/page": "app/marketplace/page.js"
+  "/ai-features/page": "app/ai-features/page.js"
 }

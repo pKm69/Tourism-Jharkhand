@@ -150,7 +150,7 @@ export default function AnalyticsPage() {
     }
   }
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D']
+  const COLORS = ['#800020', '#1e3a8a', '#f4d03f', '#a0001a', '#2563eb', '#fbbf24']
 
   if (loading) {
     return (
@@ -186,11 +186,11 @@ export default function AnalyticsPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-[#800020] to-[#1e3a8a] bg-clip-text text-transparent">
               AI-Powered Analytics Dashboard
             </h1>
             <p className="text-muted-foreground mt-2 flex items-center gap-2">
-              <Brain className="h-4 w-4 text-purple-600" />
+              <Brain className="h-4 w-4 text-[#f4d03f]" />
               Comprehensive AI insights for Jharkhand tourism officials
             </p>
           </div>
@@ -198,7 +198,7 @@ export default function AnalyticsPage() {
             <select
               value={selectedTimeRange}
               onChange={(e) => setSelectedTimeRange(e.target.value)}
-              className="px-3 py-2 border rounded-md bg-background"
+              className="px-3 py-2 border border-[#800020] rounded-[25px] bg-background text-[#800020]"
             >
               <option value="7d">Last 7 Days</option>
               <option value="30d">Last 30 Days</option>
@@ -211,7 +211,7 @@ export default function AnalyticsPage() {
               <select
                 value={exportFormat}
                 onChange={(e) => setExportFormat(e.target.value)}
-                className="px-3 py-2 border rounded-md bg-background text-sm"
+                className="px-3 py-2 border border-[#800020] rounded-[25px] bg-background text-[#800020] text-sm"
               >
                 <option value="csv">CSV</option>
                 <option value="xlsx">Excel</option>
@@ -221,7 +221,7 @@ export default function AnalyticsPage() {
               <Button 
                 onClick={exportData} 
                 disabled={isExporting}
-                variant="outline"
+                className="bg-[#f4d03f] hover:bg-[#f1c40f] text-[#800020] border-[#f4d03f] rounded-[25px]"
                 size="sm"
               >
                 {isExporting ? (
@@ -233,33 +233,33 @@ export default function AnalyticsPage() {
               </Button>
             </div>
             
-            <Button onClick={fetchAnalytics} disabled={loading}>
+            <Button onClick={fetchAnalytics} disabled={loading} className="bg-[#800020] hover:bg-[#a0001a] text-white rounded-[25px]">
               {loading ? <RefreshCw className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
             </Button>
           </div>
         </div>
 
         {/* AI Features Highlight */}
-        <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg border border-purple-200 mb-8">
+        <div className="bg-gradient-to-r from-[#800020]/10 to-[#1e3a8a]/10 p-6 rounded-[16px] border border-[#f4d03f] mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <Sparkles className="h-6 w-6 text-purple-600" />
-            <h2 className="text-xl font-semibold text-purple-800">AI-Powered Features Active</h2>
+            <Sparkles className="h-6 w-6 text-[#f4d03f]" />
+            <h2 className="text-xl font-semibold text-[#800020]">AI-Powered Features Active</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="flex items-center gap-2 text-sm text-purple-700">
-              <Brain className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-sm text-[#800020]">
+              <Brain className="h-4 w-4 text-[#f4d03f]" />
               <span>Sentiment Analysis</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-purple-700">
-              <Zap className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-sm text-[#800020]">
+              <Zap className="h-4 w-4 text-[#f4d03f]" />
               <span>Predictive Modeling</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-purple-700">
-              <Volume2 className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-sm text-[#800020]">
+              <Volume2 className="h-4 w-4 text-[#f4d03f]" />
               <span>Voice Analytics</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-purple-700">
-              <ImageIcon className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-sm text-[#800020]">
+              <ImageIcon className="h-4 w-4 text-[#f4d03f]" />
               <span>Image Recognition</span>
             </div>
           </div>
@@ -287,7 +287,7 @@ export default function AnalyticsPage() {
                         <p className="text-sm font-medium text-muted-foreground">Total Visitors</p>
                         <p className="text-2xl font-bold">{data.overview.totalVisitors.toLocaleString()}</p>
                       </div>
-                      <Users className="h-8 w-8 text-blue-600" />
+                      <Users className="h-8 w-8 text-[#800020]" />
                     </div>
                   </CardContent>
                 </Card>
@@ -298,7 +298,7 @@ export default function AnalyticsPage() {
                         <p className="text-sm font-medium text-muted-foreground">Total Revenue</p>
                         <p className="text-2xl font-bold">₹{(data.overview.totalRevenue / 10000000).toFixed(1)}Cr</p>
                       </div>
-                      <DollarSign className="h-8 w-8 text-green-600" />
+                      <DollarSign className="h-8 w-8 text-[#f4d03f]" />
                     </div>
                   </CardContent>
                 </Card>
@@ -309,7 +309,7 @@ export default function AnalyticsPage() {
                         <p className="text-sm font-medium text-muted-foreground">Satisfaction</p>
                         <p className="text-2xl font-bold">{data.overview.averageSatisfaction.toFixed(1)}/5</p>
                       </div>
-                      <Star className="h-8 w-8 text-yellow-600" />
+                      <Star className="h-8 w-8 text-[#f4d03f]" />
                     </div>
                   </CardContent>
                 </Card>
@@ -320,7 +320,7 @@ export default function AnalyticsPage() {
                         <p className="text-sm font-medium text-muted-foreground">Bookings</p>
                         <p className="text-2xl font-bold">{data.overview.totalBookings.toLocaleString()}</p>
                       </div>
-                      <Calendar className="h-8 w-8 text-purple-600" />
+                      <Calendar className="h-8 w-8 text-[#1e3a8a]" />
                     </div>
                   </CardContent>
                 </Card>
@@ -331,7 +331,7 @@ export default function AnalyticsPage() {
                         <p className="text-sm font-medium text-muted-foreground">Active Vendors</p>
                         <p className="text-2xl font-bold">{data.overview.activeVendors}</p>
                       </div>
-                      <ShoppingBag className="h-8 w-8 text-orange-600" />
+                      <ShoppingBag className="h-8 w-8 text-[#800020]" />
                     </div>
                   </CardContent>
                 </Card>
@@ -342,7 +342,7 @@ export default function AnalyticsPage() {
                         <p className="text-sm font-medium text-muted-foreground">Feedbacks</p>
                         <p className="text-2xl font-bold">{data.overview.totalFeedbacks}</p>
                       </div>
-                      <Activity className="h-8 w-8 text-red-600" />
+                      <Activity className="h-8 w-8 text-[#1e3a8a]" />
                     </div>
                   </CardContent>
                 </Card>
@@ -361,7 +361,7 @@ export default function AnalyticsPage() {
                       <XAxis dataKey="month" />
                       <YAxis />
                       <Tooltip />
-                      <Area type="monotone" dataKey="visitors" stackId="1" stroke="#8884d8" fill="#8884d8" />
+                      <Area type="monotone" dataKey="visitors" stackId="1" stroke="#800020" fill="#800020" />
                     </AreaChart>
                   </ResponsiveContainer>
                 </CardContent>
@@ -380,9 +380,9 @@ export default function AnalyticsPage() {
                       <XAxis dataKey="date" />
                       <YAxis />
                       <Tooltip />
-                      <Line type="monotone" dataKey="positive" stroke="#00C49F" strokeWidth={2} />
-                      <Line type="monotone" dataKey="negative" stroke="#FF8042" strokeWidth={2} />
-                      <Line type="monotone" dataKey="neutral" stroke="#FFBB28" strokeWidth={2} />
+                      <Line type="monotone" dataKey="positive" stroke="#f4d03f" strokeWidth={2} />
+                      <Line type="monotone" dataKey="negative" stroke="#800020" strokeWidth={2} />
+                      <Line type="monotone" dataKey="neutral" stroke="#1e3a8a" strokeWidth={2} />
                     </LineChart>
                   </ResponsiveContainer>
                 </CardContent>
@@ -434,7 +434,7 @@ export default function AnalyticsPage() {
                         <XAxis dataKey="state" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="count" fill="#8884d8" />
+                        <Bar dataKey="count" fill="#800020" />
                       </BarChart>
                     </ResponsiveContainer>
                   </CardContent>
@@ -451,7 +451,7 @@ export default function AnalyticsPage() {
                     {data.demographics.purpose.map((purpose, index) => (
                       <Card key={purpose.type}>
                         <CardContent className="p-4 text-center">
-                          <div className="text-2xl font-bold text-primary mb-2">
+                          <div className="text-2xl font-bold text-[#800020] mb-2">
                             {purpose.percentage}%
                           </div>
                           <div className="text-sm font-medium">{purpose.type}</div>
@@ -480,8 +480,8 @@ export default function AnalyticsPage() {
                     {data.destinations.map((destination, index) => (
                       <div key={destination.name} className="flex items-center justify-between p-4 border rounded-lg">
                         <div className="flex items-center gap-4">
-                          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                            <MapPin className="h-4 w-4 text-primary" />
+                          <div className="w-8 h-8 bg-[#800020]/10 rounded-full flex items-center justify-center">
+                            <MapPin className="h-4 w-4 text-[#800020]" />
                           </div>
                           <div>
                             <h3 className="font-semibold">{destination.name}</h3>
@@ -497,13 +497,13 @@ export default function AnalyticsPage() {
                           </div>
                           <div className="text-right">
                             <div className="flex items-center gap-1">
-                              <Star className="h-4 w-4 fill-current text-yellow-500" />
+                              <Star className="h-4 w-4 fill-current text-[#f4d03f]" />
                               <span className="font-medium">{destination.satisfaction}</span>
                             </div>
                             <p className="text-sm text-muted-foreground">Rating</p>
                           </div>
                           <div className="text-right">
-                            <div className={`flex items-center gap-1 ${destination.growth > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            <div className={`flex items-center gap-1 ${destination.growth > 0 ? 'text-[#f4d03f]' : 'text-[#800020]'}`}>
                               {destination.growth > 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
                               <span className="font-medium">{destination.growth > 0 ? '+' : ''}{destination.growth}%</span>
                             </div>
@@ -527,7 +527,7 @@ export default function AnalyticsPage() {
                       <XAxis dataKey="name" />
                       <YAxis />
                       <Tooltip formatter={(value) => [`₹${(Number(value) / 1000000).toFixed(1)}M`, 'Revenue']} />
-                      <Bar dataKey="revenue" fill="#8884d8" />
+                      <Bar dataKey="revenue" fill="#1e3a8a" />
                     </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
@@ -548,8 +548,8 @@ export default function AnalyticsPage() {
                     {data.vendorPerformance.map((vendor, index) => (
                       <div key={vendor.name} className="flex items-center justify-between p-4 border rounded-lg">
                         <div className="flex items-center gap-4">
-                          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                            <Award className="h-4 w-4 text-primary" />
+                          <div className="w-8 h-8 bg-[#f4d03f]/10 rounded-full flex items-center justify-center">
+                            <Award className="h-4 w-4 text-[#f4d03f]" />
                           </div>
                           <div>
                             <h3 className="font-semibold">{vendor.name}</h3>
@@ -567,13 +567,13 @@ export default function AnalyticsPage() {
                           </div>
                           <div className="text-right">
                             <div className="flex items-center gap-1">
-                              <Star className="h-4 w-4 fill-current text-yellow-500" />
+                              <Star className="h-4 w-4 fill-current text-[#f4d03f]" />
                               <span className="font-medium">{vendor.rating}</span>
                             </div>
                             <p className="text-sm text-muted-foreground">Rating</p>
                           </div>
                           <div className="text-right">
-                            <div className={`flex items-center gap-1 ${vendor.growth > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            <div className={`flex items-center gap-1 ${vendor.growth > 0 ? 'text-[#f4d03f]' : 'text-[#800020]'}`}>
                               {vendor.growth > 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
                               <span className="font-medium">{vendor.growth > 0 ? '+' : ''}{vendor.growth}%</span>
                             </div>
@@ -622,14 +622,14 @@ export default function AnalyticsPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Target className="h-5 w-5 text-blue-600" />
+                      <Target className="h-5 w-5 text-[#f4d03f]" />
                       AI Predictions
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
                       <h4 className="font-medium mb-2">Next Month Forecast</h4>
-                      <p className="text-2xl font-bold text-primary">
+                      <p className="text-2xl font-bold text-[#800020]">
                         {data?.predictions?.nextMonthVisitors?.toLocaleString() || '2,300'} visitors
                       </p>
                       <p className="text-sm text-muted-foreground">
@@ -646,7 +646,7 @@ export default function AnalyticsPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Compass className="h-5 w-5 text-green-600" />
+                      <Compass className="h-5 w-5 text-[#1e3a8a]" />
                       Emerging Destinations
                     </CardTitle>
                   </CardHeader>
@@ -654,7 +654,7 @@ export default function AnalyticsPage() {
                     <div className="space-y-2">
                       {(data?.predictions?.emergingDestinations || ['Palamau Fort', 'Rajrappa Temple', 'Lodh Falls']).map((destination, index) => (
                         <div key={destination} className="flex items-center gap-2">
-                          <TrendingUp className="h-4 w-4 text-green-600" />
+                          <TrendingUp className="h-4 w-4 text-[#f4d03f]" />
                           <span>{destination}</span>
                         </div>
                       ))}

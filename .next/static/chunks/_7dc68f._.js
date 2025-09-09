@@ -2332,7 +2332,7 @@ function AIFeaturesPage() {
         columnNumber: 5
     }, this);
 }
-_s(AIFeaturesPage, "wUDWmDH4Az0oGmF3QvmoNxitJd4=");
+_s(AIFeaturesPage, "U2qW3GmSSrBaGq1v4StGglnZr7M=");
 _c = AIFeaturesPage;
 var _c;
 __turbopack_refresh__.register(_c, "AIFeaturesPage");
