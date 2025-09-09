@@ -55,7 +55,7 @@ export default function MarketplacePage() {
     {
       id: 2,
       name: "Tribal Homestay Experience",
-      image: "/placeholder.svg?height=300&width=400&text=Tribal+Homestay",
+      image: "/netarhat-hill-station-sunrise-jharkhand.jpg",
       price: "₹1,200",
       originalPrice: null,
       rating: 4.9,
@@ -71,7 +71,7 @@ export default function MarketplacePage() {
     {
       id: 3,
       name: "Dokra Metal Craft Workshop",
-      image: "/placeholder.svg?height=300&width=400&text=Dokra+Workshop",
+      image: "/jharkhand-landscape-forest-mountains-tribal-cultur.jpg",
       price: "₹800",
       originalPrice: null,
       rating: 4.7,
@@ -87,7 +87,7 @@ export default function MarketplacePage() {
     {
       id: 4,
       name: "Organic Tribal Honey",
-      image: "/placeholder.svg?height=300&width=400&text=Tribal+Honey",
+      image: "/deoghar-temple-spiritual-jharkhand.jpg",
       price: "₹450",
       originalPrice: "₹500",
       rating: 4.6,
@@ -103,7 +103,7 @@ export default function MarketplacePage() {
     {
       id: 5,
       name: "Local Guide - Wildlife Safari",
-      image: "/placeholder.svg?height=300&width=400&text=Wildlife+Guide",
+      image: "/betla-national-park-wildlife-tigers-jharkhand.jpg",
       price: "₹1,500",
       originalPrice: null,
       rating: 5.0,
@@ -119,7 +119,7 @@ export default function MarketplacePage() {
     {
       id: 6,
       name: "Bamboo Handicraft Set",
-      image: "/placeholder.svg?height=300&width=400&text=Bamboo+Crafts",
+      image: "/hazaribagh-national-park-jharkhand-wildlife-forest.jpg",
       price: "₹1,800",
       originalPrice: "₹2,200",
       rating: 4.5,
@@ -135,7 +135,7 @@ export default function MarketplacePage() {
     {
       id: 7,
       name: "Traditional Jharkhand Thali",
-      image: "/placeholder.svg?height=300&width=400&text=Jharkhand+Thali",
+      image: "/jamshedpur-jharkhand-steel-city-jubilee-park.jpg",
       price: "₹300",
       originalPrice: null,
       rating: 4.8,
@@ -151,7 +151,7 @@ export default function MarketplacePage() {
     {
       id: 8,
       name: "Eco-friendly Transport Service",
-      image: "/placeholder.svg?height=300&width=400&text=Eco+Transport",
+      image: "/parasnath-hills-jharkhand-jain-temple-mountain.jpg",
       price: "₹12/km",
       originalPrice: null,
       rating: 4.4,
@@ -195,186 +195,186 @@ export default function MarketplacePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-              Local Marketplace
-              <span className="text-primary block">Supporting Communities</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Discover authentic tribal handicrafts, stay with local families, and support sustainable tourism
-              initiatives
-            </p>
-          </div>
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1>
+            Local Marketplace
+            <span className="text-gold block">Supporting Communities</span>
+          </h1>
+          <p>
+            Discover authentic tribal handicrafts, stay with local families, and support sustainable tourism
+            initiatives
+          </p>
 
-          {/* Search and Filters */}
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-4 mb-8">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  placeholder="Search products, experiences, or services..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-              <div className="flex gap-2 flex-wrap">
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-4 py-2 border rounded-md bg-background"
+          <div className="search-bar">
+            <div className="relative" style={{width: '100%', maxWidth: '500px'}}>
+              <input
+                type="text"
+                placeholder="Search products, experiences, or services..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '15px 20px',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  borderRadius: '12px',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  color: 'white',
+                  backdropFilter: 'blur(10px)'
+                }}
+              />
+            </div>
+            <div className="filter-buttons">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`btn ${selectedCategory === category ? 'primary' : 'secondary'}`}
+                  style={{display: 'flex', alignItems: 'center', gap: '8px'}}
                 >
-                  {categories.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  value={selectedLocation}
-                  onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="px-4 py-2 border rounded-md bg-background"
+                  {getCategoryIcon(category)}
+                  {category}
+                </button>
+              ))}
+            </div>
+            <div className="filter-buttons">
+              {locations.map((location) => (
+                <button
+                  key={location}
+                  onClick={() => setSelectedLocation(location)}
+                  className={`btn ${selectedLocation === location ? 'primary' : 'secondary'}`}
+                  style={{display: 'flex', alignItems: 'center', gap: '8px'}}
                 >
-                  {locations.map((location) => (
-                    <option key={location} value={location}>
-                      {location}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                  <MapPin className="h-4 w-4" />
+                  {location}
+                </button>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Categories */}
-      <section className="py-12 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.slice(1).map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category)}
-                className="flex flex-col items-center gap-2 h-auto py-4"
-              >
-                {getCategoryIcon(category)}
-                <span className="text-xs">{category}</span>
-              </Button>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Products Grid */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold text-foreground">{filteredProducts.length} Products Found</h2>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">Sort by:</span>
-              <select className="px-3 py-1 border rounded-md bg-background text-sm">
-                <option>Most Popular</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Highest Rated</option>
-              </select>
+          <div className="mb-8" style={{
+            background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.2) 0%, rgba(30, 58, 138, 0.2) 100%)',
+            backdropFilter: 'blur(15px)',
+            border: '1px solid rgba(244, 208, 63, 0.3)',
+            borderRadius: '16px',
+            padding: '20px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
+          }}>
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold" style={{color: '#f4d03f'}}>{filteredProducts.length} Products Found</h2>
+              <div className="flex items-center gap-2">
+                <span className="text-sm" style={{color: '#f4d03f'}}>Sort by:</span>
+                <select className="px-3 py-1 border rounded-md text-sm" style={{
+                  background: '#f4d03f',
+                  color: '#800020',
+                  border: '2px solid #f4d03f',
+                  borderRadius: '25px',
+                  fontWeight: '600'
+                }}>
+                  <option>Most Popular</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                  <option>Highest Rated</option>
+                </select>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="destination-grid">
             {filteredProducts.map((product) => (
-              <Card key={product.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="relative overflow-hidden">
+              <div key={product.id} className="destination-card clickable">
+                <div className="destination-image-container">
                   <img
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3 flex gap-2">
-                    <Badge className="bg-primary/90 flex items-center gap-1">
-                      {getCategoryIcon(product.category)}
-                      {product.category}
-                    </Badge>
-                    {product.isVerified && (
-                      <Badge variant="secondary" className="bg-green-100 text-green-800">
-                        <Shield className="h-3 w-3 mr-1" />
-                        Verified
-                      </Badge>
-                    )}
+                  <div className="destination-badge">
+                    {getCategoryIcon(product.category)}
+                    {product.category}
                   </div>
-                  <button className="absolute top-3 right-3 p-2 bg-background/90 rounded-full hover:bg-background transition-colors">
-                    <Heart
-                      className={`h-4 w-4 ${product.isFavorite ? "fill-red-500 text-red-500" : "text-muted-foreground"}`}
-                    />
-                  </button>
+                  <div className="destination-rating">
+                    <Star className="h-4 w-4 fill-current" />
+                    <span>{product.rating}</span>
+                  </div>
                   {product.originalPrice && (
-                    <Badge className="absolute bottom-3 left-3 bg-red-500">
-                      Save ₹
-                      {Number.parseInt(product.originalPrice.replace("₹", "").replace(",", "")) -
+                    <div className="absolute bottom-3 left-3 bg-maroon text-white px-2 py-1 rounded-lg text-xs font-semibold">
+                      Save ₹{Number.parseInt(product.originalPrice.replace("₹", "").replace(",", "")) -
                         Number.parseInt(product.price.replace("₹", "").replace(",", ""))}
-                    </Badge>
+                    </div>
                   )}
                 </div>
 
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg line-clamp-2">{product.name}</CardTitle>
-                  <CardDescription className="line-clamp-2">{product.description}</CardDescription>
-                </CardHeader>
+                <div className="card-info">
+                  <div className="destination-header">
+                    <h3>{product.name}</h3>
+                    <Heart
+                      className={`h-4 w-4 ${product.isFavorite ? "fill-red-500 text-red-500" : "text-gold"}`}
+                    />
+                  </div>
+                  <p className="destination-description">{product.description}</p>
 
-                <CardContent>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 fill-current text-yellow-500" />
-                      <span className="text-sm font-medium">{product.rating}</span>
+                  <div className="destination-details">
+                    <div className="detail-item">
+                      <MapPin className="h-4 w-4" />
+                      {product.location}
                     </div>
-                    <span className="text-sm text-muted-foreground">({product.reviews} reviews)</span>
+                    <div className="detail-item">
+                      <Users className="h-4 w-4" />
+                      by {product.seller}
+                    </div>
+                    <div className="detail-item">
+                      <span>({product.reviews} reviews)</span>
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-2 mb-3">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">{product.location}</span>
+                  <div className="destination-highlights">
+                    <p className="highlights-label">Tags:</p>
+                    <div className="highlights-tags">
+                      {product.tags.map((tag, index) => (
+                        <span key={index} className="highlight-tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-2 mb-4">
-                    <Users className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">by {product.seller}</span>
-                  </div>
-
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {product.tags.map((tag, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center justify-between">
+                  <div className="destination-footer">
                     <div className="flex items-center gap-2">
-                      <span className="text-lg font-bold text-primary">{product.price}</span>
+                      <span className="text-lg font-bold text-gold">{product.price}</span>
                       {product.originalPrice && (
-                        <span className="text-sm text-muted-foreground line-through">{product.originalPrice}</span>
+                        <span className="text-sm line-through opacity-60" style={{
+                          textDecoration: 'line-through',
+                          textDecorationColor: '#000',
+                          textDecorationThickness: '2px',
+                          color: 'white'
+                        }}>{product.originalPrice}</span>
                       )}
                     </div>
-                    <Button size="sm" className="group">
+                    <button className="btn primary">
                       {product.category === "Guides" || product.category === "Transport" ? "Book" : "Buy"}
-                      <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </button>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
 
           {filteredProducts.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-xl text-muted-foreground mb-4">No products found matching your criteria.</p>
+              <p className="text-xl mb-4" style={{color: '#800020'}}>No products found matching your criteria.</p>
               <Button
                 variant="outline"
                 onClick={() => {
@@ -382,6 +382,7 @@ export default function MarketplacePage() {
                   setSelectedCategory("All")
                   setSelectedLocation("All")
                 }}
+                style={{background: 'transparent', border: '2px solid #800020', color: '#800020', borderRadius: '25px', fontWeight: '600'}}
               >
                 Clear All Filters
               </Button>
@@ -391,104 +392,54 @@ export default function MarketplacePage() {
       </section>
 
       {/* Seller Benefits */}
-      <section className="py-20 bg-muted/30">
+      <section className="smart-tourism-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Join Our Marketplace</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Become a verified seller and reach thousands of travelers looking for authentic experiences
-            </p>
-          </div>
+          <div className="glass-card p-8">
+            <h2 className="text-center mb-4">Join Our Marketplace</h2>
+            <p className="subtitle text-center mb-8">Become a verified seller and reach thousands of travelers looking for authentic experiences</p>
+            
+            {/* Dynamic Feature Content */}
+            <div className="p-6 rounded-lg" style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(244, 208, 63, 0.2)',
+              color: 'white'
+            }}>
+              <div className="flex items-start gap-4 mb-6">
+                <div className="feature-icon" style={{padding: '12px', borderRadius: '12px'}}><Shield className="h-12 w-12" /></div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-gold mb-2 text-left">Trust & Safety Guaranteed</h3>
+                  <p className="text-white text-left">Shop with confidence knowing that every transaction is secured by blockchain technology and every seller is verified</p>
+                </div>
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center p-8">
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Shield className="h-8 w-8 text-primary" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-gold" />
+                  <span className="text-white">Blockchain-secured transactions</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-gold" />
+                  <span className="text-white">Verified seller certifications</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-gold" />
+                  <span className="text-white">24/7 customer support</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-gold" />
+                  <span className="text-white">Money-back guarantee</span>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-4">Verified Sellers</h3>
-              <p className="text-muted-foreground">
-                Get verified through our blockchain-based certification system for increased trust and visibility
-              </p>
-            </Card>
-            <Card className="text-center p-8">
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Users className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-4">Direct Connection</h3>
-              <p className="text-muted-foreground">
-                Connect directly with travelers and tourists without intermediaries, keeping more of your earnings
-              </p>
-            </Card>
-            <Card className="text-center p-8">
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Leaf className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-4">Sustainable Impact</h3>
-              <p className="text-muted-foreground">
-                Contribute to sustainable tourism and community development while preserving local culture
-              </p>
-            </Card>
-          </div>
 
-          <div className="text-center mt-12">
-            <Button size="lg" className="group">
-              Become a Seller
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust & Safety */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">
-                Trust & Safety Guaranteed
-              </h2>
-              <p className="text-xl text-muted-foreground mb-8 text-pretty">
-                Shop with confidence knowing that every transaction is secured by blockchain technology and every seller
-                is verified
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
-                  </div>
-                  <span className="text-foreground">Blockchain-secured transactions</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <Shield className="h-5 w-5 text-blue-600" />
-                  </div>
-                  <span className="text-foreground">Verified seller certifications</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <Clock className="h-5 w-5 text-purple-600" />
-                  </div>
-                  <span className="text-foreground">24/7 customer support</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-orange-100 rounded-lg">
-                    <Phone className="h-5 w-5 text-orange-600" />
-                  </div>
-                  <span className="text-foreground">Money-back guarantee</span>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <img
-                src="/jharkhand-tribal-handicrafts-marketplace-artisans.jpg"
-                alt="Trust and safety"
-                className="w-full rounded-lg shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent rounded-lg"></div>
+              <button className="btn primary">
+                Become a Seller
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
             </div>
           </div>
         </div>
       </section>
+
 
       <Footer />
     </div>
