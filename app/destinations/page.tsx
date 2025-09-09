@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -188,191 +188,186 @@ export default function DestinationsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-              Discover Jharkhand's
-              <span className="text-primary block">Hidden Treasures</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              From mystical waterfalls to sacred temples, explore the diverse landscapes and rich cultural heritage of
-              Jharkhand
-            </p>
-          </div>
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1>
+            Discover Jharkhand's
+            <span className="text-gold block">Hidden Treasures</span>
+          </h1>
+          <p>
+            From mystical waterfalls to sacred temples, explore the diverse landscapes and rich cultural heritage of
+            Jharkhand
+          </p>
 
           {/* Search and Filter */}
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-4 mb-8">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  placeholder="Search destinations..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-              <div className="flex gap-2 flex-wrap">
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedCategory(category)}
-                    className="flex items-center gap-2"
-                  >
-                    {getCategoryIcon(category)}
-                    {category}
-                  </Button>
-                ))}
-              </div>
+          <div className="search-bar">
+            <div className="relative" style={{width: '100%', maxWidth: '500px'}}>
+              <input
+                type="text"
+                placeholder="Search destinations..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '15px 20px',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  borderRadius: '12px',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  color: 'white',
+                  backdropFilter: 'blur(10px)'
+                }}
+              />
+            </div>
+            <div className="filter-buttons">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`btn ${selectedCategory === category ? 'primary' : 'secondary'}`}
+                  style={{display: 'flex', alignItems: 'center', gap: '8px'}}
+                >
+                  {getCategoryIcon(category)}
+                  {category}
+                </button>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Destinations Grid */}
-      <section className="py-20">
+      <section className="destinations-grid-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="destination-grid">
             {filteredDestinations.map((destination) => (
-              <Card key={destination.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="relative overflow-hidden">
+              <div key={destination.id} className="destination-card clickable">
+                <div className="destination-image-container">
                   <img
                     src={destination.image || "/placeholder.svg"}
                     alt={destination.name}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <Badge className="absolute top-3 left-3 bg-primary/90 flex items-center gap-1">
+                  <div className="destination-badge">
                     {getCategoryIcon(destination.category)}
                     {destination.category}
-                  </Badge>
-                  <div className="absolute top-3 right-3 bg-background/90 rounded-full px-2 py-1 flex items-center gap-1">
-                    <Star className="h-4 w-4 fill-current text-yellow-500" />
-                    <span className="text-sm font-medium">{destination.rating}</span>
+                  </div>
+                  <div className="destination-rating">
+                    <Star className="h-4 w-4 fill-current" />
+                    <span>{destination.rating}</span>
                   </div>
                 </div>
 
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-between">
-                    {destination.name}
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                  </CardTitle>
-                  <CardDescription className="text-base">{destination.description}</CardDescription>
-                </CardHeader>
+                <div className="card-info">
+                  <div className="destination-header">
+                    <h3>{destination.name}</h3>
+                    <MapPin className="h-4 w-4" />
+                  </div>
+                  <p className="destination-description">{destination.description}</p>
 
-                <CardContent>
-                  <div className="grid grid-cols-3 gap-4 mb-4 text-sm">
-                    <div className="flex items-center gap-1 text-muted-foreground">
+                  <div className="destination-details">
+                    <div className="detail-item">
                       <Clock className="h-4 w-4" />
                       {destination.duration}
                     </div>
-                    <div className="flex items-center gap-1 text-muted-foreground">
+                    <div className="detail-item">
                       <Calendar className="h-4 w-4" />
                       {destination.bestTime}
                     </div>
-                    <div className="flex items-center gap-1 text-muted-foreground">
+                    <div className="detail-item">
                       <Thermometer className="h-4 w-4" />
                       {destination.temperature}
                     </div>
                   </div>
 
-                  <div className="mb-4">
-                    <p className="text-sm text-muted-foreground mb-2">Top Highlights:</p>
-                    <div className="flex flex-wrap gap-1">
+                  <div className="destination-highlights">
+                    <p className="highlights-label">Top Highlights:</p>
+                    <div className="highlights-tags">
                       {destination.highlights.slice(0, 3).map((highlight, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
+                        <span key={index} className="highlight-tag">
                           {highlight}
-                        </Badge>
+                        </span>
                       ))}
                       {destination.highlights.length > 3 && (
-                        <Badge variant="secondary" className="text-xs">
+                        <span className="highlight-tag">
                           +{destination.highlights.length - 3} more
-                        </Badge>
+                        </span>
                       )}
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">{destination.distance}</span>
-                    <Button size="sm" className="group">
+                  <div className="destination-footer">
+                    <span className="destination-distance">{destination.distance}</span>
+                    <button className="btn primary">
                       Explore
-                      <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </button>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
 
           {filteredDestinations.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-xl text-muted-foreground">No destinations found matching your criteria.</p>
-              <Button
-                variant="outline"
+            <div className="no-results">
+              <p>No destinations found matching your criteria.</p>
+              <button
                 onClick={() => {
                   setSearchTerm("")
                   setSelectedCategory("All")
                 }}
-                className="mt-4"
+                className="btn outline"
               >
                 Clear Filters
-              </Button>
+              </button>
             </div>
           )}
         </div>
       </section>
 
       {/* Planning Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Plan Your Perfect Trip</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Let our AI-powered platform create a personalized itinerary based on your preferences
+      <section className="smart-tourism-section">
+        <h2>Plan Your Perfect Trip</h2>
+        <p className="subtitle">
+          Let our AI-powered platform create a personalized itinerary based on your preferences
+        </p>
+
+        <div className="feature-grid">
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Users className="h-8 w-8" />
+            </div>
+            <h3>Personalized Recommendations</h3>
+            <p>
+              Get destination suggestions based on your interests and travel style
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center p-8">
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Users className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-4">Personalized Recommendations</h3>
-              <p className="text-muted-foreground">
-                Get destination suggestions based on your interests and travel style
-              </p>
-            </Card>
-            <Card className="text-center p-8">
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Calendar className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-4">Smart Itinerary Planning</h3>
-              <p className="text-muted-foreground">AI-powered trip planning with optimal routes and timing</p>
-            </Card>
-            <Card className="text-center p-8">
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Camera className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-4">Local Experiences</h3>
-              <p className="text-muted-foreground">Connect with local guides and authentic cultural experiences</p>
-            </Card>
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Calendar className="h-8 w-8" />
+            </div>
+            <h3>Smart Itinerary Planning</h3>
+            <p>AI-powered trip planning with optimal routes and timing</p>
           </div>
-
-          <div className="text-center mt-12">
-            <Button size="lg" asChild>
-              <Link href="/ai-features">
-                Start Planning with AI
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Camera className="h-8 w-8" />
+            </div>
+            <h3>Local Experiences</h3>
+            <p>Connect with local guides and authentic cultural experiences</p>
           </div>
         </div>
+
+        <Link href="/ai-features">
+          <button className="btn primary">
+            Start Planning with AI
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </button>
+        </Link>
       </section>
 
       <Footer />

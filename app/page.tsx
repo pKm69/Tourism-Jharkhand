@@ -158,12 +158,6 @@ export default function HomePage() {
       description: "Spectacular 98-meter waterfall cascade",
       category: "Waterfall",
     },
-    {
-      name: "Deoghar",
-      image: "/deoghar-temple-spiritual-jharkhand.jpg",
-      description: "Sacred pilgrimage site with ancient temples",
-      category: "Spiritual",
-    },
   ]
 
   return (

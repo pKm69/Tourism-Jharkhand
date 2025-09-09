@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -11,19 +11,20 @@ import Footer from "@/components/footer"
 import {
   Bot,
   Shield,
+  Brain,
   Eye,
   MapPin,
   BarChart3,
-  Smartphone,
   MessageCircle,
-  Camera,
-  NavigationIcon,
-  ArrowRight,
-  Play,
-  CheckCircle,
-  Zap,
-  Brain,
+  Smartphone,
   Lock,
+  Zap,
+  CheckCircle,
+  ArrowRight,
+  Navigation as NavigationIcon,
+  Send,
+  Play,
+  Camera,
   Headphones,
 } from "lucide-react"
 
@@ -155,321 +156,249 @@ export default function AIFeaturesPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen ai-features-page">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-              Smart Tourism
-              <span className="text-primary block">Powered by AI</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Experience the future of travel with our cutting-edge AI technology, blockchain security, and immersive
-              AR/VR experiences
-            </p>
-          </div>
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1>
+            Smart Tourism
+            <span className="text-gold block">Powered by AI</span>
+          </h1>
+          <p>
+            Experience the future of travel with our cutting-edge AI technology, blockchain security, and immersive
+            AR/VR experiences
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <Card className="text-center p-6">
-              <Brain className="h-8 w-8 text-primary mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">AI-Powered</h3>
-              <p className="text-sm text-muted-foreground">Advanced algorithms for personalized experiences</p>
-            </Card>
-            <Card className="text-center p-6">
-              <Lock className="h-8 w-8 text-primary mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Blockchain Secured</h3>
-              <p className="text-sm text-muted-foreground">Transparent and secure transactions</p>
-            </Card>
-            <Card className="text-center p-6">
-              <Zap className="h-8 w-8 text-primary mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Real-time Updates</h3>
-              <p className="text-sm text-muted-foreground">Live information and instant assistance</p>
-            </Card>
+          <div className="feature-grid" style={{gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: '800px', margin: '0 auto'}}>
+            <div className="feature-card">
+              <div className="feature-icon"><Brain className="h-8 w-8" /></div>
+              <h3>AI-Powered</h3>
+              <p>Advanced algorithms for personalized experiences</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon"><Lock className="h-8 w-8" /></div>
+              <h3>Blockchain Secured</h3>
+              <p>Transparent and secure transactions</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon"><Zap className="h-8 w-8" /></div>
+              <h3>Real-time Updates</h3>
+              <p>Live information and instant assistance</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Feature Navigation */}
-      <section className="py-12 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
+      <section className="smart-tourism-section">
+        <div className="ai-features-container">
+          <h2 style={{fontSize: '2rem', marginBottom: '40px', textAlign: 'center'}}>Explore AI Features</h2>
+          <div className="flex flex-wrap justify-center gap-3">
             {features.map((feature) => (
-              <Button
+              <button
                 key={feature.id}
-                variant={activeDemo === feature.id ? "default" : "outline"}
                 onClick={() => setActiveDemo(feature.id)}
-                className="flex items-center gap-2"
+                className={`btn ${activeDemo === feature.id ? 'primary' : 'secondary'}`}
               >
-                <div className="h-5 w-5">{feature.icon}</div>
+                <div className="h-4 w-4">{feature.icon}</div>
                 <span className="hidden sm:inline">
                   {feature.title.split(" ")[0]} {feature.title.split(" ")[1]}
                 </span>
                 <span className="sm:hidden">{feature.title.split(" ")[0]}</span>
-              </Button>
+              </button>
             ))}
           </div>
         </div>
       </section>
 
       {/* Active Feature Demo */}
-      <section className="py-20">
+      <section className="destinations-grid-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-primary/10 rounded-lg text-primary">{activeFeature.icon}</div>
+                <div className="p-3 rounded-lg" style={{background: 'rgba(244, 208, 63, 0.2)', color: '#f4d03f'}}>{activeFeature.icon}</div>
                 <div>
-                  <h2 className="text-3xl font-bold text-foreground">{activeFeature.title}</h2>
-                  <p className="text-muted-foreground">{activeFeature.description}</p>
+                  <h2 className="text-3xl font-bold" style={{color: '#f4d03f', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)'}}>{activeFeature.title}</h2>
+                  <p style={{color: '#faf7f2', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)'}}>{activeFeature.description}</p>
                 </div>
               </div>
 
-              <p className="text-lg text-muted-foreground mb-8 text-pretty">{activeFeature.longDescription}</p>
+              <p className="text-lg mb-8" style={{color: '#faf7f2', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)'}}>{activeFeature.longDescription}</p>
 
               <div className="space-y-4 mb-8">
                 {activeFeature.benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">{benefit}</span>
+                    <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" style={{color: '#f4d03f'}} />
+                    <span style={{color: '#faf7f2', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)'}}>{benefit}</span>
                   </div>
                 ))}
               </div>
 
-              <Button size="lg" className="group" asChild>
-                <Link href={activeDemo === "analytics" ? "/analytics" : "#"}>
+              <Link href={activeDemo === "analytics" ? "/analytics" : "#"}>
+                <button className="btn primary" style={{padding: '12px 32px', fontSize: '18px'}}>
                   Try This Feature
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </button>
+              </Link>
             </div>
 
             <div>
-              <Card className="p-8">
+              <div className="ai-demo-card">
                 <div className="text-center mb-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2">{activeFeature.demoContent.title}</h3>
-                  <p className="text-muted-foreground">{activeFeature.demoContent.subtitle}</p>
+                  <h3 className="text-xl font-bold mb-2" style={{color: '#f4d03f', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)'}}>{activeFeature.demoContent.title}</h3>
+                  <p style={{color: '#faf7f2', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)'}}>{activeFeature.demoContent.subtitle}</p>
                 </div>
 
                 {activeDemo === "itinerary" && (
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">Duration</label>
-                        <select className="w-full p-2 border rounded-md">
+                        <label className="text-sm font-medium mb-2 block" style={{color: '#f4d03f'}}>Duration</label>
+                        <select className="w-full p-2 border rounded-md" style={{background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(244, 208, 63, 0.3)', color: '#faf7f2'}}>
                           <option>2-3 days</option>
                           <option>4-5 days</option>
                           <option>1 week</option>
                         </select>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">Budget</label>
-                        <select className="w-full p-2 border rounded-md">
-                          <option>₹5,000-10,000</option>
-                          <option>₹10,000-20,000</option>
-                          <option>₹20,000+</option>
+                        <label className="text-sm font-medium mb-2 block" style={{color: '#f4d03f'}}>Interests</label>
+                        <select className="w-full p-2 border rounded-md" style={{background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(244, 208, 63, 0.3)', color: '#faf7f2'}}>
+                          <option>Adventure</option>
+                          <option>Culture</option>
+                          <option>Nature</option>
                         </select>
                       </div>
                     </div>
-                    <div>
-                      <label className="text-sm font-medium text-foreground mb-2 block">Interests</label>
-                      <div className="flex flex-wrap gap-2">
-                        {["Nature", "Culture", "Adventure", "Spiritual", "Wildlife"].map((interest) => (
-                          <Badge
-                            key={interest}
-                            variant="outline"
-                            className="cursor-pointer hover:bg-primary hover:text-primary-foreground"
-                          >
-                            {interest}
-                          </Badge>
-                        ))}
-                      </div>
+                    <button className="btn primary" style={{width: '100%', marginTop: '16px'}}>Generate Itinerary</button>
+                    <div className="ai-result-container">
+                      <p className="text-sm" style={{color: '#faf7f2', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)'}}>
+                        ✨ AI-generated itinerary will appear here based on your preferences
+                      </p>
                     </div>
-                    <Button className="w-full">Generate AI Itinerary</Button>
                   </div>
                 )}
 
-                {activeDemo === "chatbot" && (
+                {activeDemo === "chat" && (
                   <div className="space-y-4">
-                    <div className="bg-muted/50 rounded-lg p-4 max-h-64 overflow-y-auto space-y-3">
+                    <div className="h-64 rounded-md p-4 overflow-y-auto" style={{background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(244, 208, 63, 0.2)'}}>
                       {chatMessages.map((msg, index) => (
-                        <div key={index} className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}>
+                        <div key={index} className={`mb-3 ${msg.type === "user" ? "text-right" : "text-left"}`}>
                           <div
-                            className={`max-w-xs p-3 rounded-lg ${
-                              msg.type === "user" ? "bg-primary text-primary-foreground" : "bg-background border"
-                            }`}
+                            className={`inline-block p-3 rounded-lg max-w-xs`}
+                            style={msg.type === "user" 
+                              ? {background: 'linear-gradient(135deg, #800020, #1e3a8a)', color: '#faf7f2'}
+                              : {background: 'rgba(244, 208, 63, 0.1)', border: '1px solid rgba(244, 208, 63, 0.3)', color: '#faf7f2'}
+                            }
                           >
-                            <p className="text-sm">{msg.message}</p>
+                            {msg.message}
                           </div>
                         </div>
                       ))}
                     </div>
                     <div className="flex gap-2">
-                      <Input
-                        placeholder="Ask about Jharkhand tourism..."
-                        value={chatMessage}
-                        onChange={(e) => setChatMessage(e.target.value)}
-                      />
-                      <Button size="sm">
-                        <MessageCircle className="h-4 w-4" />
-                      </Button>
+                      <input placeholder="Ask about Jharkhand tourism..." className="flex-1 p-2 rounded-md" style={{background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(244, 208, 63, 0.3)', color: '#faf7f2'}} />
+                      <button className="btn primary" style={{padding: '8px 16px'}}>
+                        <Send className="h-4 w-4" />
+                      </button>
                     </div>
                   </div>
                 )}
 
-                {activeDemo === "ar-vr" && (
+                {activeDemo === "analytics" && (
                   <div className="space-y-4">
-                    <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg p-6 text-center">
-                      <Eye className="h-16 w-16 text-primary mx-auto mb-4" />
-                      <h4 className="font-semibold mb-2">Virtual Reality Preview</h4>
-                      <p className="text-sm text-muted-foreground mb-4">Experience Netarhat sunrise in VR</p>
-                      <Button variant="outline" className="group bg-transparent">
-                        <Play className="mr-2 h-4 w-4" />
-                        Start VR Tour
-                      </Button>
-                    </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <Card className="p-4 text-center">
-                        <Camera className="h-8 w-8 text-primary mx-auto mb-2" />
-                        <p className="text-sm font-medium">360° Views</p>
-                      </Card>
-                      <Card className="p-4 text-center">
-                        <Headphones className="h-8 w-8 text-primary mx-auto mb-2" />
-                        <p className="text-sm font-medium">Audio Guide</p>
-                      </Card>
+                      <div className="text-center p-4 rounded-md" style={{background: 'rgba(244, 208, 63, 0.1)', border: '1px solid rgba(244, 208, 63, 0.2)'}}>
+                        <div className="text-2xl font-bold" style={{color: '#f4d03f'}}>15,420</div>
+                        <div className="text-sm" style={{color: '#faf7f2'}}>Monthly Visitors</div>
+                      </div>
+                      <div className="text-center p-4 rounded-md" style={{background: 'rgba(244, 208, 63, 0.1)', border: '1px solid rgba(244, 208, 63, 0.2)'}}>
+                        <div className="text-2xl font-bold" style={{color: '#f4d03f'}}>4.8⭐</div>
+                        <div className="text-sm" style={{color: '#faf7f2'}}>Avg Rating</div>
+                      </div>
+                      <div className="text-center p-4 rounded-md" style={{background: 'rgba(244, 208, 63, 0.1)', border: '1px solid rgba(244, 208, 63, 0.2)'}}>
+                        <div className="text-2xl font-bold" style={{color: '#f4d03f'}}>₹2.1M</div>
+                        <div className="text-sm" style={{color: '#faf7f2'}}>Revenue</div>
+                      </div>
+                      <div className="text-center p-4 rounded-md" style={{background: 'rgba(244, 208, 63, 0.1)', border: '1px solid rgba(244, 208, 63, 0.2)'}}>
+                        <div className="text-2xl font-bold" style={{color: '#f4d03f'}}>89%</div>
+                        <div className="text-sm" style={{color: '#faf7f2'}}>Satisfaction</div>
+                      </div>
                     </div>
+                    <Link href="/analytics">
+                      <button className="btn primary" style={{width: '100%', marginTop: '16px'}}>View Full Dashboard</button>
+                    </Link>
                   </div>
                 )}
-
-                {activeDemo === "blockchain" && (
-                  <div className="space-y-4">
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <CheckCircle className="h-5 w-5 text-green-600" />
-                        <span className="font-medium text-green-800">Verified Transaction</span>
-                      </div>
-                      <p className="text-sm text-green-700">Block #1234567 - Guide Certification Verified</p>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Transaction Hash:</span>
-                        <span className="font-mono text-xs">0x1a2b3c...</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span>Verification Status:</span>
-                        <Badge variant="default">Confirmed</Badge>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span>Security Level:</span>
-                        <span className="text-green-600 font-medium">Maximum</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {(activeDemo === "location" || activeDemo === "analytics") && (
-                  <div className="space-y-4">
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <NavigationIcon className="h-5 w-5 text-blue-600" />
-                        <span className="font-medium text-blue-800">
-                          {activeDemo === "location" ? "Live Location Services" : "Analytics Dashboard"}
-                        </span>
-                      </div>
-                      <p className="text-sm text-blue-700">
-                        {activeDemo === "location"
-                          ? "Real-time updates for your current location"
-                          : "Tourism insights and visitor analytics"}
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 text-center">
-                      <div>
-                        <div className="text-2xl font-bold text-primary">98%</div>
-                        <div className="text-xs text-muted-foreground">
-                          {activeDemo === "location" ? "Accuracy" : "Satisfaction"}
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-2xl font-bold text-primary">24/7</div>
-                        <div className="text-xs text-muted-foreground">
-                          {activeDemo === "location" ? "Available" : "Monitoring"}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </Card>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Technology Stack */}
-      <section className="py-20 bg-muted/30">
+      <section className="smart-tourism-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#f4d03f', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'}}>
               Powered by Advanced Technology
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
+            <p className="text-xl max-w-3xl mx-auto" style={{color: '#faf7f2', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)'}}>
               Our platform leverages cutting-edge technologies to deliver exceptional travel experiences
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-              <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <Brain className="h-8 w-8 text-blue-600" />
+            <div className="feature-card text-center">
+              <div className="feature-icon mx-auto mb-4">
+                <Brain className="h-8 w-8" />
               </div>
-              <h3 className="font-semibold mb-2">Machine Learning</h3>
-              <p className="text-sm text-muted-foreground">Advanced algorithms for personalized recommendations</p>
-            </Card>
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-              <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <Shield className="h-8 w-8 text-green-600" />
+              <h3 className="font-semibold mb-2" style={{color: '#f4d03f'}}>Machine Learning</h3>
+              <p className="text-sm" style={{color: '#faf7f2'}}>Advanced algorithms for personalized recommendations</p>
+            </div>
+            <div className="feature-card text-center">
+              <div className="feature-icon mx-auto mb-4">
+                <Shield className="h-8 w-8" />
               </div>
-              <h3 className="font-semibold mb-2">Blockchain</h3>
-              <p className="text-sm text-muted-foreground">Secure and transparent transaction processing</p>
-            </Card>
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-              <div className="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <Eye className="h-8 w-8 text-purple-600" />
+              <h3 className="font-semibold mb-2" style={{color: '#f4d03f'}}>Blockchain</h3>
+              <p className="text-sm" style={{color: '#faf7f2'}}>Secure and transparent transaction processing</p>
+            </div>
+            <div className="feature-card text-center">
+              <div className="feature-icon mx-auto mb-4">
+                <Eye className="h-8 w-8" />
               </div>
-              <h3 className="font-semibold mb-2">AR/VR</h3>
-              <p className="text-sm text-muted-foreground">Immersive virtual and augmented reality experiences</p>
-            </Card>
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-              <div className="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                <Smartphone className="h-8 w-8 text-orange-600" />
+              <h3 className="font-semibold mb-2" style={{color: '#f4d03f'}}>AR/VR</h3>
+              <p className="text-sm" style={{color: '#faf7f2'}}>Immersive virtual and augmented reality experiences</p>
+            </div>
+            <div className="feature-card text-center">
+              <div className="feature-icon mx-auto mb-4">
+                <Smartphone className="h-8 w-8" />
               </div>
-              <h3 className="font-semibold mb-2">Mobile First</h3>
-              <p className="text-sm text-muted-foreground">Optimized for mobile devices and offline usage</p>
-            </Card>
+              <h3 className="font-semibold mb-2" style={{color: '#f4d03f'}}>Mobile First</h3>
+              <p className="text-sm" style={{color: '#faf7f2'}}>Optimized for mobile devices and offline usage</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">Experience the Future of Tourism</h2>
-          <p className="text-xl mb-8 text-pretty max-w-2xl mx-auto opacity-90">
+      <section className="quick-feedback-section">
+        <div className="feedback-container">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{color: '#f4d03f', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'}}>Experience the Future of Tourism</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto" style={{color: '#faf7f2', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)'}}>
             Join the revolution in smart tourism with AI-powered planning and blockchain security
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-6">
+          <div className="flex flex-row gap-6 justify-center items-center" style={{flexWrap: 'wrap'}}>
+            <button className="btn primary" style={{padding: '14px 28px', fontSize: '16px', minWidth: '180px'}}>
               Download Mobile App
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-lg px-8 py-6 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
-              asChild
-            >
-              <Link href="/destinations">Start Planning</Link>
-            </Button>
+            </button>
+            <Link href="/destinations">
+              <button className="btn secondary" style={{padding: '14px 28px', fontSize: '16px', minWidth: '180px'}}>
+                Start Planning
+              </button>
+            </Link>
           </div>
         </div>
       </section>
