@@ -1,0 +1,129 @@
+/* [project]/app/globals.css [app-client] (css) */
+@custom-variant dark (& :is(. dark * ));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(.3 .02 60);
+  --card: oklch(.96 .005 80);
+  --card-foreground: oklch(.3 .02 60);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(.3 .02 60);
+  --primary: oklch(.45 .08 120);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(.7 .12 85);
+  --secondary-foreground: oklch(.3 .02 60);
+  --muted: oklch(.96 .005 80);
+  --muted-foreground: oklch(.5 .02 60);
+  --accent: oklch(.7 .12 85);
+  --accent-foreground: oklch(.3 .02 60);
+  --destructive: oklch(.6 .2 30);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(.9 .01 80);
+  --input: oklch(1 0 0);
+  --ring: oklch(.45 .08 120 / .5);
+  --chart-1: oklch(.45 .08 120);
+  --chart-2: oklch(.7 .12 85);
+  --chart-3: oklch(.3 .02 60);
+  --chart-4: oklch(.6 .15 140);
+  --chart-5: oklch(.8 .08 70);
+  --radius: .625rem;
+  --sidebar: oklch(.96 .005 80);
+  --sidebar-foreground: oklch(.3 .02 60);
+  --sidebar-primary: oklch(.45 .08 120);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(.7 .12 85);
+  --sidebar-accent-foreground: oklch(.3 .02 60);
+  --sidebar-border: oklch(.9 .01 80);
+  --sidebar-ring: oklch(.45 .08 120 / .5);
+}
+
+.dark {
+  --background: oklch(.15 .01 60);
+  --foreground: oklch(.95 .005 80);
+  --card: oklch(.2 .01 60);
+  --card-foreground: oklch(.95 .005 80);
+  --popover: oklch(.2 .01 60);
+  --popover-foreground: oklch(.95 .005 80);
+  --primary: oklch(.55 .1 120);
+  --primary-foreground: oklch(.15 .01 60);
+  --secondary: oklch(.35 .02 60);
+  --secondary-foreground: oklch(.95 .005 80);
+  --muted: oklch(.35 .02 60);
+  --muted-foreground: oklch(.7 .005 80);
+  --accent: oklch(.7 .12 85);
+  --accent-foreground: oklch(.15 .01 60);
+  --destructive: oklch(.5 .18 25);
+  --destructive-foreground: oklch(.95 .005 80);
+  --border: oklch(.35 .02 60);
+  --input: oklch(.35 .02 60);
+  --ring: oklch(.55 .1 120 / .5);
+  --chart-1: oklch(.55 .1 120);
+  --chart-2: oklch(.7 .12 85);
+  --chart-3: oklch(.8 .08 70);
+  --chart-4: oklch(.6 .15 140);
+  --chart-5: oklch(.65 .18 30);
+  --sidebar: oklch(.2 .01 60);
+  --sidebar-foreground: oklch(.95 .005 80);
+  --sidebar-primary: oklch(.55 .1 120);
+  --sidebar-primary-foreground: oklch(.15 .01 60);
+  --sidebar-accent: oklch(.35 .02 60);
+  --sidebar-accent-foreground: oklch(.95 .005 80);
+  --sidebar-border: oklch(.35 .02 60);
+  --sidebar-ring: oklch(.55 .1 120 / .5);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans) ; --font-mono: var(--font-geist-mono) ; --color-background: var(--background) ; --color-foreground: var(--foreground) ; --color-card: var(--card) ; --color-card-foreground: var(--card-foreground) ; --color-popover: var(--popover) ; --color-popover-foreground: var(--popover-foreground) ; --color-primary: var(--primary) ; --color-primary-foreground: var(--primary-foreground) ; --color-secondary: var(--secondary) ; --color-secondary-foreground: var(--secondary-foreground) ; --color-muted: var(--muted) ; --color-muted-foreground: var(--muted-foreground) ; --color-accent: var(--accent) ; --color-accent-foreground: var(--accent-foreground) ; --color-destructive: var(--destructive) ; --color-destructive-foreground: var(--destructive-foreground) ; --color-border: var(--border) ; --color-input: var(--input) ; --color-ring: var(--ring) ; --color-chart-1: var(--chart-1) ; --color-chart-2: var(--chart-2) ; --color-chart-3: var(--chart-3) ; --color-chart-4: var(--chart-4) ; --color-chart-5: var(--chart-5) ; --radius-sm: calc(var(--radius)  - 4px) ; --radius-md: calc(var(--radius)  - 2px) ; --radius-lg: var(--radius) ; --radius-xl: calc(var(--radius)  + 4px) ; --color-sidebar: var(--sidebar) ; --color-sidebar-foreground: var(--sidebar-foreground) ; --color-sidebar-primary: var(--sidebar-primary) ; --color-sidebar-primary-foreground: var(--sidebar-primary-foreground) ; --color-sidebar-accent: var(--sidebar-accent) ; --color-sidebar-accent-foreground: var(--sidebar-accent-foreground) ; --color-sidebar-border: var(--sidebar-border) ; --color-sidebar-ring: var(--sidebar-ring) ;
+}
+
+@layer base {
+  @apply border-border outline-ring / 50;
+
+  @apply bg-background text-foreground;
+}
+
+
+/* [project]/node_modules/geist/dist/geistsans_81192321.module.css [app-client] (css) */
+@font-face {
+  font-family: __GeistSans_811923;
+  src: url("../media/Geist_Variable-s.p.f406b17f.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: __GeistSans_Fallback_811923;
+  src: local(Arial);
+  ascent-override: 85.83%;
+  descent-override: 20.53%;
+  line-gap-override: 9.33%;
+  size-adjust: 107.19%;
+}
+
+.geistsans_81192321-module__keQz_a__className {
+  font-family: __GeistSans_811923, __GeistSans_Fallback_811923;
+}
+
+.geistsans_81192321-module__keQz_a__variable {
+  --font-geist-sans: "__GeistSans_811923", "__GeistSans_Fallback_811923";
+}
+
+
+/* [project]/node_modules/geist/dist/geistmono_8e2790ea.module.css [app-client] (css) */
+@font-face {
+  font-family: __GeistMono_8e2790;
+  src: url("../media/GeistMono_Variable.p.6bae060c.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+.geistmono_8e2790ea-module__fuNg9a__className {
+  font-family: __GeistMono_8e2790, ui-monospace, SFMono-Regular, Roboto Mono, Menlo, Monaco, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+}
+
+.geistmono_8e2790ea-module__fuNg9a__variable {
+  --font-geist-mono: "__GeistMono_8e2790", ui-monospace, SFMono-Regular, Roboto Mono, Menlo, Monaco, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+}
+
+
+/*# sourceMappingURL=_12238a._.css.map*/

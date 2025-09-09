@@ -1,0 +1,15 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/app/layout.tsx"],"sourcesContent":["import type { Metadata } from 'next'\r\nimport { GeistSans } from 'geist/font/sans'\r\nimport { GeistMono } from 'geist/font/mono'\r\nimport { Analytics } from '@vercel/analytics/next'\r\nimport './globals.css'\r\n\r\nexport const metadata: Metadata = {\r\n  title: 'v0 App',\r\n  description: 'Created with v0',\r\n  generator: 'v0.app',\r\n}\r\n\r\nexport default function RootLayout({\r\n  children,\r\n}: Readonly<{\r\n  children: React.ReactNode\r\n}>) {\r\n  return (\r\n    <html lang=\"en\">\r\n      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>\r\n        {children}\r\n        <Analytics />\r\n      </body>\r\n    </html>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;;;;;;;;;;;;AAMO,MAAM,WAAqB;IAChC,OAAO;IACP,aAAa;IACb,WAAW;AACb;AAEe,SAAS,WAAW,EACjC,QAAQ,EAGR;IACA,qBACE,wPAAC;QAAK,MAAK;kBACT,cAAA,wPAAC;YAAK,WAAW,CAAC,UAAU,EAAE,2LAAA,CAAA,YAAS,CAAC,QAAQ,CAAC,CAAC,EAAE,2LAAA,CAAA,YAAS,CAAC,QAAQ,CAAC,CAAC;;gBACrE;8BACD,wPAAC,+JAAA,CAAA,YAAS;;;;;;;;;;;;;;;;AAIlB"}},
+    {"offset": {"line": 50, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 62, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/app/ai-features/loading.tsx"],"sourcesContent":["export default function Loading() {\r\n  return null\r\n}\r\n"],"names":[],"mappings":";;;AAAe,SAAS;IACtB,OAAO;AACT"}},
+    {"offset": {"line": 68, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 80, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/app/ai-features/page.tsx/proxy.mjs"],"sourcesContent":["import { registerClientReference } from \"react-server-dom-turbopack/server.edge\";\nexport default registerClientReference(\n    function() { throw new Error(\"Attempted to call the default export of [project]/app/ai-features/page.tsx from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.\"); },\n    \"[project]/app/ai-features/page.tsx\",\n    \"default\",\n);\n"],"names":[],"mappings":";;;;;;uCACe,CAAA,GAAA,+PAAA,CAAA,0BAAuB,AAAD,EACjC;IAAa,MAAM,IAAI,MAAM;AAAwQ,GACrS,sCACA"}},
+    {"offset": {"line": 89, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 94, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 99, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 110, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/.next-internal/server/app/ai-features/page/actions.js"],"sourcesContent":["__turbopack_export_value__({\n});"],"names":[],"mappings":"AAAA,2BAA2B,CAC3B"}},
+    {"offset": {"line": 111, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

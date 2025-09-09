@@ -2,79 +2,69 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Mountain, Menu, X } from "lucide-react"
+import { Menu, X, Mountain } from "lucide-react"
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center space-x-2">
-            <Mountain className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">Jharkhand Tourism</span>
+    <nav className="navbar">
+      <Link href="/" className="navbar-logo">
+        <Mountain className="h-6 w-6" />
+        Jharkhand Tourism
+      </Link>
+
+      {/* Desktop Navigation */}
+      <ul className="navbar-links">
+        <li>
+          <Link href="/destinations">Destinations</Link>
+        </li>
+        <li>
+          <Link href="/ai-features">Smart Features</Link>
+        </li>
+        <li>
+          <Link href="/marketplace">Marketplace</Link>
+        </li>
+        <li>
+          <Link href="/feedback">Feedback</Link>
+        </li>
+        <li>
+          <Link href="/about">About</Link>
+        </li>
+      </ul>
+
+      <Link href="/destinations">
+        <button className="navbar-button">Get Started</button>
+      </Link>
+
+      {/* Mobile menu button */}
+      <button className="mobile-menu-button md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+      </button>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <div className="mobile-menu">
+          <Link href="/destinations" onClick={() => setIsMenuOpen(false)}>
+            Destinations
           </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/destinations" className="text-foreground hover:text-primary transition-colors">
-              Destinations
-            </Link>
-            <Link href="/ai-features" className="text-foreground hover:text-primary transition-colors">
-              AI Features
-            </Link>
-            <Link href="/marketplace" className="text-foreground hover:text-primary transition-colors">
-              Marketplace
-            </Link>
-            <Link href="/feedback" className="text-foreground hover:text-primary transition-colors">
-              Feedback
-            </Link>
-            <Link href="/analytics" className="text-foreground hover:text-primary transition-colors">
-              Analytics
-            </Link>
-            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
-              About
-            </Link>
-            <Button asChild>
-              <Link href="/contact">Get Started</Link>
-            </Button>
-          </div>
-
-          {/* Mobile menu button */}
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <Link href="/ai-features" onClick={() => setIsMenuOpen(false)}>
+            Smart Features
+          </Link>
+          <Link href="/marketplace" onClick={() => setIsMenuOpen(false)}>
+            Marketplace
+          </Link>
+          <Link href="/feedback" onClick={() => setIsMenuOpen(false)}>
+            Feedback
+          </Link>
+          <Link href="/about" onClick={() => setIsMenuOpen(false)}>
+            About
+          </Link>
+          <Link href="/destinations" onClick={() => setIsMenuOpen(false)}>
+            <button className="navbar-button w-full">Get Started</button>
+          </Link>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-4 animate-in slide-in-from-top-2">
-            <Link href="/destinations" className="block text-foreground hover:text-primary transition-colors">
-              Destinations
-            </Link>
-            <Link href="/ai-features" className="block text-foreground hover:text-primary transition-colors">
-              AI Features
-            </Link>
-            <Link href="/marketplace" className="block text-foreground hover:text-primary transition-colors">
-              Marketplace
-            </Link>
-            <Link href="/feedback" className="block text-foreground hover:text-primary transition-colors">
-              Feedback
-            </Link>
-            <Link href="/analytics" className="block text-foreground hover:text-primary transition-colors">
-              Analytics
-            </Link>
-            <Link href="/about" className="block text-foreground hover:text-primary transition-colors">
-              About
-            </Link>
-            <Button className="w-full" asChild>
-              <Link href="/contact">Get Started</Link>
-            </Button>
-          </div>
-        )}
-      </div>
+      )}
     </nav>
   )
 }

@@ -1,0 +1,110 @@
+.iconic-destinations-section {
+  background: linear-gradient(135deg, rgba(128, 0, 32, 0.95) 0%, rgba(30, 58, 138, 0.95) 100%);
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+}
+
+.iconic-destinations-section h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #faf7f2;
+  margin-bottom: 16px;
+}
+
+.iconic-destinations-section .subtitle {
+  font-size: 1.2rem;
+  color: #f5f5f5;
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.destination-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  text-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.destination-card:hover {
+  border-color: #d4af37;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.destination-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.destination-card:hover img {
+  transform: scale(1.05);
+}
+
+.card-info {
+  padding: 24px;
+  text-align: left;
+}
+
+.card-info h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #d4af37;
+  margin-bottom: 12px;
+}
+
+.card-info p {
+  color: #f4d03f;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d4af37;
+  font-weight: 600;
+}
+.iconic-destinations-section .btn.primary {
+  background: #f4d03f;
+  color: #800020;
+  border: 2px solid #f4d03f;
+  font-weight: 600;
+}
+.iconic-destinations-section .btn.primary:hover{
+  background: #d4af37;
+  color: #800020;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .iconic-destinations-section {
+    padding: 40px 20px;
+  }
+
+  .iconic-destinations-section h2 {
+    font-size: 2.2rem;
+  }
+
+  .destination-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
