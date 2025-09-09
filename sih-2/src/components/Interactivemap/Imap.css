@@ -1,0 +1,113 @@
+.jharkhand-map-container {
+  max-width: 1200px;
+  height: 70vh;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.jharkhand-map {
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.info-panel {
+  position: absolute;
+  bottom: 20px; /* move inside map instead of top */
+  left: 20px;
+  right: auto;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 280px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: slideIn 0.3s ease;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #e74c3c;
+}
+
+.info-panel h2 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.4rem;
+}
+
+.info-panel p {
+  margin: 10px 0;
+  color: #555;
+}
+
+.selected-place-info {
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+.selected-place-info h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+}
+
+.street-view-link {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.street-view-link:hover {
+  background-color: #2980b9;
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.popup-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.popup-content p {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+.leaflet-control-zoom {
+  display: none !important;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

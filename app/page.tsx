@@ -167,148 +167,68 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/jharkhand-landscape-forest-mountains-tribal-cultur.jpg"
-            alt="Jharkhand landscape"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent"></div>
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1>Discover the Heart of Jharkhand</h1>
+          <p>Experience pristine forest, rich tribal culture, ancient temples, and vibrant festivals – all powered by AI.</p>
+          <div className="hero-buttons">
+            <Link href="/destinations">
+              <button className="btn primary">Start Your Journey</button>
+            </Link>
+            <Link href="/ai-features">
+              <button className="btn secondary">Explore Features</button>
+            </Link>
+          </div>
         </div>
+      </section>
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-4xl mx-auto animate-in fade-in-0 slide-in-from-bottom-4 duration-1000">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 text-balance">
-              Discover the Heart of
-              <span className="text-primary block">Jharkhand</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 text-pretty max-w-3xl mx-auto">
-              Experience pristine forests, rich tribal culture, and breathtaking landscapes through our AI-powered smart
-              tourism platform
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="text-lg px-8 py-6 group" asChild>
-                <Link href="/destinations">
-                  Start Your Journey
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-6 group bg-transparent" asChild>
-                <Link href="/ai-features">
-                  <Play className="mr-2 h-5 w-5" />
-                  Explore Features
-                </Link>
-              </Button>
+      {/* Smart Tourism Section */}
+      <section className="smart-tourism-section">
+        <h2>Smart Tourism Technology</h2>
+        <p className="subtitle">Powered by AI, secured by blockchain, and designed for authentic cultural experiences</p>
+
+        <div className="feature-grid">
+          {features.map((feature, index) => (
+            <Link key={index} href={feature.link} className="feature-card clickable">
+              <div className="feature-icon">{feature.icon}</div>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </Link>
+          ))}
+        </div>
+        <Link href="/ai-features">
+          <button className="btn primary">Explore All Features</button>
+        </Link>
+      </section>
+
+      {/* Iconic Destinations Section */}
+      <section className="iconic-destinations-section">
+        <h2>Explore Iconic Destinations</h2>
+        <p className="subtitle">From mystical waterfalls to sacred temples, discover Jharkhand's hidden gems</p>
+
+        <div className="destination-grid">
+          {destinations.map((destination, index) => (
+            <div key={index} className="destination-card clickable">
+              <img src={destination.image || "/placeholder.svg"} alt={destination.name} />
+              <div className="card-info">
+                <h3>{destination.name}</h3>
+                <p>{destination.description}</p>
+                <div className="rating">⭐ 4.8</div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="h-6 w-6 text-muted-foreground" />
-        </div>
-      </section>
-
-      {/* Features Preview Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-              Smart Tourism Technology
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Powered by AI, secured by blockchain, and designed for authentic cultural experiences
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Link key={index} href={feature.link}>
-                <Card
-                  className={`transition-all duration-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer ${
-                    activeFeature === index ? "ring-2 ring-primary shadow-lg scale-105" : ""
-                  }`}
-                >
-                  <CardHeader>
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-primary/10 rounded-lg text-primary">{feature.icon}</div>
-                      <CardTitle className="text-lg">{feature.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base">{feature.description}</CardDescription>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button size="lg" asChild>
-              <Link href="/ai-features">
-                Explore All Features
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Destinations Preview Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-              Explore Iconic Destinations
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              From mystical waterfalls to sacred temples, discover Jharkhand's hidden gems
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {destinations.map((destination, index) => (
-              <Card key={index} className="group overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={destination.image || "/placeholder.svg"}
-                    alt={destination.name}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <Badge className="absolute top-3 left-3 bg-primary/90">{destination.category}</Badge>
-                </div>
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-between">
-                    {destination.name}
-                    <div className="flex items-center text-accent">
-                      <Star className="h-4 w-4 fill-current" />
-                      <span className="text-sm ml-1">4.8</span>
-                    </div>
-                  </CardTitle>
-                  <CardDescription>{destination.description}</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button size="lg" asChild>
-              <Link href="/destinations">
-                View All Destinations
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
+        <Link href="/destinations">
+          <button className="btn primary">View All Destinations</button>
+        </Link>
       </section>
 
       {/* Analytics Dashboard Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="analytics-dashboard-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -319,172 +239,147 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <Card className="text-center p-6">
-              <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <Users className="h-6 w-6 text-blue-600" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div className="analytics-card">
+              <div className="analytics-card-icon">
+                <Users className="h-8 w-8" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">
+              <h3 className="analytics-card-number">
                 {analyticsData ? analyticsData.overview.totalVisitors.toLocaleString() : '30,000+'}
               </h3>
-              <p className="text-muted-foreground">Monthly Visitors</p>
-              <div className="flex items-center justify-center mt-2 text-green-600">
+              <p className="analytics-card-label">Monthly Visitors</p>
+              <div className="analytics-card-growth">
                 <TrendingUp className="h-4 w-4 mr-1" />
-                <span className="text-sm">+15% this month</span>
+                <span>+15% this month</span>
               </div>
-            </Card>
+            </div>
 
-            <Card className="text-center p-6">
-              <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <DollarSign className="h-6 w-6 text-green-600" />
+            <div className="analytics-card">
+              <div className="analytics-card-icon">
+                <Star className="h-8 w-8" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">
-                ₹{analyticsData ? (analyticsData.overview.totalRevenue / 10000000).toFixed(1) : '12.5'}Cr
-              </h3>
-              <p className="text-muted-foreground">Tourism Revenue</p>
-              <div className="flex items-center justify-center mt-2 text-green-600">
-                <TrendingUp className="h-4 w-4 mr-1" />
-                <span className="text-sm">+22% growth</span>
-              </div>
-            </Card>
-
-            <Card className="text-center p-6">
-              <div className="mx-auto w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
-                <Star className="h-6 w-6 text-yellow-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">
+              <h3 className="analytics-card-number">
                 {analyticsData ? analyticsData.overview.averageSatisfaction.toFixed(1) : '4.6'}/5
               </h3>
-              <p className="text-muted-foreground">Satisfaction Score</p>
-              <div className="flex items-center justify-center mt-2 text-green-600">
+              <p className="analytics-card-label">Satisfaction Score</p>
+              <div className="analytics-card-growth">
                 <TrendingUp className="h-4 w-4 mr-1" />
-                <span className="text-sm">Excellent rating</span>
+                <span>Excellent rating</span>
               </div>
-            </Card>
+            </div>
 
-            <Card className="text-center p-6">
-              <div className="mx-auto w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <MessageCircle className="h-6 w-6 text-purple-600" />
+            <div className="analytics-card">
+              <div className="analytics-card-icon">
+                <MessageCircle className="h-8 w-8" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">
+              <h3 className="analytics-card-number">
                 {feedbackStats ? feedbackStats.total : '1,247'}
               </h3>
-              <p className="text-muted-foreground">Tourist Feedback</p>
-              <div className="flex items-center justify-center mt-2">
+              <p className="analytics-card-label">Tourist Feedback</p>
+              <div className="analytics-card-growth">
                 {feedbackStats && (
-                  <div className="flex gap-1">
-                    <Smile className="h-4 w-4 text-green-600" />
-                    <span className="text-sm text-green-600">{feedbackStats.positive}</span>
-                    <Meh className="h-4 w-4 text-yellow-600 ml-2" />
-                    <span className="text-sm text-yellow-600">{feedbackStats.neutral}</span>
-                    <Frown className="h-4 w-4 text-red-600 ml-2" />
-                    <span className="text-sm text-red-600">{feedbackStats.negative}</span>
+                  <div className="flex gap-2">
+                    <div className="flex items-center">
+                      <Smile className="h-4 w-4 mr-1" />
+                      <span>{feedbackStats.positive}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Meh className="h-4 w-4 mr-1" />
+                      <span>{feedbackStats.neutral}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Frown className="h-4 w-4 mr-1" />
+                      <span>{feedbackStats.negative}</span>
+                    </div>
                   </div>
                 )}
               </div>
-            </Card>
+            </div>
           </div>
 
           <div className="text-center">
-            <Button size="lg" asChild>
+            <button className="btn primary">
               <Link href="/analytics">
                 View Full Analytics Dashboard
                 <BarChart3 className="ml-2 h-5 w-5" />
               </Link>
-            </Button>
+            </button>
           </div>
         </div>
       </section>
 
       {/* Quick Feedback Section */}
-      <section className="py-20">
+      <section className="quick-feedback-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto">
-            <Card>
-              <CardHeader className="text-center">
-                <CardTitle className="flex items-center justify-center gap-2">
-                  <MessageCircle className="h-6 w-6 text-primary" />
-                  Quick Feedback
-                </CardTitle>
-                <CardDescription>
-                  Share your experience and help us improve Jharkhand tourism
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label>How was your experience?</Label>
-                  <div className="flex items-center justify-center gap-4 mt-2">
-                    {[
-                      { emoji: "😍", label: "Loved it" },
-                      { emoji: "😊", label: "Good" },
-                      { emoji: "😐", label: "Okay" },
-                      { emoji: "😞", label: "Poor" },
-                      { emoji: "😡", label: "Terrible" }
-                    ].map(({ emoji, label }) => (
-                      <button
-                        key={emoji}
-                        onClick={() => setSelectedEmotion(emoji)}
-                        className={`p-3 rounded-lg border-2 transition-all ${
-                          selectedEmotion === emoji
-                            ? 'border-primary bg-primary/10 scale-110'
-                            : 'border-gray-200 hover:border-gray-300'
-                        }`}
-                        title={label}
-                      >
-                        <span className="text-2xl">{emoji}</span>
-                      </button>
-                    ))}
-                  </div>
+            <div className="feedback-card">
+              <h3>
+                <MessageCircle className="h-6 w-6" />
+                Quick Feedback
+              </h3>
+              <p>
+                Share your experience and help us improve Jharkhand tourism
+              </p>
+              
+              <div>
+                <label>How was your experience?</label>
+                <div className="emotion-buttons">
+                  {[
+                    { emoji: "😍", label: "Loved it" },
+                    { emoji: "😊", label: "Good" },
+                    { emoji: "😐", label: "Okay" },
+                    { emoji: "😞", label: "Poor" },
+                    { emoji: "😡", label: "Terrible" }
+                  ].map(({ emoji, label }) => (
+                    <button
+                      key={emoji}
+                      onClick={() => setSelectedEmotion(emoji)}
+                      className={`emotion-button ${
+                        selectedEmotion === emoji ? 'selected' : ''
+                      }`}
+                      title={label}
+                    >
+                      <span className="text-2xl">{emoji}</span>
+                    </button>
+                  ))}
                 </div>
+              </div>
 
-                <div>
-                  <Label htmlFor="quickFeedback">Tell us more (optional)</Label>
-                  <textarea
-                    id="quickFeedback"
-                    value={quickFeedback}
-                    onChange={(e) => setQuickFeedback(e.target.value)}
-                    placeholder="Share your thoughts about Jharkhand tourism..."
-                    className="w-full px-3 py-2 border rounded-md bg-background min-h-[80px] mt-1"
-                  />
-                </div>
+              <div>
+                <label htmlFor="quickFeedback">Tell us more (optional)</label>
+                <textarea
+                  id="quickFeedback"
+                  value={quickFeedback}
+                  onChange={(e) => setQuickFeedback(e.target.value)}
+                  placeholder="Share your thoughts about Jharkhand tourism..."
+                />
+              </div>
 
-                <div className="flex gap-2">
-                  <Button onClick={submitQuickFeedback} className="flex-1">
-                    <Send className="mr-2 h-4 w-4" />
-                    Submit Feedback
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link href="/feedback">
-                      Detailed Feedback
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+              <div className="button-group">
+                <button onClick={submitQuickFeedback} className="btn primary">
+                  <Send className="mr-2 h-4 w-4" />
+                  Submit Feedback
+                </button>
+                <button className="btn secondary">
+                  <Link href="/feedback">
+                    Detailed Feedback
+                  </Link>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">Ready to Explore Jharkhand?</h2>
-          <p className="text-xl mb-8 text-pretty max-w-2xl mx-auto opacity-90">
-            Join thousands of travelers discovering authentic experiences and supporting local communities
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-6">
-              Download Mobile App
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-lg px-8 py-6 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
-              asChild
-            >
-              <Link href="/destinations">Plan Your Trip</Link>
-            </Button>
-          </div>
+      {/* Call to Action Section */}
+      <section className="call-to-action-section">
+        <h2>Ready to Explore Jharkhand?</h2>
+        <p>Join thousands of travelers discovering authentic experiences and supporting local communities</p>
+        <div className="cta-buttons">
+          <button className="btn primary">Download Mobile App</button>
+          <Link href="/destinations">
+            <button className="btn secondary">Plan Your Trip</button>
+          </Link>
         </div>
       </section>
 

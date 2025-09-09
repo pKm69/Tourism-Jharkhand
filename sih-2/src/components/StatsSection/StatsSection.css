@@ -1,0 +1,48 @@
+.stats-section {
+  background: linear-gradient(135deg, rgba(128, 0, 32, 0.95) 0%, rgba(30, 58, 138, 0.95) 100%);
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 16px;
+  padding: 60px 40px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.stat-card p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .stats-section {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 40px 20px;
+  }
+
+  .stat-card h3 {
+    font-size: 2rem;
+  }
+}

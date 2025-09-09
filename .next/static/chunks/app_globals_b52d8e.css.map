@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["[project]/app/globals.css"],"sourcesContent":["/* Import our main CSS file */\r\n@import \"../styles/globals.css\";\r\n"],"names":[],"mappings":""}},
+    {"offset": {"line": 2, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
