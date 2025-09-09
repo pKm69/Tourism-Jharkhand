@@ -265,63 +265,7 @@ function fallbackSentimentAnalysis(text: string, language: string): {
 }
 
 // Enhanced feedback database with AI analysis
-let feedbacks: EnhancedFeedback[] = [
-  {
-    id: 1,
-    userId: "user_123",
-    userName: "Rajesh Kumar",
-    location: "Netarhat",
-    category: "Homestays",
-    rating: 5,
-    textFeedback: "Amazing experience staying with the local family. The food was delicious and the cultural activities were wonderful!",
-    language: "en",
-    aiAnalysis: {
-      sentiment: "positive",
-      confidence: 0.9,
-      emotions: { joy: 0.8, satisfaction: 0.7, excitement: 0.6 },
-      keywords: ["amazing", "delicious", "wonderful", "cultural", "family"],
-      language: "en",
-      toxicity: 0.01,
-      urgency: "low",
-      categories: ["accommodation", "food", "cultural experience"],
-      actionableInsights: ["Leverage positive aspects in marketing and promotion", "Highlight cultural activities in homestay descriptions"]
-    },
-    timestamp: new Date().toISOString(),
-    isVerified: true,
-    responseFromVendor: undefined,
-    flagged: false,
-    urgencyLevel: "low",
-    autoResponseGenerated: "We're delighted to hear about your positive experience at Netarhat! Thank you for highlighting amazing, delicious, wonderful. We'll share your feedback with our team."
-  },
-  {
-    id: 2,
-    userId: "user_456",
-    userName: "Priya Sharma",
-    location: "Betla National Park",
-    category: "Experiences",
-    rating: 2,
-    textFeedback: "The guide was unprofessional and the safari was disappointing. Poor organization overall.",
-    language: "en",
-    aiAnalysis: {
-      sentiment: "negative",
-      confidence: 0.8,
-      emotions: { anger: 0.6, disappointment: 0.7, frustration: 0.5 },
-      keywords: ["unprofessional", "disappointing", "poor", "organization", "guide"],
-      language: "en",
-      toxicity: 0.15,
-      urgency: "high",
-      categories: ["service quality", "experiences", "staff behavior"],
-      actionableInsights: ["Staff training and customer service improvement needed", "Review guide certification and training programs", "Implement better safari organization protocols"]
-    },
-    timestamp: new Date(Date.now() - 86400000).toISOString(),
-    isVerified: true,
-    responseFromVendor: "We apologize for the poor experience. We have addressed this with our guide team.",
-    flagged: true,
-    urgencyLevel: "high",
-    autoResponseGenerated: "We sincerely apologize for your experience at Betla National Park. We're taking immediate action on Staff training and customer service improvement needed and Review guide certification and training programs. You can expect an update within 24-48 hours.",
-    escalated: true
-  }
-]
+let feedbacks: EnhancedFeedback[] = []
 
 export async function GET(request: NextRequest) {
   try {

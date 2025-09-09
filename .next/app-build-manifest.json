@@ -11,26 +11,6 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/destinations/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/destinations/page.js"
-    ],
-    "/destinations/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/destinations/loading.js"
-    ],
-    "/analytics/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/analytics/page.js"
-    ],
-    "/feedback/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/feedback/page.js"
-    ],
     "/marketplace/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -41,25 +21,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/marketplace/loading.js"
     ],
-    "/ai-features/page": [
+    "/feedback/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/ai-features/page.js"
-    ],
-    "/ai-features/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/ai-features/loading.js"
-    ],
-    "/contact/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/contact/page.js"
-    ],
-    "/contact/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/contact/loading.js"
+      "static/chunks/app/feedback/page.js"
     ]
   }
 }
