@@ -13,8 +13,6 @@ import Footer from "@/components/footer"
 import {
   Star,
   MessageCircle,
-  Mic,
-  MicOff,
   Send,
   Smile,
   Frown,
@@ -34,7 +32,6 @@ import {
   Camera,
   Image,
   X,
-  Volume2,
   Brain,
   Zap,
   Eye,
@@ -93,11 +90,10 @@ export default function FeedbackPage() {
   const [activeTab, setActiveTab] = useState("submit")
   const [feedbacks, setFeedbacks] = useState<EnhancedFeedback[]>([])
   const [loading, setLoading] = useState(false)
-  const [isRecording, setIsRecording] = useState(false)
+  
   const [selectedImage, setSelectedImage] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
-  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null)
-  const [audioChunks, setAudioChunks] = useState<Blob[]>([])
+  
   const [sentimentStats, setSentimentStats] = useState({
     positive: 0,
     negative: 0,
@@ -224,49 +220,7 @@ export default function FeedbackPage() {
     }
   }
 
-  const toggleRecording = async () => {
-    if (!isRecording) {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-        const recorder = new MediaRecorder(stream)
-        const chunks: Blob[] = []
-        
-        recorder.ondataavailable = (event) => {
-          chunks.push(event.data)
-        }
-        
-        recorder.onstop = () => {
-          const audioBlob = new Blob(chunks, { type: 'audio/wav' })
-          const reader = new FileReader()
-          reader.onloadend = () => {
-            const base64Audio = reader.result as string
-            setFormData(prev => ({
-              ...prev,
-              voiceData: base64Audio.split(',')[1] // Remove data:audio/wav;base64, prefix
-            }))
-          }
-          reader.readAsDataURL(audioBlob)
-          
-          // Stop all tracks
-          stream.getTracks().forEach(track => track.stop())
-        }
-        
-        setMediaRecorder(recorder)
-        setAudioChunks(chunks)
-        recorder.start()
-        setIsRecording(true)
-      } catch (error) {
-        console.error('Error accessing microphone:', error)
-        alert('Could not access microphone. Please check permissions.')
-      }
-    } else {
-      if (mediaRecorder) {
-        mediaRecorder.stop()
-        setIsRecording(false)
-        setMediaRecorder(null)
-      }
-    }
-  }
+  
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -330,54 +284,118 @@ export default function FeedbackPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-4">
-            AI-Powered Feedback System
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1>
+            Share Your
+            <span className="text-gold block">Experience & Insights</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Share your experience and help us improve Jharkhand tourism through AI-driven sentiment analysis
+          <p>
+            Help us enhance Jharkhand tourism with smart, AI-powered feedback analysis. Your voice shapes better
+            services for everyone.
           </p>
+          <div className="hero-buttons">
+            <button onClick={() => setActiveTab("submit")} className="btn primary">Submit Feedback</button>
+            <button onClick={() => setActiveTab("analytics")} className="btn secondary">View Analytics</button>
         </div>
+        </div>
+      </section>
 
+      <div className="container mx-auto px-4 py-8">
+
+        <div className="ai-demo-card">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="submit">Submit Feedback</TabsTrigger>
-            <TabsTrigger value="view">View Feedback</TabsTrigger>
-            <TabsTrigger value="analytics">Sentiment Analytics</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 gap-2 mb-2" style={{ background: 'transparent', boxShadow: 'none', border: 'none',borderRadius: '25px' }}>
+            <TabsTrigger
+              value="submit"
+              className="btn"
+              style={
+                activeTab === 'submit'
+                  ? { background: '#f4d03f', color: '#800020', border: '2px solid #f4d03f', borderRadius: '25px' }
+                  : { background: 'transparent', color: 'white', border: '2px solid rgba(244, 208, 63, 0.8)', borderRadius: '25px' }
+              }
+            >
+              Submit Feedback
+            </TabsTrigger>
+            <TabsTrigger
+              value="view"
+              className="btn"
+              style={
+                activeTab === 'view'
+                  ? { background: '#f4d03f', color: '#800020', border: '2px solid #f4d03f', borderRadius: '25px' }
+                  : { background: 'transparent', color: 'white', border: '2px solid rgba(244, 208, 63, 0.8)', borderRadius: '25px' }
+              }
+            >
+              View Feedback
+            </TabsTrigger>
+            <TabsTrigger
+              value="analytics"
+              className="btn"
+              style={
+                activeTab === 'analytics'
+                  ? { background: '#f4d03f', color: '#800020', border: '2px solid #f4d03f', borderRadius: '25px' }
+                  : { background: 'transparent', color: 'white', border: '2px solid rgba(244, 208, 63, 0.8)', borderRadius: '25px' }
+              }
+            >
+              Sentiment Analytics
+            </TabsTrigger>
           </TabsList>
 
           {/* Submit Feedback Tab */}
           <TabsContent value="submit" className="mt-8">
             <div className="max-w-2xl mx-auto">
-              <Card>
+              <Card
+                className="p-6"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.18) 0%, rgba(30, 58, 138, 0.18) 100%)',
+                  backdropFilter: 'blur(15px)',
+                  border: '2px solid rgba(244, 208, 63, 0.35)',
+                  borderRadius: '20px',
+                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.25)'
+                }}
+              >
                 <CardHeader>
-                  <CardTitle>Share Your Experience</CardTitle>
-                  <CardDescription>
+                  <CardTitle style={{ color: '#f4d03f', fontSize: '1.75rem' }}>Share Your Experience</CardTitle>
+                  <CardDescription style={{ color: 'rgba(255,255,255,0.9)' }}>
                     Your feedback helps improve tourism services across Jharkhand
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="userName">Your Name *</Label>
+                      <Label htmlFor="userName" style={{ color: '#f4d03f' }}>Your Name *</Label>
                       <Input
                         id="userName"
                         value={formData.userName}
                         onChange={(e) => setFormData(prev => ({ ...prev, userName: e.target.value }))}
                         placeholder="Enter your name"
+                        className="w-full"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(244, 208, 63, 0.3)',
+                          color: 'white',
+                          padding: '0.5rem 0.75rem',
+                          height: '42px'
+                        }}
                       />
                     </div>
                     <div>
-                      <Label htmlFor="language">Language</Label>
+                      <Label htmlFor="language" style={{ color: '#f4d03f' }}>Language</Label>
                       <select
                         id="language"
                         value={formData.language}
                         onChange={(e) => setFormData(prev => ({ ...prev, language: e.target.value }))}
-                        className="w-full px-3 py-2 border rounded-md bg-background"
+                        className="w-full px-3 py-2 rounded-md"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(244, 208, 63, 0.3)',
+                          color: 'white',
+                          height: '42px'
+                        }}
                       >
                         {languages.map(lang => (
                           <option key={lang.code} value={lang.code}>{lang.name}</option>
@@ -388,12 +406,17 @@ export default function FeedbackPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="location">Location Visited</Label>
+                      <Label htmlFor="location" style={{ color: '#f4d03f' }}>Location Visited</Label>
                       <select
                         id="location"
                         value={formData.location}
                         onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
-                        className="w-full px-3 py-2 border rounded-md bg-background"
+                        className="w-full px-3 py-2 rounded-md"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(244, 208, 63, 0.3)',
+                          color: 'white'
+                        }}
                       >
                         {locations.slice(1).map(location => (
                           <option key={location} value={location}>{location}</option>
@@ -401,12 +424,17 @@ export default function FeedbackPage() {
                       </select>
                     </div>
                     <div>
-                      <Label htmlFor="category">Category</Label>
+                      <Label htmlFor="category" style={{ color: '#f4d03f' }}>Category</Label>
                       <select
                         id="category"
                         value={formData.category}
                         onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                        className="w-full px-3 py-2 border rounded-md bg-background"
+                        className="w-full px-3 py-2 rounded-md"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(244, 208, 63, 0.3)',
+                          color: 'white'
+                        }}
                       >
                         {categories.slice(1).map(category => (
                           <option key={category} value={category}>{category}</option>
@@ -417,7 +445,7 @@ export default function FeedbackPage() {
 
                   {/* Star Rating */}
                   <div>
-                    <Label>Overall Rating</Label>
+                    <Label style={{ color: '#f4d03f' }}>Overall Rating</Label>
                     <div className="flex items-center gap-2 mt-2">
                       {[1, 2, 3, 4, 5].map(star => (
                         <button
@@ -426,15 +454,16 @@ export default function FeedbackPage() {
                           className="p-1"
                         >
                           <Star
-                            className={`h-8 w-8 ${
+                            className="h-8 w-8"
+                            style={
                               star <= formData.rating
-                                ? 'fill-current text-yellow-500'
-                                : 'text-gray-300'
-                            }`}
+                                ? { fill: '#f4d03f', color: '#f4d03f', stroke: '#f4d03f' }
+                                : { fill: 'none', color: '#f4d03f', stroke: '#f4d03f' }
+                            }
                           />
                         </button>
                       ))}
-                      <span className="ml-2 text-sm text-muted-foreground">
+                      <span className="ml-2 text-sm" style={{ color: 'rgba(255,255,255,0.9)' }}>
                         {formData.rating}/5 stars
                       </span>
                     </div>
@@ -442,7 +471,7 @@ export default function FeedbackPage() {
 
                   {/* Emoji Rating */}
                   <div>
-                    <Label>How did you feel? (Optional)</Label>
+                    <Label style={{ color: '#f4d03f', fontWeight: 700, marginTop: '20px' }}>How did you feel? (Optional)</Label>
                     <div className="flex items-center gap-4 mt-2">
                       {[
                         { emoji: "😍", label: "Loved it" },
@@ -454,11 +483,19 @@ export default function FeedbackPage() {
                         <button
                           key={emoji}
                           onClick={() => setFormData(prev => ({ ...prev, emojiRating: emoji }))}
-                          className={`p-3 rounded-lg border-2 transition-all ${
+                          className="p-3 rounded-lg transition-all"
+                          style={
                             formData.emojiRating === emoji
-                              ? 'border-primary bg-primary/10'
-                              : 'border-gray-200 hover:border-gray-300'
-                          }`}
+                              ? {
+                                  border: '2px solid rgba(244, 208, 63, 0.7)',
+                                  background: 'rgba(244, 208, 63, 0.18)',
+                                  transform: 'scale(1.05)'
+                                }
+                              : {
+                                  border: '2px solid rgba(255, 255, 255, 0.35)',
+                                  background: 'rgba(255, 255, 255, 0.10)'
+                                }
+                          }
                           title={label}
                         >
                           <span className="text-2xl">{emoji}</span>
@@ -469,7 +506,7 @@ export default function FeedbackPage() {
 
                   {/* Text Feedback */}
                   <div>
-                    <Label htmlFor="textFeedback">Your Feedback</Label>
+                    <Label htmlFor="textFeedback" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '20px' }}>Your Feedback</Label>
                     <div className="relative">
                       <Textarea
                         id="textFeedback"
@@ -478,47 +515,42 @@ export default function FeedbackPage() {
                         placeholder="Share your detailed experience..."
                         rows={4}
                         className="pr-12"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(244, 208, 63, 0.3)',
+                          color: 'white'
+                        }}
                       />
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant={isRecording ? "destructive" : "outline"}
-                        onClick={toggleRecording}
-                        className="absolute bottom-2 right-2"
-                      >
-                        {isRecording ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
-                      </Button>
+                      
                     </div>
-                    {isRecording && (
-                      <p className="text-sm text-red-600 mt-1 animate-pulse">
-                        🔴 Recording... Speak now
-                      </p>
-                    )}
-                    {formData.voiceData && (
-                      <div className="mt-2 p-2 bg-blue-50 rounded-md flex items-center gap-2">
-                        <Volume2 className="h-4 w-4 text-blue-600" />
-                        <span className="text-sm text-blue-700">Voice recording captured</span>
-                      </div>
-                    )}
+                    
                   </div>
 
                   {/* Image Upload */}
                   <div>
-                    <Label>Upload Image (Optional)</Label>
+                    <Label style={{ color: '#f4d03f', fontWeight: 700, marginTop: '20px' }}>Upload Image (Optional)</Label>
                     <div className="mt-2">
                       {!imagePreview ? (
-                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
+                        <div
+                          className="rounded-lg p-6 text-center transition-colors"
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.08)',
+                            border: '2px dashed rgba(244, 208, 63, 0.35)',
+                            color: 'white'
+                          }}
+                        >
                           <input
                             type="file"
                             accept="image/*"
                             onChange={handleImageUpload}
                             className="hidden"
                             id="image-upload"
+                            style={{ display: 'none' }}
                           />
                           <label htmlFor="image-upload" className="cursor-pointer">
-                            <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                            <p className="text-sm text-gray-600">Click to upload an image</p>
-                            <p className="text-xs text-gray-500 mt-1">JPG, PNG, GIF up to 10MB</p>
+                            <Camera className="h-12 w-12 mx-auto mb-2" style={{ color: '#f4d03f' }} />
+                            <p className="text-sm" style={{color: '#f4d03f'}}>Click to upload an image</p>
+                            <p className="text-xs mt-1" style={{color: 'rgba(255,255,255,0.7)'}}>JPG, PNG, GIF up to 10MB</p>
                           </label>
                         </div>
                       ) : (
@@ -548,12 +580,19 @@ export default function FeedbackPage() {
 
                   {/* Language Selection */}
                   <div>
-                    <Label htmlFor="language">Language</Label>
+                    <Label htmlFor="language" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '20px' }}>Language</Label>
                     <select
                       id="language"
                       value={formData.language}
                       onChange={(e) => setFormData(prev => ({ ...prev, language: e.target.value }))}
-                      className="w-full px-3 py-2 border rounded-md bg-background mt-2"
+                      className="w-full px-3 py-2 rounded-md mt-2"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        border: '1px solid rgba(244, 208, 63, 0.3)',
+                        color: 'white',
+                        minWidth: '340px',
+                        marginBottom: '16px'
+                      }}
                     >
                       <option value="auto">Auto-detect</option>
                       {languages.map(lang => (
@@ -563,12 +602,18 @@ export default function FeedbackPage() {
                   </div>
 
                   {/* AI Features Info */}
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg border border-blue-200">
+                  <div
+                    className="p-4 rounded-lg"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(244, 208, 63, 0.2) 0%, rgba(128, 0, 32, 0.15) 100%)',
+                      border: '1px solid rgba(244, 208, 63, 0.4)'
+                    }}
+                  >
                     <div className="flex items-center gap-2 mb-2">
-                      <Brain className="h-5 w-5 text-blue-600" />
-                      <h3 className="font-semibold text-blue-800">AI-Powered Analysis</h3>
+                      <Brain className="h-8 w-8" style={{ color: '#f4d03f' }} />
+                      <h3 className="font-semibold" style={{ color: '#f4d03f' }}>AI-Powered Analysis</h3>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 text-sm text-blue-700">
+                    <div className="grid grid-cols-2 gap-2 text-sm" style={{color: 'rgba(255,255,255,0.9)'}}>
                       <div className="flex items-center gap-1">
                         <Zap className="h-3 w-3" />
                         <span>Sentiment Analysis</span>
@@ -577,10 +622,7 @@ export default function FeedbackPage() {
                         <Eye className="h-3 w-3" />
                         <span>Emotion Detection</span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Volume2 className="h-3 w-3" />
-                        <span>Voice Analysis</span>
-                      </div>
+                      
                       <div className="flex items-center gap-1">
                         <Image className="h-3 w-3" />
                         <span>Image Recognition</span>
@@ -591,7 +633,15 @@ export default function FeedbackPage() {
                   <Button
                     onClick={handleSubmitFeedback}
                     disabled={loading}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    className="w-full"
+                    style={{
+                      background: '#f4d03f',
+                      color: '#800020',
+                      border: '2px solid #f4d03f',
+                      borderRadius: '25px',
+                      fontWeight: 600 as unknown as string,
+                      marginTop: '20px'
+                    }}
                   >
                     {loading ? (
                       <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
@@ -605,10 +655,10 @@ export default function FeedbackPage() {
                   {autoResponse && (
                     <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
-                        <MessageSquare className="h-5 w-5 text-green-600" />
-                        <h3 className="font-semibold text-green-800">AI Generated Response</h3>
+                        <MessageSquare className="h-5 w-5" style={{ color: '#f4d03f' }} />
+                        <h3 className="font-semibold" style={{ color: '#f4d03f' }}>AI Generated Response</h3>
                       </div>
-                      <p className="text-green-700 text-sm">{autoResponse}</p>
+                      <p className="text-sm" style={{ color: '#ffffff' }}>{autoResponse}</p>
                     </div>
                   )}
 
@@ -638,22 +688,34 @@ export default function FeedbackPage() {
           <TabsContent value="view" className="mt-8">
             <div className="space-y-6">
               {/* Filters */}
-              <Card>
+              <Card
+                style={{
+                  background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.12) 0%, rgba(30, 58, 138, 0.12) 100%)',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(244, 208, 63, 0.3)',
+                  borderRadius: '16px'
+                }}
+              >
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Filter className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2" style={{ color: '#f4d03f' }}>
+                    <Filter className="h-5 w-5" style={{ color: '#f4d03f' }} />
                     Filters
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
                     <div>
-                      <Label htmlFor="locationFilter">Location</Label>
+                      <Label htmlFor="locationFilter" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Location</Label>
                       <select
                         id="locationFilter"
                         value={filters.location}
                         onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
-                        className="w-full px-3 py-2 border rounded-md bg-background"
+                        className="w-full px-3 py-2 rounded-md"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(244, 208, 63, 0.25)',
+                          color: 'white'
+                        }}
                       >
                         {locations.map(location => (
                           <option key={location} value={location}>{location}</option>
@@ -661,12 +723,17 @@ export default function FeedbackPage() {
                       </select>
                     </div>
                     <div>
-                      <Label htmlFor="categoryFilter">Category</Label>
+                      <Label htmlFor="categoryFilter" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Category</Label>
                       <select
                         id="categoryFilter"
                         value={filters.category}
                         onChange={(e) => setFilters(prev => ({ ...prev, category: e.target.value }))}
-                        className="w-full px-3 py-2 border rounded-md bg-background"
+                        className="w-full px-3 py-2 rounded-md"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(244, 208, 63, 0.25)',
+                          color: 'white'
+                        }}
                       >
                         {categories.map(category => (
                           <option key={category} value={category}>{category}</option>
@@ -674,12 +741,17 @@ export default function FeedbackPage() {
                       </select>
                     </div>
                     <div>
-                      <Label htmlFor="sentimentFilter">Sentiment</Label>
+                      <Label htmlFor="sentimentFilter" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Sentiment</Label>
                       <select
                         id="sentimentFilter"
                         value={filters.sentiment}
                         onChange={(e) => setFilters(prev => ({ ...prev, sentiment: e.target.value }))}
-                        className="w-full px-3 py-2 border rounded-md bg-background"
+                        className="w-full px-3 py-2 rounded-md"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(244, 208, 63, 0.25)',
+                          color: 'white'
+                        }}
                       >
                         <option value="All">All</option>
                         <option value="positive">Positive</option>
@@ -688,12 +760,17 @@ export default function FeedbackPage() {
                       </select>
                     </div>
                     <div>
-                      <Label htmlFor="urgencyFilter">Urgency</Label>
+                      <Label htmlFor="urgencyFilter" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Urgency</Label>
                       <select
                         id="urgencyFilter"
                         value={filters.urgency}
                         onChange={(e) => setFilters(prev => ({ ...prev, urgency: e.target.value }))}
-                        className="w-full px-3 py-2 border rounded-md bg-background"
+                        className="w-full px-3 py-2 rounded-md"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(244, 208, 63, 0.25)',
+                          color: 'white'
+                        }}
                       >
                         <option value="All">All</option>
                         <option value="critical">Critical</option>
@@ -703,7 +780,7 @@ export default function FeedbackPage() {
                       </select>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Label>Filters</Label>
+                      <Label style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Filters</Label>
                       <div className="space-y-1">
                         <label className="flex items-center gap-2 text-sm">
                           <input
@@ -734,9 +811,15 @@ export default function FeedbackPage() {
                     <div className="flex items-end">
                       <Button
                         onClick={fetchFeedbacks}
-                        variant="outline"
                         size="sm"
                         className="w-full"
+                        style={{
+                          background: '#f4d03f',
+                          color: '#800020',
+                          border: '2px solid #f4d03f',
+                          borderRadius: '25px',
+                          fontWeight: 600 as unknown as string
+                        }}
                       >
                         <RefreshCw className="h-4 w-4 mr-2" />
                         Refresh
@@ -748,73 +831,131 @@ export default function FeedbackPage() {
 
               {/* Enhanced Statistics */}
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-6">
-                <Card className="p-4">
+                <Card className="p-4"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(244, 208, 63, 0.3)',
+                    backdropFilter: 'blur(12px)',
+                    borderRadius: '16px',
+                    marginTop: '12px'
+                  }}
+                >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Total</p>
+                      <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Total</p>
                       <p className="text-2xl font-bold">{sentimentStats.total}</p>
                     </div>
                     <MessageCircle className="h-8 w-8 text-blue-600" />
                   </div>
                 </Card>
-                <Card className="p-4">
+                <Card className="p-4"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(244, 208, 63, 0.3)',
+                    backdropFilter: 'blur(12px)',
+                    borderRadius: '16px',
+                    marginTop: '12px'
+                  }}
+                >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Positive</p>
+                      <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Positive</p>
                       <p className="text-2xl font-bold text-green-600">{sentimentStats.positive}</p>
                     </div>
                     <ThumbsUp className="h-8 w-8 text-green-600" />
                   </div>
                 </Card>
-                <Card className="p-4">
+                <Card className="p-4"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(244, 208, 63, 0.3)',
+                    backdropFilter: 'blur(12px)',
+                    borderRadius: '16px'
+                  }}
+                >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Negative</p>
+                      <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Negative</p>
                       <p className="text-2xl font-bold text-red-600">{sentimentStats.negative}</p>
                     </div>
                     <ThumbsDown className="h-8 w-8 text-red-600" />
                   </div>
                 </Card>
-                <Card className="p-4">
+                <Card className="p-4"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(244, 208, 63, 0.3)',
+                    backdropFilter: 'blur(12px)',
+                    borderRadius: '16px'
+                  }}
+                >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Neutral</p>
+                      <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Neutral</p>
                       <p className="text-2xl font-bold text-yellow-600">{sentimentStats.neutral}</p>
                     </div>
                     <Meh className="h-8 w-8 text-yellow-600" />
                   </div>
                 </Card>
-                <Card className="p-4">
+                <Card className="p-4"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(244, 208, 63, 0.3)',
+                    backdropFilter: 'blur(12px)',
+                    borderRadius: '16px'
+                  }}
+                >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Critical</p>
+                      <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Critical</p>
                       <p className="text-2xl font-bold text-red-600">{urgencyStats.critical}</p>
                     </div>
                     <AlertTriangle className="h-8 w-8 text-red-600" />
                   </div>
                 </Card>
-                <Card className="p-4">
+                <Card className="p-4"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(244, 208, 63, 0.3)',
+                    backdropFilter: 'blur(12px)',
+                    borderRadius: '16px'
+                  }}
+                >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">High</p>
+                      <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>High</p>
                       <p className="text-2xl font-bold text-orange-600">{urgencyStats.high}</p>
                     </div>
                     <TrendingUp className="h-8 w-8 text-orange-600" />
                   </div>
                 </Card>
-                <Card className="p-4">
+                <Card className="p-4"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(244, 208, 63, 0.3)',
+                    backdropFilter: 'blur(12px)',
+                    borderRadius: '16px'
+                  }}
+                >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Medium</p>
+                      <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Medium</p>
                       <p className="text-2xl font-bold text-yellow-600">{urgencyStats.medium}</p>
                     </div>
                     <TrendingUp className="h-8 w-8 text-yellow-600" />
                   </div>
                 </Card>
-                <Card className="p-4">
+                <Card className="p-4"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(244, 208, 63, 0.3)',
+                    backdropFilter: 'blur(12px)',
+                    borderRadius: '16px'
+                  }}
+                >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">Low</p>
+                      <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Low</p>
                       <p className="text-2xl font-bold text-green-600">{urgencyStats.low}</p>
                     </div>
                     <CheckCircle className="h-8 w-8 text-green-600" />
@@ -830,16 +971,29 @@ export default function FeedbackPage() {
                     <p>Loading feedback...</p>
                   </div>
                 ) : feedbacks.length === 0 ? (
-                  <Card>
+                  <Card
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.12) 0%, rgba(30, 58, 138, 0.12) 100%)',
+                      border: '1px solid rgba(244, 208, 63, 0.3)',
+                      backdropFilter: 'blur(12px)'
+                    }}
+                  >
                     <CardContent className="text-center py-8">
-                      <MessageCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-lg font-medium">No feedback found</p>
-                      <p className="text-muted-foreground">Try adjusting your filters</p>
+                      <MessageCircle className="h-12 w-12 mx-auto mb-4" style={{ color: '#f4d03f' }} />
+                      <p className="text-lg font-medium" style={{ color: '#f4d03f' }}>No feedback found</p>
+                      <p style={{ color: '#ffffff' }}>Try adjusting your filters</p>
                     </CardContent>
                   </Card>
                 ) : (
                   feedbacks.map(feedback => (
-                    <Card key={feedback.id} className={`${feedback.flagged ? "border-red-200 bg-red-50/50" : ""} ${feedback.urgencyLevel === 'critical' ? 'border-red-300 shadow-red-100 shadow-lg' : ''}`}>
+                    <Card key={feedback.id}
+                      className={`${feedback.flagged ? "border-red-200" : ""} ${feedback.urgencyLevel === 'critical' ? 'border-red-300 shadow-red-100 shadow-lg' : ''}`}
+                      style={{
+                        background: 'rgba(255,255,255,0.08)',
+                        border: feedback.flagged ? '1px solid rgba(244, 63, 94, 0.4)' : '1px solid rgba(244, 208, 63, 0.3)',
+                        backdropFilter: 'blur(12px)'
+                      }}
+                    >
                       <CardHeader>
                         <div className="flex items-start justify-between">
                           <div>
@@ -952,12 +1106,7 @@ export default function FeedbackPage() {
                           {/* Status Indicators */}
                           <div className="flex items-center justify-between pt-2 border-t border-gray-200">
                             <div className="flex items-center gap-2">
-                              {feedback.voiceData && (
-                                <Badge variant="outline" className="text-xs">
-                                  <Volume2 className="h-3 w-3 mr-1" />
-                                  Voice
-                                </Badge>
-                              )}
+                              
                               {feedback.imageData && (
                                 <Badge variant="outline" className="text-xs">
                                   <Image className="h-3 w-3 mr-1" />
@@ -987,10 +1136,16 @@ export default function FeedbackPage() {
           {/* Analytics Tab */}
           <TabsContent value="analytics" className="mt-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card>
+              <Card
+                style={{
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(244, 208, 63, 0.3)',
+                  backdropFilter: 'blur(12px)'
+                }}
+              >
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <TrendingUp className="h-5 w-5 text-green-600" />
+                  <CardTitle className="flex items-center gap-2" style={{ color: '#f4d03f' }}>
+                    <TrendingUp className="h-5 w-5" style={{ color: '#f4d03f' }} />
                     Sentiment Trends
                   </CardTitle>
                 </CardHeader>
@@ -1012,10 +1167,16 @@ export default function FeedbackPage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card
+                style={{
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(244, 208, 63, 0.3)',
+                  backdropFilter: 'blur(12px)'
+                }}
+              >
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <AlertTriangle className="h-5 w-5 text-orange-600" />
+                  <CardTitle className="flex items-center gap-2" style={{ color: '#f4d03f' }}>
+                    <AlertTriangle className="h-5 w-5" style={{ color: '#f4d03f' }} />
                     Alert Summary
                   </CardTitle>
                 </CardHeader>
@@ -1037,10 +1198,16 @@ export default function FeedbackPage() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card
+                style={{
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(244, 208, 63, 0.3)',
+                  backdropFilter: 'blur(12px)'
+                }}
+              >
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-blue-600" />
+                  <CardTitle className="flex items-center gap-2" style={{ color: '#f4d03f' }}>
+                    <CheckCircle className="h-5 w-5" style={{ color: '#f4d03f' }} />
                     Response Rate
                   </CardTitle>
                 </CardHeader>
@@ -1064,6 +1231,7 @@ export default function FeedbackPage() {
             </div>
           </TabsContent>
         </Tabs>
+        </div>
       </div>
 
       <Footer />
