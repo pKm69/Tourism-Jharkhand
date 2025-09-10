@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import AOS from "aos"
+import "aos/dist/aos.css"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -142,6 +144,16 @@ export default function FeedbackPage() {
     { code: "ho", name: "Ho" },
     { code: "sa", name: "Santali" }
   ]
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    })
+  }, [])
 
   useEffect(() => {
     if (activeTab === "view") {
@@ -290,15 +302,15 @@ export default function FeedbackPage() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1>
+          <h1 data-aos="fade-up">
             Share Your
             <span className="text-gold block">Experience & Insights</span>
           </h1>
-          <p>
+          <p data-aos="fade-up" data-aos-delay="200">
             Help us enhance Jharkhand tourism with smart, AI-powered feedback analysis. Your voice shapes better
             services for everyone.
           </p>
-          <div className="hero-buttons">
+          <div className="hero-buttons" data-aos="fade-up" data-aos-delay="400">
             <button onClick={() => setActiveTab("submit")} className="btn primary">Submit Feedback</button>
             <button onClick={() => setActiveTab("analytics")} className="btn secondary">View Analytics</button>
         </div>
@@ -307,7 +319,7 @@ export default function FeedbackPage() {
 
       <div className="container mx-auto px-4 py-8">
 
-        <div className="ai-demo-card">
+        <div className="ai-demo-card" data-aos="fade-up" data-aos-delay="600">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3 gap-2 mb-2" style={{ background: 'transparent', boxShadow: 'none', border: 'none',borderRadius: '25px' }}>
             <TabsTrigger
@@ -318,6 +330,8 @@ export default function FeedbackPage() {
                   ? { background: '#f4d03f', color: '#800020', border: '2px solid #f4d03f', borderRadius: '25px' }
                   : { background: 'transparent', color: 'white', border: '2px solid rgba(244, 208, 63, 0.8)', borderRadius: '25px' }
               }
+              data-aos="fade-up"
+              data-aos-delay="700"
             >
               Submit Feedback
             </TabsTrigger>
@@ -329,6 +343,8 @@ export default function FeedbackPage() {
                   ? { background: '#f4d03f', color: '#800020', border: '2px solid #f4d03f', borderRadius: '25px' }
                   : { background: 'transparent', color: 'white', border: '2px solid rgba(244, 208, 63, 0.8)', borderRadius: '25px' }
               }
+              data-aos="fade-up"
+              data-aos-delay="800"
             >
               View Feedback
             </TabsTrigger>
@@ -340,6 +356,8 @@ export default function FeedbackPage() {
                   ? { background: '#f4d03f', color: '#800020', border: '2px solid #f4d03f', borderRadius: '25px' }
                   : { background: 'transparent', color: 'white', border: '2px solid rgba(244, 208, 63, 0.8)', borderRadius: '25px' }
               }
+              data-aos="fade-up"
+              data-aos-delay="900"
             >
               Sentiment Analytics
             </TabsTrigger>
@@ -357,6 +375,8 @@ export default function FeedbackPage() {
                   borderRadius: '20px',
                   boxShadow: '0 12px 40px rgba(0, 0, 0, 0.25)'
                 }}
+                data-aos="fade-up"
+                data-aos-delay="200"
               >
                 <CardHeader>
                   <CardTitle style={{ color: '#f4d03f', fontSize: '1.75rem' }}>Share Your Experience</CardTitle>
@@ -695,6 +715,8 @@ export default function FeedbackPage() {
                   border: '1px solid rgba(244, 208, 63, 0.3)',
                   borderRadius: '16px'
                 }}
+                data-aos="fade-up"
+                data-aos-delay="200"
               >
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2" style={{ color: '#f4d03f' }}>
@@ -704,7 +726,7 @@ export default function FeedbackPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
-                    <div>
+                    <div data-aos="fade-up" data-aos-delay="300">
                       <Label htmlFor="locationFilter" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Location</Label>
                       <select
                         id="locationFilter"
@@ -722,7 +744,7 @@ export default function FeedbackPage() {
                         ))}
                       </select>
                     </div>
-                    <div>
+                    <div data-aos="fade-up" data-aos-delay="400">
                       <Label htmlFor="categoryFilter" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Category</Label>
                       <select
                         id="categoryFilter"
@@ -740,7 +762,7 @@ export default function FeedbackPage() {
                         ))}
                       </select>
                     </div>
-                    <div>
+                    <div data-aos="fade-up" data-aos-delay="500">
                       <Label htmlFor="sentimentFilter" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Sentiment</Label>
                       <select
                         id="sentimentFilter"
@@ -759,7 +781,7 @@ export default function FeedbackPage() {
                         <option value="neutral">Neutral</option>
                       </select>
                     </div>
-                    <div>
+                    <div data-aos="fade-up" data-aos-delay="600">
                       <Label htmlFor="urgencyFilter" style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Urgency</Label>
                       <select
                         id="urgencyFilter"
@@ -779,7 +801,7 @@ export default function FeedbackPage() {
                         <option value="low">Low</option>
                       </select>
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2" data-aos="fade-up" data-aos-delay="700">
                       <Label style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Filters</Label>
                       <div className="space-y-1">
                         <label className="flex items-center gap-2 text-sm">
@@ -808,7 +830,7 @@ export default function FeedbackPage() {
                         </label>
                       </div>
                     </div>
-                    <div className="flex items-end">
+                    <div className="flex items-end" data-aos="fade-up" data-aos-delay="800">
                       <Button
                         onClick={fetchFeedbacks}
                         size="sm"
@@ -839,6 +861,8 @@ export default function FeedbackPage() {
                     borderRadius: '16px',
                     marginTop: '12px'
                   }}
+                  data-aos="fade-up"
+                  data-aos-delay="200"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -856,6 +880,8 @@ export default function FeedbackPage() {
                     borderRadius: '16px',
                     marginTop: '12px'
                   }}
+                  data-aos="fade-up"
+                  data-aos-delay="300"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -872,6 +898,8 @@ export default function FeedbackPage() {
                     backdropFilter: 'blur(12px)',
                     borderRadius: '16px'
                   }}
+                  data-aos="fade-up"
+                  data-aos-delay="400"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -888,6 +916,8 @@ export default function FeedbackPage() {
                     backdropFilter: 'blur(12px)',
                     borderRadius: '16px'
                   }}
+                  data-aos="fade-up"
+                  data-aos-delay="500"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -904,6 +934,8 @@ export default function FeedbackPage() {
                     backdropFilter: 'blur(12px)',
                     borderRadius: '16px'
                   }}
+                  data-aos="fade-up"
+                  data-aos-delay="600"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -920,6 +952,8 @@ export default function FeedbackPage() {
                     backdropFilter: 'blur(12px)',
                     borderRadius: '16px'
                   }}
+                  data-aos="fade-up"
+                  data-aos-delay="700"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -936,6 +970,8 @@ export default function FeedbackPage() {
                     backdropFilter: 'blur(12px)',
                     borderRadius: '16px'
                   }}
+                  data-aos="fade-up"
+                  data-aos-delay="800"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -952,6 +988,8 @@ export default function FeedbackPage() {
                     backdropFilter: 'blur(12px)',
                     borderRadius: '16px'
                   }}
+                  data-aos="fade-up"
+                  data-aos-delay="900"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -977,11 +1015,13 @@ export default function FeedbackPage() {
                       border: '1px solid rgba(244, 208, 63, 0.3)',
                       backdropFilter: 'blur(12px)'
                     }}
+                    data-aos="fade-up"
+                    data-aos-delay="200"
                   >
                     <CardContent className="text-center py-8">
-                      <MessageCircle className="h-12 w-12 mx-auto mb-4" style={{ color: '#f4d03f' }} />
-                      <p className="text-lg font-medium" style={{ color: '#f4d03f' }}>No feedback found</p>
-                      <p style={{ color: '#ffffff' }}>Try adjusting your filters</p>
+                      <MessageCircle className="h-12 w-12 mx-auto mb-4" style={{ color: '#f4d03f' }} data-aos="zoom-in" data-aos-delay="400" />
+                      <p className="text-lg font-medium" style={{ color: '#f4d03f' }} data-aos="fade-up" data-aos-delay="500">No feedback found</p>
+                      <p style={{ color: '#ffffff' }} data-aos="fade-up" data-aos-delay="600">Try adjusting your filters</p>
                     </CardContent>
                   </Card>
                 ) : (
@@ -1142,6 +1182,8 @@ export default function FeedbackPage() {
                   border: '1px solid rgba(244, 208, 63, 0.3)',
                   backdropFilter: 'blur(12px)'
                 }}
+                data-aos="fade-up"
+                data-aos-delay="200"
               >
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2" style={{ color: '#f4d03f' }}>
@@ -1173,6 +1215,8 @@ export default function FeedbackPage() {
                   border: '1px solid rgba(244, 208, 63, 0.3)',
                   backdropFilter: 'blur(12px)'
                 }}
+                data-aos="fade-up"
+                data-aos-delay="400"
               >
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2" style={{ color: '#f4d03f' }}>
@@ -1204,6 +1248,8 @@ export default function FeedbackPage() {
                   border: '1px solid rgba(244, 208, 63, 0.3)',
                   backdropFilter: 'blur(12px)'
                 }}
+                data-aos="fade-up"
+                data-aos-delay="600"
               >
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2" style={{ color: '#f4d03f' }}>
