@@ -1,8 +1,8 @@
 {
   "/page": "app/page.js",
-  "/api/feedback/route": "app/api/feedback/route.js",
   "/api/analytics/route": "app/api/analytics/route.js",
+  "/api/feedback/route": "app/api/feedback/route.js",
   "/marketplace/page": "app/marketplace/page.js",
-  "/destinations/page": "app/destinations/page.js",
-  "/ai-features/page": "app/ai-features/page.js"
+  "/feedback/page": "app/feedback/page.js",
+  "/destinations/page": "app/destinations/page.js"
 }

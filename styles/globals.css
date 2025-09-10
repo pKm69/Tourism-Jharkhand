@@ -66,6 +66,12 @@ img {
   display: block;
 }
 
+/* Inputs & Textareas placeholder color override for glass sections */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 /* Global Styles */
 * {
   margin: 0;

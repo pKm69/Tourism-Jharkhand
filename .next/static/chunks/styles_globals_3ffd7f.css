@@ -55,6 +55,10 @@ img {
   display: block;
 }
 
+input::placeholder, textarea::placeholder {
+  color: #ffffffe6;
+}
+
 * {
   margin: 0;
   padding: 0;
