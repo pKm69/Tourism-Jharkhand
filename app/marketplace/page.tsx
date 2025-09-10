@@ -1,6 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import AOS from "aos"
+import "aos/dist/aos.css"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -31,6 +33,16 @@ export default function MarketplacePage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [selectedLocation, setSelectedLocation] = useState("All")
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    })
+  }, [])
 
   const categories = ["All", "Handicrafts", "Homestays", "Experiences", "Food", "Transport", "Guides"]
   const locations = ["All", "Ranchi", "Deoghar", "Netarhat", "Jamshedpur", "Hazaribagh"]
@@ -201,16 +213,16 @@ export default function MarketplacePage() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1>
+          <h1 data-aos="fade-up">
             Local Marketplace
             <span className="text-gold block">Supporting Communities</span>
           </h1>
-          <p>
+          <p data-aos="fade-up" data-aos-delay="200">
             Discover authentic tribal handicrafts, stay with local families, and support sustainable tourism
             initiatives
           </p>
 
-          <div className="search-bar">
+          <div className="search-bar" data-aos="fade-up" data-aos-delay="400">
             <div className="relative" style={{width: '100%', maxWidth: '500px'}}>
               <input
                 type="text"
@@ -271,7 +283,7 @@ export default function MarketplacePage() {
             borderRadius: '16px',
             padding: '20px',
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
-          }}>
+          }} data-aos="fade-up">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold" style={{color: '#f4d03f'}}>{filteredProducts.length} Products Found</h2>
               <div className="flex items-center gap-2">
@@ -293,8 +305,13 @@ export default function MarketplacePage() {
           </div>
 
           <div className="destination-grid">
-            {filteredProducts.map((product) => (
-              <div key={product.id} className="destination-card clickable">
+            {filteredProducts.map((product, index) => (
+              <div 
+                key={product.id} 
+                className="destination-card clickable"
+                data-aos="fade-up"
+                data-aos-delay={200 + (index * 100)}
+              >
                 <div className="destination-image-container">
                   <img
                     src={product.image || "/placeholder.svg"}
@@ -395,15 +412,15 @@ export default function MarketplacePage() {
       <section className="smart-tourism-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="glass-card p-8">
-            <h2 className="text-center mb-4">Join Our Marketplace</h2>
-            <p className="subtitle text-center mb-8">Become a verified seller and reach thousands of travelers looking for authentic experiences</p>
+            <h2 className="text-center mb-4" data-aos="fade-up">Join Our Marketplace</h2>
+            <p className="subtitle text-center mb-8" data-aos="fade-up" data-aos-delay="200">Become a verified seller and reach thousands of travelers looking for authentic experiences</p>
             
             {/* Dynamic Feature Content */}
             <div className="p-6 rounded-lg" style={{
               background: 'rgba(255, 255, 255, 0.1)',
               border: '1px solid rgba(244, 208, 63, 0.2)',
               color: 'white'
-            }}>
+            }} data-aos="fade-up" data-aos-delay="400">
               <div className="flex items-start gap-4 mb-6">
                 <div className="feature-icon" style={{padding: '12px', borderRadius: '12px'}}><Shield className="h-12 w-12" /></div>
                 <div className="flex-1">
@@ -413,25 +430,25 @@ export default function MarketplacePage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3" data-aos="fade-up" data-aos-delay="500">
                   <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-gold" />
                   <span className="text-white">Blockchain-secured transactions</span>
                 </div>
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3" data-aos="fade-up" data-aos-delay="600">
                   <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-gold" />
                   <span className="text-white">Verified seller certifications</span>
                 </div>
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3" data-aos="fade-up" data-aos-delay="700">
                   <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-gold" />
                   <span className="text-white">24/7 customer support</span>
                 </div>
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3" data-aos="fade-up" data-aos-delay="800">
                   <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-gold" />
                   <span className="text-white">Money-back guarantee</span>
                 </div>
               </div>
 
-              <button className="btn primary">
+              <button className="btn primary" data-aos="fade-up" data-aos-delay="900">
                 Become a Seller
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>

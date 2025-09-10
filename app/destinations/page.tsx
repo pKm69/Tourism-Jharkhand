@@ -1,6 +1,8 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import AOS from "aos"
+import "aos/dist/aos.css"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -27,6 +29,16 @@ import {
 export default function DestinationsPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    })
+  }, [])
 
   const destinations = [
     {
@@ -194,17 +206,17 @@ export default function DestinationsPage() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1>
+          <h1 data-aos="fade-up">
             Discover Jharkhand's
             <span className="text-gold block">Hidden Treasures</span>
           </h1>
-          <p>
+          <p data-aos="fade-up" data-aos-delay="200">
             From mystical waterfalls to sacred temples, explore the diverse landscapes and rich cultural heritage of
             Jharkhand
           </p>
 
           {/* Search and Filter */}
-          <div className="search-bar">
+          <div className="search-bar" data-aos="fade-up" data-aos-delay="400">
             <div className="relative" style={{width: '100%', maxWidth: '500px'}}>
               <input
                 type="text"
@@ -245,8 +257,13 @@ export default function DestinationsPage() {
       <section className="destinations-grid-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="destination-grid">
-            {filteredDestinations.map((destination) => (
-              <div key={destination.id} className="destination-card clickable">
+            {filteredDestinations.map((destination, index) => (
+              <div 
+                key={destination.id} 
+                className="destination-card clickable"
+                data-aos="fade-up"
+                data-aos-delay={200 + (index * 100)}
+              >
                 <div className="destination-image-container">
                   <img
                     src={destination.image || "/placeholder.svg"}
@@ -331,13 +348,13 @@ export default function DestinationsPage() {
 
       {/* Planning Section */}
       <section className="smart-tourism-section">
-        <h2>Plan Your Perfect Trip</h2>
-        <p className="subtitle">
+        <h2 data-aos="fade-up">Plan Your Perfect Trip</h2>
+        <p className="subtitle" data-aos="fade-up" data-aos-delay="200">
           Let our AI-powered platform create a personalized itinerary based on your preferences
         </p>
 
         <div className="feature-grid">
-          <div className="feature-card">
+          <div className="feature-card" data-aos="fade-up" data-aos-delay="300">
             <div className="feature-icon">
               <Users className="h-8 w-8" />
             </div>
@@ -346,14 +363,14 @@ export default function DestinationsPage() {
               Get destination suggestions based on your interests and travel style
             </p>
           </div>
-          <div className="feature-card">
+          <div className="feature-card" data-aos="fade-up" data-aos-delay="400">
             <div className="feature-icon">
               <Calendar className="h-8 w-8" />
             </div>
             <h3>Smart Itinerary Planning</h3>
             <p>AI-powered trip planning with optimal routes and timing</p>
           </div>
-          <div className="feature-card">
+          <div className="feature-card" data-aos="fade-up" data-aos-delay="500">
             <div className="feature-icon">
               <Camera className="h-8 w-8" />
             </div>
@@ -363,7 +380,7 @@ export default function DestinationsPage() {
         </div>
 
         <Link href="/ai-features">
-          <button className="btn primary">
+          <button className="btn primary" data-aos="fade-up" data-aos-delay="600">
             Start Planning with AI
             <ArrowRight className="ml-2 h-5 w-5" />
           </button>
