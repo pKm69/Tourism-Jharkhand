@@ -34,13 +34,13 @@ export default function MarketplacePage() {
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [selectedLocation, setSelectedLocation] = useState("All")
 
-  // Initialize AOS
+  // Initialize AOS - Match home page settings
   useEffect(() => {
     AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
+      duration: 800,
+      easing: 'ease-out-cubic',
       once: true,
-      offset: 100
+      offset: 50
     })
   }, [])
 
@@ -213,16 +213,16 @@ export default function MarketplacePage() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1 data-aos="fade-up">
+          <h1 data-aos="fade-up" data-aos-delay="200">
             Local Marketplace
             <span className="text-gold block">Supporting Communities</span>
           </h1>
-          <p data-aos="fade-up" data-aos-delay="200">
+          <p data-aos="fade-up" data-aos-delay="400">
             Discover authentic tribal handicrafts, stay with local families, and support sustainable tourism
             initiatives
           </p>
 
-          <div className="search-bar" data-aos="fade-up" data-aos-delay="400">
+          <div className="search-bar" data-aos="fade-up" data-aos-delay="600">
             <div className="relative" style={{width: '100%', maxWidth: '500px'}}>
               <input
                 type="text"
@@ -310,7 +310,7 @@ export default function MarketplacePage() {
                 key={product.id} 
                 className="destination-card clickable"
                 data-aos="fade-up"
-                data-aos-delay={200 + (index * 100)}
+                data-aos-delay={300 + (index * 100)}
               >
                 <div className="destination-image-container">
                   <img

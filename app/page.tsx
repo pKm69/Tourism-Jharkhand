@@ -49,10 +49,11 @@ export default function HomePage() {
   // Initialize AOS
   useEffect(() => {
     AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
+      duration: 800,
+      easing: 'ease-out-cubic',
       once: true,
-      offset: 100
+      offset: 50,
+      delay: 100
     })
   }, [])
 
@@ -294,7 +295,9 @@ export default function HomePage() {
                 <Users className="h-8 w-8" />
               </div>
               <h3 className="analytics-card-number">
-                {analyticsData ? counters.visitors.toLocaleString() : '30,000+'}
+                {analyticsData ? counters.visitors.toLocaleString() : (
+                  <span className="loading-dots">Loading...</span>
+                )}
               </h3>
               <p className="analytics-card-label">Monthly Visitors</p>
               <div className="analytics-card-growth">
@@ -382,13 +385,27 @@ export default function HomePage() {
                   ].map(({ emoji, label }, index) => (
                     <button
                       key={emoji}
-                      onClick={() => setSelectedEmotion(emoji)}
+                      onClick={() => {
+                        setSelectedEmotion(emoji)
+                        // Add haptic feedback if available
+                        if (navigator.vibrate) {
+                          navigator.vibrate(50)
+                        }
+                      }}
                       className={`emotion-button ${
                         selectedEmotion === emoji ? 'selected' : ''
                       }`}
                       title={label}
                       data-aos="zoom-in"
                       data-aos-delay={500 + (index * 100)}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.15) translateY(-2px)'
+                      }}
+                      onMouseLeave={(e) => {
+                        if (selectedEmotion !== emoji) {
+                          e.currentTarget.style.transform = 'scale(1) translateY(0)'
+                        }
+                      }}
                     >
                       <span className="text-2xl">{emoji}</span>
                     </button>

@@ -553,6 +553,7 @@ __turbopack_esm__({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$aos$2f$dist$2f$aos$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/aos/dist/aos.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/navigation.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$footer$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/footer.tsx [app-ssr] (ecmascript)");
@@ -580,6 +581,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 ;
 ;
+;
+;
 function AIFeaturesPage() {
     const [chatMessage, setChatMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [activeDemo, setActiveDemo] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("itinerary");
@@ -595,6 +598,15 @@ function AIFeaturesPage() {
         accommodation: "Hotels"
     });
     const [generatedItinerary, setGeneratedItinerary] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    // Initialize AOS
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$aos$2f$dist$2f$aos$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    }, []);
     const features = [
         {
             id: "itinerary",
@@ -602,7 +614,7 @@ function AIFeaturesPage() {
                 className: "h-12 w-12"
             }, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 71,
+                lineNumber: 83,
                 columnNumber: 13
             }, this),
             title: "AI-Powered Itinerary Planning",
@@ -625,7 +637,7 @@ function AIFeaturesPage() {
                 className: "h-12 w-12"
             }, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 89,
+                lineNumber: 101,
                 columnNumber: 13
             }, this),
             title: "Blockchain Security",
@@ -648,7 +660,7 @@ function AIFeaturesPage() {
                 className: "h-12 w-12"
             }, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 107,
+                lineNumber: 119,
                 columnNumber: 13
             }, this),
             title: "AR/VR Experiences",
@@ -671,7 +683,7 @@ function AIFeaturesPage() {
                 className: "h-12 w-12"
             }, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 125,
+                lineNumber: 137,
                 columnNumber: 13
             }, this),
             title: "Real-time Location Services",
@@ -694,7 +706,7 @@ function AIFeaturesPage() {
                 className: "h-12 w-12"
             }, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 143,
+                lineNumber: 155,
                 columnNumber: 13
             }, this),
             title: "Tourism Analytics Dashboard",
@@ -717,7 +729,7 @@ function AIFeaturesPage() {
                 className: "h-12 w-12"
             }, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 161,
+                lineNumber: 173,
                 columnNumber: 13
             }, this),
             title: "Multilingual AI Chatbot",
@@ -755,7 +767,7 @@ function AIFeaturesPage() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 193,
+                lineNumber: 205,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -764,6 +776,7 @@ function AIFeaturesPage() {
                     className: "hero-content",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                            "data-aos": "fade-up",
                             children: [
                                 "Smart Tourism",
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -771,20 +784,22 @@ function AIFeaturesPage() {
                                     children: "Powered by AI"
                                 }, void 0, false, {
                                     fileName: "[project]/app/ai-features/page.tsx",
-                                    lineNumber: 200,
+                                    lineNumber: 212,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/ai-features/page.tsx",
-                            lineNumber: 198,
+                            lineNumber: 210,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            "data-aos": "fade-up",
+                            "data-aos-delay": "200",
                             children: "Experience the future of travel with our cutting-edge AI technology, blockchain security, and immersive AR/VR experiences"
                         }, void 0, false, {
                             fileName: "[project]/app/ai-features/page.tsx",
-                            lineNumber: 202,
+                            lineNumber: 214,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -792,6 +807,8 @@ function AIFeaturesPage() {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "feature-card",
+                                    "data-aos": "fade-up",
+                                    "data-aos-delay": "300",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "feature-icon",
@@ -799,36 +816,38 @@ function AIFeaturesPage() {
                                                 className: "h-8 w-8"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 209,
+                                                lineNumber: 221,
                                                 columnNumber: 45
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 209,
+                                            lineNumber: 221,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                             children: "AI-Powered"
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 210,
+                                            lineNumber: 222,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "Advanced algorithms for personalized experiences"
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 211,
+                                            lineNumber: 223,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/ai-features/page.tsx",
-                                    lineNumber: 208,
+                                    lineNumber: 220,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "feature-card",
+                                    "data-aos": "fade-up",
+                                    "data-aos-delay": "400",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "feature-icon",
@@ -836,36 +855,38 @@ function AIFeaturesPage() {
                                                 className: "h-8 w-8"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 214,
+                                                lineNumber: 226,
                                                 columnNumber: 45
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 214,
+                                            lineNumber: 226,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                             children: "Blockchain Secured"
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 215,
+                                            lineNumber: 227,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "Transparent and secure transactions"
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 216,
+                                            lineNumber: 228,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/ai-features/page.tsx",
-                                    lineNumber: 213,
+                                    lineNumber: 225,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "feature-card",
+                                    "data-aos": "fade-up",
+                                    "data-aos-delay": "500",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "feature-icon",
@@ -873,49 +894,49 @@ function AIFeaturesPage() {
                                                 className: "h-8 w-8"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 219,
+                                                lineNumber: 231,
                                                 columnNumber: 45
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 219,
+                                            lineNumber: 231,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                             children: "Real-time Updates"
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 220,
+                                            lineNumber: 232,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "Live information and instant assistance"
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 221,
+                                            lineNumber: 233,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/ai-features/page.tsx",
-                                    lineNumber: 218,
+                                    lineNumber: 230,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/ai-features/page.tsx",
-                            lineNumber: 207,
+                            lineNumber: 219,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/ai-features/page.tsx",
-                    lineNumber: 197,
+                    lineNumber: 209,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 196,
+                lineNumber: 208,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -927,67 +948,56 @@ function AIFeaturesPage() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                 className: "text-center mb-4",
+                                "data-aos": "fade-up",
                                 children: "Explore AI Features"
                             }, void 0, false, {
                                 fileName: "[project]/app/ai-features/page.tsx",
-                                lineNumber: 231,
+                                lineNumber: 243,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "subtitle text-center mb-8",
+                                "data-aos": "fade-up",
+                                "data-aos-delay": "200",
                                 children: "Interactive demonstrations of our cutting-edge technology stack"
                             }, void 0, false, {
                                 fileName: "[project]/app/ai-features/page.tsx",
-                                lineNumber: 232,
+                                lineNumber: 244,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 max-w-6xl mx-auto mb-8",
-                                children: features.map((feature)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                children: features.map((feature, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setActiveDemo(feature.id),
-                                        className: `btn ${activeDemo === feature.id ? 'primary' : 'secondary'} text-xs px-2 py-2 h-auto min-h-[60px] flex items-center justify-center gap-2 transition-all duration-300`,
-                                        style: activeDemo !== feature.id ? {
-                                            background: 'transparent',
-                                            color: 'white',
-                                            border: '2px solid rgba(244, 208, 63, 0.8)',
-                                            borderRadius: '25px'
-                                        } : {},
-                                        onMouseEnter: (e)=>{
-                                            if (activeDemo !== feature.id) {
-                                                e.target.style.background = 'rgba(244, 208, 63, 0.1)';
-                                            }
-                                        },
-                                        onMouseLeave: (e)=>{
-                                            if (activeDemo !== feature.id) {
-                                                e.target.style.background = 'transparent';
-                                            }
-                                        },
+                                        className: `ai-feature-btn ${activeDemo === feature.id ? 'active' : ''}`,
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "h-3 w-3 flex-shrink-0",
-                                                children: feature.icon
+                                                className: "ai-feature-icon",
+                                                children: /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].cloneElement(feature.icon, {
+                                                    className: 'w-5 h-5'
+                                                })
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 258,
+                                                lineNumber: 254,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-center leading-tight",
+                                                className: "ai-feature-text",
                                                 children: feature.title.split(" ").slice(0, 2).join(" ")
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 259,
+                                                lineNumber: 257,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, feature.id, true, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 237,
+                                        lineNumber: 249,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/ai-features/page.tsx",
-                                lineNumber: 235,
+                                lineNumber: 247,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -997,6 +1007,8 @@ function AIFeaturesPage() {
                                     border: '1px solid rgba(244, 208, 63, 0.2)',
                                     color: 'white'
                                 },
+                                "data-aos": "fade-up",
+                                "data-aos-delay": "1000",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex items-start gap-4 mb-6",
@@ -1010,7 +1022,7 @@ function AIFeaturesPage() {
                                                 children: activeFeature.icon
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 273,
+                                                lineNumber: 271,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1021,7 +1033,7 @@ function AIFeaturesPage() {
                                                         children: activeFeature.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 275,
+                                                        lineNumber: 273,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1029,19 +1041,19 @@ function AIFeaturesPage() {
                                                         children: activeFeature.description
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 276,
+                                                        lineNumber: 274,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 274,
+                                                lineNumber: 272,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 272,
+                                        lineNumber: 270,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1049,19 +1061,21 @@ function AIFeaturesPage() {
                                         children: activeFeature.longDescription
                                     }, void 0, false, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 280,
+                                        lineNumber: 278,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "grid grid-cols-1 md:grid-cols-2 gap-4 mb-6",
                                         children: activeFeature.benefits.map((benefit, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-start gap-3",
+                                                "data-aos": "fade-up",
+                                                "data-aos-delay": 1100 + index * 100,
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__["CheckCircle"], {
                                                         className: "h-5 w-5 mt-0.5 flex-shrink-0 text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 285,
+                                                        lineNumber: 283,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1069,23 +1083,25 @@ function AIFeaturesPage() {
                                                         children: benefit
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 286,
+                                                        lineNumber: 284,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, index, true, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 284,
+                                                lineNumber: 282,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 282,
+                                        lineNumber: 280,
                                         columnNumber: 15
                                     }, this),
                                     activeDemo === "itinerary" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         className: "btn primary",
                                         onClick: ()=>setShowItineraryModal(true),
+                                        "data-aos": "fade-up",
+                                        "data-aos-delay": "1500",
                                         children: [
                                             "Try This Feature",
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
@@ -1098,12 +1114,14 @@ function AIFeaturesPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 292,
+                                        lineNumber: 290,
                                         columnNumber: 17
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: activeDemo === "analytics" ? "/analytics" : "#",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             className: "btn primary",
+                                            "data-aos": "fade-up",
+                                            "data-aos-delay": "1500",
                                             children: [
                                                 "Try This Feature",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
@@ -1127,23 +1145,23 @@ function AIFeaturesPage() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/ai-features/page.tsx",
-                                lineNumber: 267,
+                                lineNumber: 265,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/ai-features/page.tsx",
-                        lineNumber: 230,
+                        lineNumber: 242,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/ai-features/page.tsx",
-                    lineNumber: 229,
+                    lineNumber: 241,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 228,
+                lineNumber: 240,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1163,6 +1181,7 @@ function AIFeaturesPage() {
                                         WebkitTextFillColor: 'transparent',
                                         backgroundClip: 'text'
                                     },
+                                    "data-aos": "fade-up",
                                     children: "Experience the Future of Tourism"
                                 }, void 0, false, {
                                     fileName: "[project]/app/ai-features/page.tsx",
@@ -1171,6 +1190,8 @@ function AIFeaturesPage() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-xl text-maroon mb-8 max-w-3xl mx-auto leading-relaxed",
+                                    "data-aos": "fade-up",
+                                    "data-aos-delay": "200",
                                     children: "Join the revolution in smart tourism with AI-powered planning and blockchain security"
                                 }, void 0, false, {
                                     fileName: "[project]/app/ai-features/page.tsx",
@@ -1188,6 +1209,8 @@ function AIFeaturesPage() {
                                                 border: '2px solid #f4d03f',
                                                 fontSize: '18px'
                                             },
+                                            "data-aos": "fade-up",
+                                            "data-aos-delay": "400",
                                             children: "Download Mobile App"
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
@@ -1211,6 +1234,8 @@ function AIFeaturesPage() {
                                                 onMouseLeave: (e)=>{
                                                     e.target.style.background = 'transparent';
                                                 },
+                                                "data-aos": "fade-up",
+                                                "data-aos-delay": "600",
                                                 children: "Start Planning"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
@@ -1251,7 +1276,7 @@ function AIFeaturesPage() {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$footer$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 363,
+                lineNumber: 365,
                 columnNumber: 7
             }, this),
             showItineraryModal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1276,7 +1301,7 @@ function AIFeaturesPage() {
                                                 children: "AI-Powered Itinerary Planning"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 377,
+                                                lineNumber: 379,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1284,13 +1309,13 @@ function AIFeaturesPage() {
                                                 children: "Get personalized travel plans created by advanced AI algorithms"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 378,
+                                                lineNumber: 380,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 376,
+                                        lineNumber: 378,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1300,18 +1325,18 @@ function AIFeaturesPage() {
                                             className: "h-6 w-6 text-gold"
                                         }, void 0, false, {
                                             fileName: "[project]/app/ai-features/page.tsx",
-                                            lineNumber: 384,
+                                            lineNumber: 386,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 380,
+                                        lineNumber: 382,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/ai-features/page.tsx",
-                                lineNumber: 375,
+                                lineNumber: 377,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1326,7 +1351,7 @@ function AIFeaturesPage() {
                                         children: "Our AI analyzes your preferences, budget, time constraints, and interests to create the perfect itinerary. It considers weather patterns, local events, crowd levels, and transportation options to optimize your travel experience."
                                     }, void 0, false, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 393,
+                                        lineNumber: 395,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1339,7 +1364,7 @@ function AIFeaturesPage() {
                                                         className: "h-5 w-5 mt-0.5 flex-shrink-0 text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 399,
+                                                        lineNumber: 401,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1347,13 +1372,13 @@ function AIFeaturesPage() {
                                                         children: "Personalized recommendations based on your interests"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 400,
+                                                        lineNumber: 402,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 398,
+                                                lineNumber: 400,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1363,7 +1388,7 @@ function AIFeaturesPage() {
                                                         className: "h-5 w-5 mt-0.5 flex-shrink-0 text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 403,
+                                                        lineNumber: 405,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1371,13 +1396,13 @@ function AIFeaturesPage() {
                                                         children: "Real-time optimization based on weather and events"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 404,
+                                                        lineNumber: 406,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 402,
+                                                lineNumber: 404,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1387,7 +1412,7 @@ function AIFeaturesPage() {
                                                         className: "h-5 w-5 mt-0.5 flex-shrink-0 text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 407,
+                                                        lineNumber: 409,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1395,13 +1420,13 @@ function AIFeaturesPage() {
                                                         children: "Budget-conscious planning with cost breakdowns"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 408,
+                                                        lineNumber: 410,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 406,
+                                                lineNumber: 408,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1411,7 +1436,7 @@ function AIFeaturesPage() {
                                                         className: "h-5 w-5 mt-0.5 flex-shrink-0 text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 411,
+                                                        lineNumber: 413,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1419,25 +1444,25 @@ function AIFeaturesPage() {
                                                         children: "Multi-language support for international travelers"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 412,
+                                                        lineNumber: 414,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 410,
+                                                lineNumber: 412,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 397,
+                                        lineNumber: 399,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/ai-features/page.tsx",
-                                lineNumber: 389,
+                                lineNumber: 391,
                                 columnNumber: 15
                             }, this),
                             !generatedItinerary ? /* Planning Form */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1450,7 +1475,7 @@ function AIFeaturesPage() {
                                                 children: "Tell us about your trip"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 421,
+                                                lineNumber: 423,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1465,14 +1490,14 @@ function AIFeaturesPage() {
                                                                         className: "inline h-4 w-4 mr-2"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 425,
+                                                                        lineNumber: 427,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     "Trip Duration"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 424,
+                                                                lineNumber: 426,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1488,7 +1513,7 @@ function AIFeaturesPage() {
                                                                         children: "2 days"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 433,
+                                                                        lineNumber: 435,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1496,7 +1521,7 @@ function AIFeaturesPage() {
                                                                         children: "3 days"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 434,
+                                                                        lineNumber: 436,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1504,7 +1529,7 @@ function AIFeaturesPage() {
                                                                         children: "4-5 days"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 435,
+                                                                        lineNumber: 437,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1512,7 +1537,7 @@ function AIFeaturesPage() {
                                                                         children: "1 week"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 436,
+                                                                        lineNumber: 438,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1520,19 +1545,19 @@ function AIFeaturesPage() {
                                                                         children: "2 weeks"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 437,
+                                                                        lineNumber: 439,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 428,
+                                                                lineNumber: 430,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 423,
+                                                        lineNumber: 425,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1544,14 +1569,14 @@ function AIFeaturesPage() {
                                                                         className: "inline h-4 w-4 mr-2"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 443,
+                                                                        lineNumber: 445,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     "Budget Range"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 442,
+                                                                lineNumber: 444,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1567,7 +1592,7 @@ function AIFeaturesPage() {
                                                                         children: "Budget (₹2,000-5,000)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 451,
+                                                                        lineNumber: 453,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1575,7 +1600,7 @@ function AIFeaturesPage() {
                                                                         children: "Medium (₹5,000-15,000)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 452,
+                                                                        lineNumber: 454,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1583,19 +1608,19 @@ function AIFeaturesPage() {
                                                                         children: "Luxury (₹15,000+)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 453,
+                                                                        lineNumber: 455,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 446,
+                                                                lineNumber: 448,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 441,
+                                                        lineNumber: 443,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1607,14 +1632,14 @@ function AIFeaturesPage() {
                                                                         className: "inline h-4 w-4 mr-2"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 459,
+                                                                        lineNumber: 461,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     "Group Size"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 458,
+                                                                lineNumber: 460,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1630,7 +1655,7 @@ function AIFeaturesPage() {
                                                                         children: "Solo Traveler"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 467,
+                                                                        lineNumber: 469,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1638,7 +1663,7 @@ function AIFeaturesPage() {
                                                                         children: "2-4 people"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 468,
+                                                                        lineNumber: 470,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1646,7 +1671,7 @@ function AIFeaturesPage() {
                                                                         children: "5-8 people"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 469,
+                                                                        lineNumber: 471,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1654,19 +1679,19 @@ function AIFeaturesPage() {
                                                                         children: "Large group (9+)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 470,
+                                                                        lineNumber: 472,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 462,
+                                                                lineNumber: 464,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 457,
+                                                        lineNumber: 459,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1676,7 +1701,7 @@ function AIFeaturesPage() {
                                                                 children: "Interests (Select multiple)"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 475,
+                                                                lineNumber: 477,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1705,30 +1730,30 @@ function AIFeaturesPage() {
                                                                         children: interest
                                                                     }, interest, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 478,
+                                                                        lineNumber: 480,
                                                                         columnNumber: 29
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 476,
+                                                                lineNumber: 478,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 474,
+                                                        lineNumber: 476,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 422,
+                                                lineNumber: 424,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 420,
+                                        lineNumber: 422,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1738,7 +1763,7 @@ function AIFeaturesPage() {
                                                 children: "Preview"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 501,
+                                                lineNumber: 503,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1758,7 +1783,7 @@ function AIFeaturesPage() {
                                                                         className: "h-5 w-5 text-gold"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 508,
+                                                                        lineNumber: 510,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1769,13 +1794,13 @@ function AIFeaturesPage() {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 509,
+                                                                        lineNumber: 511,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 507,
+                                                                lineNumber: 509,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1785,7 +1810,7 @@ function AIFeaturesPage() {
                                                                         className: "h-5 w-5 text-gold"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 512,
+                                                                        lineNumber: 514,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1796,13 +1821,13 @@ function AIFeaturesPage() {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 513,
+                                                                        lineNumber: 515,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 511,
+                                                                lineNumber: 513,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1812,7 +1837,7 @@ function AIFeaturesPage() {
                                                                         className: "h-5 w-5 text-gold"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 516,
+                                                                        lineNumber: 518,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1820,13 +1845,13 @@ function AIFeaturesPage() {
                                                                         children: itineraryForm.groupSize
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 517,
+                                                                        lineNumber: 519,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 515,
+                                                                lineNumber: 517,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1838,7 +1863,7 @@ function AIFeaturesPage() {
                                                                                 className: "h-5 w-5 text-gold"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                                lineNumber: 521,
+                                                                                lineNumber: 523,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1846,13 +1871,13 @@ function AIFeaturesPage() {
                                                                                 children: "Interests:"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                                lineNumber: 522,
+                                                                                lineNumber: 524,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 520,
+                                                                        lineNumber: 522,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1862,24 +1887,24 @@ function AIFeaturesPage() {
                                                                                 children: interest
                                                                             }, interest, false, {
                                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                                lineNumber: 526,
+                                                                                lineNumber: 528,
                                                                                 columnNumber: 31
                                                                             }, this))
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                                        lineNumber: 524,
+                                                                        lineNumber: 526,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 519,
+                                                                lineNumber: 521,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 506,
+                                                        lineNumber: 508,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1957,32 +1982,32 @@ function AIFeaturesPage() {
                                                                 className: "mr-2 h-5 w-5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                                lineNumber: 573,
+                                                                lineNumber: 575,
                                                                 columnNumber: 25
                                                             }, this),
                                                             "Generate AI Itinerary"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/ai-features/page.tsx",
-                                                        lineNumber: 534,
+                                                        lineNumber: 536,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 502,
+                                                lineNumber: 504,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 500,
+                                        lineNumber: 502,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/ai-features/page.tsx",
-                                lineNumber: 419,
+                                lineNumber: 421,
                                 columnNumber: 17
                             }, this) : /* Generated Itinerary Display */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
@@ -1994,7 +2019,7 @@ function AIFeaturesPage() {
                                                 children: generatedItinerary.title
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 583,
+                                                lineNumber: 585,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2003,13 +2028,13 @@ function AIFeaturesPage() {
                                                 children: "Create New Plan"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 584,
+                                                lineNumber: 586,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 582,
+                                        lineNumber: 584,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2036,7 +2061,7 @@ function AIFeaturesPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                    lineNumber: 600,
+                                                                    lineNumber: 602,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2051,7 +2076,7 @@ function AIFeaturesPage() {
                                                                                             className: "h-4 w-4 text-gold"
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                                            lineNumber: 605,
+                                                                                            lineNumber: 607,
                                                                                             columnNumber: 37
                                                                                         }, this),
                                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2059,7 +2084,7 @@ function AIFeaturesPage() {
                                                                                             children: activity.time
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                                            lineNumber: 606,
+                                                                                            lineNumber: 608,
                                                                                             columnNumber: 37
                                                                                         }, this),
                                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2067,13 +2092,13 @@ function AIFeaturesPage() {
                                                                                             children: activity.activity
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                                            lineNumber: 607,
+                                                                                            lineNumber: 609,
                                                                                             columnNumber: 37
                                                                                         }, this)
                                                                                     ]
                                                                                 }, void 0, true, {
                                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                                    lineNumber: 604,
+                                                                                    lineNumber: 606,
                                                                                     columnNumber: 35
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2081,34 +2106,34 @@ function AIFeaturesPage() {
                                                                                     children: activity.cost
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                                    lineNumber: 609,
+                                                                                    lineNumber: 611,
                                                                                     columnNumber: 35
                                                                                 }, this)
                                                                             ]
                                                                         }, idx, true, {
                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                            lineNumber: 603,
+                                                                            lineNumber: 605,
                                                                             columnNumber: 33
                                                                         }, this))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                    lineNumber: 601,
+                                                                    lineNumber: 603,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, day.day, true, {
                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                            lineNumber: 596,
+                                                            lineNumber: 598,
                                                             columnNumber: 27
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                    lineNumber: 594,
+                                                    lineNumber: 596,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 593,
+                                                lineNumber: 595,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2124,7 +2149,7 @@ function AIFeaturesPage() {
                                                             children: "Trip Summary"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                            lineNumber: 623,
+                                                            lineNumber: 625,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2138,7 +2163,7 @@ function AIFeaturesPage() {
                                                                             children: "Total Cost:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                            lineNumber: 626,
+                                                                            lineNumber: 628,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2146,13 +2171,13 @@ function AIFeaturesPage() {
                                                                             children: generatedItinerary.totalCost
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                            lineNumber: 627,
+                                                                            lineNumber: 629,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                    lineNumber: 625,
+                                                                    lineNumber: 627,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2163,7 +2188,7 @@ function AIFeaturesPage() {
                                                                             children: "Duration:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                            lineNumber: 630,
+                                                                            lineNumber: 632,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2171,13 +2196,13 @@ function AIFeaturesPage() {
                                                                             children: itineraryForm.duration
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                            lineNumber: 631,
+                                                                            lineNumber: 633,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                    lineNumber: 629,
+                                                                    lineNumber: 631,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2188,7 +2213,7 @@ function AIFeaturesPage() {
                                                                             children: "Group Size:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                            lineNumber: 634,
+                                                                            lineNumber: 636,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2196,19 +2221,19 @@ function AIFeaturesPage() {
                                                                             children: itineraryForm.groupSize
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                            lineNumber: 635,
+                                                                            lineNumber: 637,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                    lineNumber: 633,
+                                                                    lineNumber: 635,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                            lineNumber: 624,
+                                                            lineNumber: 626,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h5", {
@@ -2216,7 +2241,7 @@ function AIFeaturesPage() {
                                                             children: "AI Tips"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                            lineNumber: 639,
+                                                            lineNumber: 641,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2228,7 +2253,7 @@ function AIFeaturesPage() {
                                                                             className: "h-4 w-4 mt-0.5 flex-shrink-0 text-gold"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                            lineNumber: 643,
+                                                                            lineNumber: 645,
                                                                             columnNumber: 31
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2236,18 +2261,18 @@ function AIFeaturesPage() {
                                                                             children: tip
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                                            lineNumber: 644,
+                                                                            lineNumber: 646,
                                                                             columnNumber: 31
                                                                         }, this)
                                                                     ]
                                                                 }, idx, true, {
                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                    lineNumber: 642,
+                                                                    lineNumber: 644,
                                                                     columnNumber: 29
                                                                 }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                            lineNumber: 640,
+                                                            lineNumber: 642,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2258,7 +2283,7 @@ function AIFeaturesPage() {
                                                                     children: "Download Itinerary"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                    lineNumber: 650,
+                                                                    lineNumber: 652,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2266,58 +2291,58 @@ function AIFeaturesPage() {
                                                                     children: "Share with Friends"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                                    lineNumber: 653,
+                                                                    lineNumber: 655,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/ai-features/page.tsx",
-                                                            lineNumber: 649,
+                                                            lineNumber: 651,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/ai-features/page.tsx",
-                                                    lineNumber: 619,
+                                                    lineNumber: 621,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/ai-features/page.tsx",
-                                                lineNumber: 618,
+                                                lineNumber: 620,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/ai-features/page.tsx",
-                                        lineNumber: 592,
+                                        lineNumber: 594,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/ai-features/page.tsx",
-                                lineNumber: 581,
+                                lineNumber: 583,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/ai-features/page.tsx",
-                        lineNumber: 373,
+                        lineNumber: 375,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/ai-features/page.tsx",
-                    lineNumber: 368,
+                    lineNumber: 370,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/ai-features/page.tsx",
-                lineNumber: 367,
+                lineNumber: 369,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/ai-features/page.tsx",
-        lineNumber: 192,
+        lineNumber: 204,
         columnNumber: 5
     }, this);
 }

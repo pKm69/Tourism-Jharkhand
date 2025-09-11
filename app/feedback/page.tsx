@@ -145,13 +145,13 @@ export default function FeedbackPage() {
     { code: "sa", name: "Santali" }
   ]
 
-  // Initialize AOS
+  // Initialize AOS - Match home page settings
   useEffect(() => {
     AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
+      duration: 800,
+      easing: 'ease-out-cubic',
       once: true,
-      offset: 100
+      offset: 50
     })
   }, [])
 

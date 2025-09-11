@@ -30,13 +30,13 @@ export default function DestinationsPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
 
-  // Initialize AOS
+  // Initialize AOS - Match home page settings
   useEffect(() => {
     AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
+      duration: 800,
+      easing: 'ease-out-cubic',
       once: true,
-      offset: 100
+      offset: 50
     })
   }, [])
 
@@ -206,17 +206,17 @@ export default function DestinationsPage() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1 data-aos="fade-up">
+          <h1 data-aos="fade-up" data-aos-delay="200">
             Discover Jharkhand's
             <span className="text-gold block">Hidden Treasures</span>
           </h1>
-          <p data-aos="fade-up" data-aos-delay="200">
+          <p data-aos="fade-up" data-aos-delay="400">
             From mystical waterfalls to sacred temples, explore the diverse landscapes and rich cultural heritage of
             Jharkhand
           </p>
 
           {/* Search and Filter */}
-          <div className="search-bar" data-aos="fade-up" data-aos-delay="400">
+          <div className="search-bar" data-aos="fade-up" data-aos-delay="600">
             <div className="relative" style={{width: '100%', maxWidth: '500px'}}>
               <input
                 type="text"
@@ -262,7 +262,7 @@ export default function DestinationsPage() {
                 key={destination.id} 
                 className="destination-card clickable"
                 data-aos="fade-up"
-                data-aos-delay={200 + (index * 100)}
+                data-aos-delay={300 + (index * 100)}
               >
                 <div className="destination-image-container">
                   <img
