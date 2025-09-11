@@ -53,9 +53,18 @@ code {
   color: #2d3748;
 }
 
-/* Focus Styles */
+/* Focus Styles - Remove blue outline */
 *:focus {
-  outline: 2px solid #2563eb;
+  outline: none;
+}
+
+/* Custom focus styles for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #f4d03f;
   outline-offset: 2px;
 }
 
@@ -70,6 +79,58 @@ img {
 input::placeholder,
 textarea::placeholder {
   color: rgba(255, 255, 255, 0.9);
+}
+
+/* AI Feature Buttons - Stable styling without state conflicts */
+.ai-feature-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 12px;
+  min-height: 60px;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(244, 208, 63, 0.8);
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-feature-btn:hover:not(.active) {
+  background: rgba(244, 208, 63, 0.1);
+  transform: translateY(-1px);
+}
+
+.ai-feature-btn.active {
+  background: #f4d03f !important;
+  color: #800020 !important;
+  border-color: #f4d03f !important;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4) !important;
+}
+
+.ai-feature-btn:active {
+  transform: scale(0.95);
+}
+
+.ai-feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.ai-feature-text {
+  text-align: center;
+  line-height: 1.2;
+  flex: 1;
 }
 
 /* Global Styles */
@@ -105,6 +166,28 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button Ripple Effect */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
+}
+
+.btn:active::before {
+  width: 300px;
+  height: 300px;
 }
 
 .navbar-logo svg {
@@ -119,9 +202,9 @@ body {
 }
 
 .btn.primary:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
   /* Stronger maroon shadow for prominence */
-  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.6);
+  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.7);
   background: linear-gradient(135deg, #9d1b2f 0%, #800020 50%, #6b001a 100%);
 }
 
@@ -136,7 +219,8 @@ body {
   /* Hover state uses maroon instead of navy */
   background: #800020;
   color: white;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.5);
 }
 
 .btn.outline {
@@ -2734,5 +2818,292 @@ img {
   .destination-footer .btn {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* ===== PHASE 1 ANIMATIONS ===== */
+
+/* Enhanced Navigation Animations */
+.navbar-logo {
+  transition: all 0.3s ease !important;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.05) !important;
+}
+
+.navbar-logo svg {
+  transition: transform 0.3s ease !important;
+}
+
+.navbar-logo:hover svg {
+  transform: rotate(15deg) scale(1.1) !important;
+}
+
+/* Enhanced Nav Link Animations */
+.navbar-links li a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navbar-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #d4af37;
+  transition: width 0.3s ease;
+}
+
+.navbar-links li a:hover::after {
+  width: 100%;
+}
+
+.navbar-links li a:hover {
+  color: #d4af37;
+  transform: translateY(-2px);
+}
+
+/* Enhanced Card Hover Effects */
+.feature-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card .feature-icon {
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1) rotate(5deg);
+  color: #f4d03f;
+}
+
+/* Enhanced Destination Card Animations */
+.destination-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.destination-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.destination-card img {
+  transition: transform 0.5s ease;
+}
+
+.destination-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Enhanced Analytics Card Animations */
+.analytics-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.analytics-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.analytics-card-icon {
+  transition: all 0.3s ease;
+}
+
+.analytics-card:hover .analytics-card-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(244, 208, 63, 0.3);
+}
+
+/* Enhanced Button Animations */
+.navbar-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
+}
+
+.navbar-button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.navbar-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(244, 208, 63, 0.5);
+}
+
+/* Enhanced Form Animations */
+.feedback-card .emotion-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feedback-card .emotion-button:hover {
+  transform: scale(1.15) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 208, 63, 0.4);
+}
+
+.feedback-card .emotion-button.selected {
+  transform: scale(1.2) translateY(-3px);
+  box-shadow: 0 10px 25px rgba(244, 208, 63, 0.5);
+}
+
+/* Enhanced Textarea Focus */
+.feedback-card textarea {
+  transition: all 0.3s ease;
+}
+
+.feedback-card textarea:focus {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 3px rgba(244, 208, 63, 0.3), 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Scroll Animations */
+[data-aos] {
+  transition-duration: 0.8s;
+}
+
+[data-aos="fade-up"] {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-aos="zoom-in"] {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth Page Transitions */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced Mobile Menu Animation */
+.mobile-menu {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced Loading States */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn:disabled::before {
+  display: none;
+}
+
+/* Pulse Animation for Important Elements */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.analytics-card-number {
+  animation: pulse 2s infinite;
+}
+
+/* Bounce Animation for Emojis */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.feedback-card .emotion-button:active {
+  animation: bounce 0.6s;
+}
+
+/* Loading Animation */
+.loading-dots {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 20px;
+}
+
+.loading-dots::after {
+  content: 'Loading...';
+  animation: loadingDots 1.5s infinite;
+}
+
+@keyframes loadingDots {
+  0%, 20% {
+    content: 'Loading.';
+  }
+  40% {
+    content: 'Loading..';
+  }
+  60%, 100% {
+    content: 'Loading...';
+  }
+}
+
+/* Enhanced Focus States */
+.btn:focus-visible {
+  outline: 2px solid #f4d03f;
+  outline-offset: 2px;
+}
+
+.feature-card:focus-visible {
+  outline: 2px solid #f4d03f;
+  outline-offset: 2px;
+}
+
+/* Smooth Transitions for All Interactive Elements */
+* {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .analytics-card-number {
+    animation: none;
   }
 }

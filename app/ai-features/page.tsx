@@ -249,28 +249,12 @@ export default function AIFeaturesPage() {
                 <button
                   key={feature.id}
                   onClick={() => setActiveDemo(feature.id)}
-                  className={`btn ${activeDemo === feature.id ? 'primary' : 'secondary'} text-xs px-2 py-2 h-auto min-h-[60px] flex items-center justify-center gap-2 transition-all duration-300`}
-                  style={activeDemo !== feature.id ? {
-                    background: 'transparent',
-                    color: 'white',
-                    border: '2px solid rgba(244, 208, 63, 0.8)',
-                    borderRadius: '25px'
-                  } : {}}
-                  onMouseEnter={(e) => {
-                    if (activeDemo !== feature.id) {
-                      (e.target as HTMLButtonElement).style.background = 'rgba(244, 208, 63, 0.1)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (activeDemo !== feature.id) {
-                      (e.target as HTMLButtonElement).style.background = 'transparent';
-                    }
-                  }}
-                  data-aos="fade-up"
-                  data-aos-delay={300 + (index * 100)}
+                  className={`ai-feature-btn ${activeDemo === feature.id ? 'active' : ''}`}
                 >
-                  <div className="h-3 w-3 flex-shrink-0">{feature.icon}</div>
-                  <span className="text-center leading-tight">
+                  <div className="ai-feature-icon">
+                    {React.cloneElement(feature.icon, { className: 'w-5 h-5' })}
+                  </div>
+                  <span className="ai-feature-text">
                     {feature.title.split(" ").slice(0, 2).join(" ")}
                   </span>
                 </button>

@@ -1,9 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/app/layout.tsx"],"sourcesContent":["import type { Metadata } from 'next'\r\nimport { GeistSans } from 'geist/font/sans'\r\nimport { GeistMono } from 'geist/font/mono'\r\nimport { Analytics } from '@vercel/analytics/next'\r\nimport './globals.css'\r\n\r\nexport const metadata: Metadata = {\r\n  title: 'v0 App',\r\n  description: 'Created with v0',\r\n  generator: 'v0.app',\r\n}\r\n\r\nexport default function RootLayout({\r\n  children,\r\n}: Readonly<{\r\n  children: React.ReactNode\r\n}>) {\r\n  return (\r\n    <html lang=\"en\">\r\n      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>\r\n        {children}\r\n        <Analytics />\r\n      </body>\r\n    </html>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;;;;;;;;;;;;AAMO,MAAM,WAAqB;IAChC,OAAO;IACP,aAAa;IACb,WAAW;AACb;AAEe,SAAS,WAAW,EACjC,QAAQ,EAGR;IACA,qBACE,wPAAC;QAAK,MAAK;kBACT,cAAA,wPAAC;YAAK,WAAW,CAAC,UAAU,EAAE,2LAAA,CAAA,YAAS,CAAC,QAAQ,CAAC,CAAC,EAAE,2LAAA,CAAA,YAAS,CAAC,QAAQ,CAAC,CAAC;;gBACrE;8BACD,wPAAC,+JAAA,CAAA,YAAS;;;;;;;;;;;;;;;;AAIlB"}},
-    {"offset": {"line": 50, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 61, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/.next-internal/server/app/_not-found/page/actions.js"],"sourcesContent":["__turbopack_export_value__({\n});"],"names":[],"mappings":"AAAA,2BAA2B,CAC3B"}},
-    {"offset": {"line": 62, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
