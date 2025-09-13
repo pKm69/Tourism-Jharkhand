@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/node_modules/next/src/build/polyfills/process.ts"],"sourcesContent":["unable to read source [project]/node_modules/next/src/build/polyfills/process.ts"],"names":["global","module","exports","process","env"],"mappings":";IACEA,iBAA8BA;AADhCC,OAAOC,OAAO,GACZF,CAAAA,CAAAA,kBAAAA,OAAOG,OAAO,KAAA,OAAA,KAAA,IAAdH,gBAAgBI,GAAG,KAAI,OAAA,CAAA,CAAOJ,mBAAAA,OAAOG,OAAO,KAAA,OAAA,KAAA,IAAdH,iBAAgBI,GAAG,MAAK,WAClDJ,OAAOG,OAAO"}},
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

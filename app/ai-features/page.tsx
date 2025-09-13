@@ -297,7 +297,7 @@ export default function AIFeaturesPage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </button>
               ) : (
-                <Link href={activeDemo === "analytics" ? "/analytics" : "#"}>
+                <Link href={activeDemo === "analytics" ? "/analytics" : activeDemo === "ar-vr" ? "/ar-vr" : "#"}>
                   <button className="btn primary" data-aos="fade-up" data-aos-delay="1500">
                     Try This Feature
                     <ArrowRight className="ml-2 h-5 w-5" />
