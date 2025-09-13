@@ -1362,6 +1362,151 @@ body {
   box-shadow: 0 10px 30px #0003;
 }
 
+.district-shape {
+  transition: transform .3s, filter .3s, opacity .3s;
+  transform-origin: center;
+}
+
+.district-shape.hovered {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 8px #0009);
+}
+
+.district-shape.selected {
+  transform: scale(1.07);
+  filter: drop-shadow(0 6px 10px #000000b3);
+}
+
+.district-shape.dimmed {
+  opacity: .3;
+}
+
+.leaflet-tooltip.district-label {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: #000;
+  font-weight: bold;
+  text-shadow: 0 0 4px #fffc;
+  font-size: 14px;
+}
+
+.deselect-button {
+  position: absolute !important;
+  top: 15px !important;
+  right: 15px !important;
+  width: 30px !important;
+  height: 30px !important;
+  background: #fff !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  color: #f44 !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 5px #0000004d !important;
+  z-index: 1000 !important;
+  transition: all .2s !important;
+  user-select: none !important;
+  border: 2px solid #f44 !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  font-family: Arial, sans-serif !important;
+  outline: none !important;
+}
+
+.deselect-button:hover {
+  background: #f0f0f0;
+  transform: scale(1.1);
+}
+
+.deselect-button:active {
+  transform: scale(.95);
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.explore-button {
+  background-color: #3a86ff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color .3s;
+  box-shadow: 0 2px 5px #0003;
+}
+
+.explore-button:hover {
+  background-color: #4361ee;
+  transform: translateY(-1px);
+}
+
+.info-box {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px #0000004d;
+  padding: 15px 20px;
+  min-width: 250px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1200;
+  font-family: Arial, sans-serif;
+  animation: .25s forwards slideUp;
+}
+
+.info-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-box-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.info-box-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #f44;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.info-box-close:hover {
+  transform: scale(1.2);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .analytics-card-icon {
   width: 64px;
   height: 64px;
