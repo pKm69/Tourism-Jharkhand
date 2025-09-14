@@ -35,7 +35,7 @@ const jharkhandTouristPlaces = [
     
     // 10. Godda
     { district: "Godda", name: "Damakol Waterfall", lat: 24.6759, lon: 87.4369 , streetView: "https://www.google.com/maps/embed?pb=!4v1757758858510!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ1Z1NmFwcGdF!2m2!1d24.57602001461916!2d87.43692611903656!3f120.92056404664665!4f19.22198827040677!5f0.4000000000000002"},
-    { district: "Godda", name: "Harna Dam", lat: 24.8541, lon: 87.2407 , streetView: "https://www.google.com/maps/embed?pb=!4v1757759155810!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRHEyOExlQ1E.!2m2!1d23.98458853926075!2d73.29876717188753!3f122.5897149627941!4f11.15566035828138!5f0.4000000000000002"},
+    { district: "Godda", name: "Harnav Dam", lat: 24.8541, lon: 87.2407 , streetView: "https://www.google.com/maps/embed?pb=!4v1757759155810!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRHEyOExlQ1E.!2m2!1d23.98458853926075!2d73.29876717188753!3f122.5897149627941!4f11.15566035828138!5f0.4000000000000002"},
   
     // 11. Jamtara
     { district: "Jamtara", name: "Miclai Ghat", lat: 24.0852, lon: 87.1563 , streetView: "https://www.google.com/maps/embed?pb=!4v1757759661578!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRE9uZVBnaHdF!2m2!1d23.88839653836259!2d86.91094749900421!3f300.39725413896844!4f3.7940932024210383!5f0.4000000000000002"},
