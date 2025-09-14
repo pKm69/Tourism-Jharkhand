@@ -350,6 +350,61 @@ section {
   font-size: 1rem;
 }
 
+.feature-description {
+  display: none;
+}
+
+.feature-description.show {
+  display: block;
+  margin-top: 15px;
+}
+
+.feature-actions {
+  display: none;
+}
+
+.feature-actions.show {
+  display: block;
+  margin-top: 20px;
+}
+
+.btn-feature-try {
+  background: #f4d03f;
+  color: #800020;
+  border: 2px solid #f4d03f;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(244, 208, 63, 0.3);
+}
+
+.btn-feature-try:hover {
+  background: #d4af37;
+  border-color: #d4af37;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+  color: #800020;
+}
+
+.feature-card.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(244, 208, 63, 0.6);
+  box-shadow: 0 8px 30px rgba(244, 208, 63, 0.3);
+  transform: translateY(-4px);
+}
+
+.feature-card.active .feature-icon {
+  color: #f4d03f;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
 .smart-tourism-section .btn.primary {
   background: #f4d03f;
   color: #800020;

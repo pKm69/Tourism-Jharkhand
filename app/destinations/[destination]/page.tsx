@@ -38,11 +38,11 @@ export default function DestinationPage() {
   }, [destination]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-[#1e3a8a] to-[#800020] text-white">
       <Navigation />
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-4xl mx-auto bg-gradient-to-br from-maroon-light to-navy-dark rounded-2xl shadow-lg p-8 text-white">
-          <button onClick={() => router.back()} className="btn secondary mb-4">← Go Back</button>
+        <div className="max-w-4xl mx-auto shadow-lg p-8 text-white" style={{ background: 'rgba(128, 0, 32, 0.3)', backdropFilter: 'blur(15px)', border: '1px solid #f4d03f', borderRadius: '30px' }}>
+          <button onClick={() => router.back()} className="btn secondary mb-4" style={{padding: '16px 32px', fontSize: '16px', borderRadius: '25px', background: 'transparent', border: '2px solid rgba(244, 208, 63, 0.8)', color: '#800020', fontWeight: '600', transition: 'all 0.3s ease'}}>← Go Back</button>
           <h1 className="text-4xl font-bold mb-4 capitalize text-gold">
             {destination.replace(/%20/g, ' ')}
           </h1>
@@ -54,16 +54,11 @@ export default function DestinationPage() {
                 <img src={data.thumbnail} alt={destination} className="w-full h-auto object-cover rounded-lg mb-4 border-4 border-gold" />
               )}
               <div className="prose prose-invert max-w-none">
-                <p>{data.extract}</p>
+                <p style={{color: 'white'}}>{data.extract}</p>
               </div>
-              {data.fullurl && (
-                <div className="flex gap-4 mt-4">
-                  <a href={data.fullurl} target="_blank" rel="noopener noreferrer">
-                    <button className="btn primary">Read more on Wikipedia</button>
-                  </a>
-                  <button className="btn secondary">Plan your itinerary to this place</button>
-                </div>
-              )}
+              <div className="mt-6">
+                <button className="btn primary" style={{padding: '16px 32px', fontSize: '16px', borderRadius: '25px', background: '#f4d03f', color: '#800020', border: '2px solid #f4d03f', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(244, 208, 63, 0.3)'}}>Plan Your Itinerary to This Place</button>
+              </div>
             </div>
           )}
         </div>
