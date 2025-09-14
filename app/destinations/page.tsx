@@ -319,10 +319,12 @@ export default function DestinationsPage() {
 
                   <div className="destination-footer">
                     <span className="destination-distance">{destination.distance}</span>
-                    <button className="btn primary">
-                      Explore
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </button>
+                    <Link href={`/destinations/${encodeURIComponent(destination.name)}`}>
+                      <button className="btn primary">
+                        Explore
+                        <ArrowRight className="ml-1 h-4 w-4" />
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
