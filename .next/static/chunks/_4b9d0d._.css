@@ -287,13 +287,6 @@ section {
   backdrop-filter: blur(10px);
 }
 
-.feature-card:hover {
-  border-color: #fff6;
-  box-shadow: 0 8px 30px #0000004d;
-  transform: translateY(-2px);
-  background: #ffffff26;
-}
-
 .feature-icon {
   font-size: 3rem;
   margin-bottom: 20px;
@@ -948,13 +941,6 @@ body {
   box-shadow: 0 4px 20px #0003;
   border: 2px solid #fff3;
   backdrop-filter: blur(10px);
-}
-
-.feature-card:hover {
-  border-color: #fff6;
-  box-shadow: 0 8px 30px #0000004d;
-  transform: translateY(-2px);
-  background: #ffffff26;
 }
 
 .feature-card .feature-icon {
@@ -3917,18 +3903,8 @@ img {
   transition: all .4s cubic-bezier(.4, 0, .2, 1);
 }
 
-.feature-card:hover {
-  transform: translateY(-8px)scale(1.02);
-  box-shadow: 0 20px 40px #0000004d;
-}
-
 .feature-card .feature-icon {
   transition: all .3s;
-}
-
-.feature-card:hover .feature-icon {
-  transform: scale(1.1)rotate(5deg);
-  color: #f4d03f;
 }
 
 .destination-card {
