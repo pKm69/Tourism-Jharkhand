@@ -36,6 +36,7 @@ import {
 
 export default function HomePage() {
   const [activeFeature, setActiveFeature] = useState(0)
+  const [isUserInteracting, setIsUserInteracting] = useState(false)
   const [analyticsData, setAnalyticsData] = useState<any>(null)
   const [feedbackStats, setFeedbackStats] = useState<any>(null)
   const [quickFeedback, setQuickFeedback] = useState("")
@@ -49,21 +50,22 @@ export default function HomePage() {
   // Initialize AOS
   useEffect(() => {
     AOS.init({
-      duration: 800,
+      duration: 600,
       easing: 'ease-out-cubic',
       once: true,
-      offset: 50,
-      delay: 100
+      offset: 30
     })
   }, [])
 
-  // Auto-rotate features
+  // Auto-rotate features (pause when user is interacting)
   useEffect(() => {
+    if (isUserInteracting) return
+    
     const interval = setInterval(() => {
       setActiveFeature((prev) => (prev + 1) % 6)
-    }, 4000)
+    }, 5000)
     return () => clearInterval(interval)
-  }, [])
+  }, [isUserInteracting])
 
   // Fetch analytics data
   useEffect(() => {
@@ -232,17 +234,38 @@ export default function HomePage() {
 
         <div className="feature-grid">
           {features.map((feature, index) => (
-            <Link 
-              key={index} 
-              href={feature.link} 
-              className="feature-card clickable"
+            <div
+              key={index}
+              className={`feature-card clickable ${activeFeature === index ? 'active' : ''}`}
               data-aos="fade-up"
-              data-aos-delay={300 + (index * 100)}
+              data-aos-delay={100 + (index * 50)}
+              onMouseEnter={() => {
+                setIsUserInteracting(true)
+                setActiveFeature(index)
+              }}
+              onMouseLeave={() => {
+                setTimeout(() => setIsUserInteracting(false), 1000)
+              }}
+              onClick={() => setActiveFeature(index)}
             >
               <div className="feature-icon">{feature.icon}</div>
               <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </Link>
+              <p className={`feature-description ${activeFeature === index ? 'show' : ''}`}>
+                {feature.description}
+              </p>
+              <div className={`feature-actions ${activeFeature === index ? 'show' : ''}`}>
+                <Link href={feature.link}>
+                  <button 
+                    className="btn-feature-try"
+                    onMouseEnter={(e) => e.stopPropagation()}
+                    onMouseLeave={(e) => e.stopPropagation()}
+                  >
+                    Try This Feature
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </button>
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
         <Link href="/ai-features">
