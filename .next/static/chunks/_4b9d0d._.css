@@ -220,6 +220,10 @@ body {
   box-shadow: 0 8px 25px #00000026;
 }
 
+.text-gold {
+  color: #f4d03f !important;
+}
+
 section {
   padding: 80px 20px;
 }

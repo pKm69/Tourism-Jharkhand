@@ -219,7 +219,7 @@ export default function InteractiveMap() {
 
   return (
     <div style={{ height: "70vh", width: "70%", position: "relative", margin: "20px auto" }}>
-      <div style={{ position: "relative", height: "100%", width: "100%" }}>
+      <div style={{ position: "relative", height: "100%", width: "100%", borderRadius: "16px", overflow: "hidden" }}>
         {streetViewUrl ? (
           <div className="street-view-container" style={{ height: "100%", width: "100%", position: "relative" }}>
             <iframe
