@@ -138,7 +138,7 @@ const jharkhandTouristPlaces = [
     },
     {
         district: "Godda",
-        name: "Harna Dam",
+        name: "Harnav Dam",
         lat: 24.8541,
         lon: 87.2407,
         streetView: "https://www.google.com/maps/embed?pb=!4v1757759155810!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRHEyOExlQ1E.!2m2!1d23.98458853926075!2d73.29876717188753!3f122.5897149627941!4f11.15566035828138!5f0.4000000000000002"
@@ -676,17 +676,52 @@ function InteractiveMap() {
                             lineNumber: 269,
                             columnNumber: 13
                         }, this),
-                        selectedPlace.streetView && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            className: "explore-button",
-                            onClick: ()=>{
-                                setStreetViewUrl(selectedPlace.streetView);
-                                setSelectedPlace(null);
-                            },
-                            children: "Explore Now!"
-                        }, void 0, false, {
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "info-box-content",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "info-box-image",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: `/arvrPics/${selectedPlace.name}.jpg`,
+                                        alt: selectedPlace.name,
+                                        onError: (e)=>{
+                                            // Try JPEG, then PNG if JPG fails
+                                            const img = e.target;
+                                            if (img.src.endsWith('.jpg')) {
+                                                img.src = `/arvrPics/${selectedPlace.name}.jpeg`;
+                                            } else if (img.src.endsWith('.jpeg')) {
+                                                img.src = `/arvrPics/${selectedPlace.name}.png`;
+                                            } else {
+                                                img.style.display = 'none';
+                                            }
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/interactive-map.tsx",
+                                        lineNumber: 280,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/components/interactive-map.tsx",
+                                    lineNumber: 279,
+                                    columnNumber: 15
+                                }, this),
+                                selectedPlace.streetView && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    className: "explore-button",
+                                    onClick: ()=>{
+                                        setStreetViewUrl(selectedPlace.streetView);
+                                        setSelectedPlace(null);
+                                    },
+                                    children: "Explore Now!"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/interactive-map.tsx",
+                                    lineNumber: 297,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "[project]/components/interactive-map.tsx",
-                            lineNumber: 279,
-                            columnNumber: 15
+                            lineNumber: 278,
+                            columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
@@ -714,7 +749,7 @@ function InteractiveMap() {
                     children: "×"
                 }, void 0, false, {
                     fileName: "[project]/components/interactive-map.tsx",
-                    lineNumber: 292,
+                    lineNumber: 311,
                     columnNumber: 9
                 }, this)
             ]

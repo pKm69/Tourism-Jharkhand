@@ -275,17 +275,36 @@ export default function InteractiveMap() {
                 ×
               </button>
             </div>
-            {selectedPlace.streetView && (
-              <button
-                className="explore-button"
-                onClick={() => {
-                  setStreetViewUrl(selectedPlace.streetView!);
-                  setSelectedPlace(null);
-                }}
-              >
-                Explore Now!
-              </button>
-            )}
+            <div className="info-box-content">
+              <div className="info-box-image">
+                <img 
+                  src={`/arvrPics/${selectedPlace.name}.jpg`}
+                  alt={selectedPlace.name}
+                  onError={(e) => {
+                    // Try JPEG, then PNG if JPG fails
+                    const img = e.target as HTMLImageElement;
+                    if (img.src.endsWith('.jpg')) {
+                      img.src = `/arvrPics/${selectedPlace.name}.jpeg`;
+                    } else if (img.src.endsWith('.jpeg')) {
+                      img.src = `/arvrPics/${selectedPlace.name}.png`;
+                    } else {
+                      img.style.display = 'none';
+                    }
+                  }}
+                />
+              </div>
+              {selectedPlace.streetView && (
+                <button
+                  className="explore-button"
+                  onClick={() => {
+                    setStreetViewUrl(selectedPlace.streetView!);
+                    setSelectedPlace(null);
+                  }}
+                >
+                  Explore Now!
+                </button>
+              )}
+            </div>
           </div>
         )}
 
