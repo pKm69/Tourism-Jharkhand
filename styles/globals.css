@@ -249,6 +249,10 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
+.text-gold {
+  color: #f4d03f !important;
+}
+
 /* Section Spacing */
 section {
   padding: 80px 20px;
