@@ -320,12 +320,7 @@ section {
   backdrop-filter: blur(10px);
 }
 
-.feature-card:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.15);
-}
+/* Removed hover effects for feature cards */
 
 .feature-icon {
   font-size: 3rem;
@@ -980,12 +975,7 @@ body {
   backdrop-filter: blur(10px);
 }
 
-.feature-card:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.15);
-}
+/* Removed hover effects for feature cards */
 
 .feature-card .feature-icon {
   font-size: 4rem;
@@ -3075,19 +3065,13 @@ img {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.feature-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
+/* Removed hover effects for feature cards */
 
 .feature-card .feature-icon {
   transition: all 0.3s ease;
 }
 
-.feature-card:hover .feature-icon {
-  transform: scale(1.1) rotate(5deg);
-  color: #f4d03f;
-}
+/* Removed hover effects for feature card icons */
 
 /* Enhanced Destination Card Animations */
 .destination-card {

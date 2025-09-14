@@ -5,9 +5,14 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'TribalTrek - Discover Jharkhand',
+  description: 'Experience the vibrant culture and breathtaking landscapes of Jharkhand with AI-powered tourism platform',
+  generator: 'TribalTrek',
+  icons: {
+    icon: '/Full.ico',
+    shortcut: '/Full.ico',
+    apple: '/Full.ico',
+  },
 }
 
 export default function RootLayout({
