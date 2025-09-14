@@ -604,6 +604,7 @@ function InteractiveMap() {
                     boxZoom: false,
                     keyboard: false,
                     zoomControl: false,
+                    attributionControl: false,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$leaflet$2f$lib$2f$TileLayer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TileLayer"], {
                             attribution: '© <a href="https://carto.com/">Carto</a>',
@@ -616,7 +617,7 @@ function InteractiveMap() {
                             ]
                         }, void 0, false, {
                             fileName: "[project]/components/interactive-map.tsx",
-                            lineNumber: 247,
+                            lineNumber: 248,
                             columnNumber: 13
                         }, this),
                         geoData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$leaflet$2f$lib$2f$GeoJSON$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["GeoJSON"], {
@@ -624,7 +625,7 @@ function InteractiveMap() {
                             onEachFeature: onEachFeature
                         }, void 0, false, {
                             fileName: "[project]/components/interactive-map.tsx",
-                            lineNumber: 252,
+                            lineNumber: 253,
                             columnNumber: 25
                         }, this),
                         markers.map((place, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$leaflet$2f$lib$2f$Marker$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Marker"], {
@@ -637,7 +638,7 @@ function InteractiveMap() {
                                 }
                             }, idx, false, {
                                 fileName: "[project]/components/interactive-map.tsx",
-                                lineNumber: 255,
+                                lineNumber: 256,
                                 columnNumber: 15
                             }, this))
                     ]
@@ -657,7 +658,7 @@ function InteractiveMap() {
                                     children: selectedPlace.name
                                 }, void 0, false, {
                                     fileName: "[project]/components/interactive-map.tsx",
-                                    lineNumber: 269,
+                                    lineNumber: 270,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -666,13 +667,13 @@ function InteractiveMap() {
                                     children: "×"
                                 }, void 0, false, {
                                     fileName: "[project]/components/interactive-map.tsx",
-                                    lineNumber: 270,
+                                    lineNumber: 271,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/interactive-map.tsx",
-                            lineNumber: 268,
+                            lineNumber: 269,
                             columnNumber: 13
                         }, this),
                         selectedPlace.streetView && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -684,13 +685,13 @@ function InteractiveMap() {
                             children: "Explore Now!"
                         }, void 0, false, {
                             fileName: "[project]/components/interactive-map.tsx",
-                            lineNumber: 278,
+                            lineNumber: 279,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/interactive-map.tsx",
-                    lineNumber: 267,
+                    lineNumber: 268,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -713,7 +714,7 @@ function InteractiveMap() {
                     children: "×"
                 }, void 0, false, {
                     fileName: "[project]/components/interactive-map.tsx",
-                    lineNumber: 291,
+                    lineNumber: 292,
                     columnNumber: 9
                 }, this)
             ]

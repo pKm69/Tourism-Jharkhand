@@ -243,6 +243,7 @@ export default function InteractiveMap() {
             boxZoom={false}
             keyboard={false}
             zoomControl={false}
+            attributionControl={false}
           >
             <TileLayer
               attribution='&copy; <a href="https://carto.com/">Carto</a>'
