@@ -236,35 +236,15 @@ export default function HomePage() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`feature-card clickable ${activeFeature === index ? 'active' : ''}`}
+              className="feature-card"
               data-aos="fade-up"
               data-aos-delay={100 + (index * 50)}
-              onMouseEnter={() => {
-                setIsUserInteracting(true)
-                setActiveFeature(index)
-              }}
-              onMouseLeave={() => {
-                setTimeout(() => setIsUserInteracting(false), 1000)
-              }}
-              onClick={() => setActiveFeature(index)}
             >
               <div className="feature-icon">{feature.icon}</div>
               <h3>{feature.title}</h3>
-              <p className={`feature-description ${activeFeature === index ? 'show' : ''}`}>
+              <p className="feature-description show">
                 {feature.description}
               </p>
-              <div className={`feature-actions ${activeFeature === index ? 'show' : ''}`}>
-                <Link href={feature.link}>
-                  <button 
-                    className="btn-feature-try"
-                    onMouseEnter={(e) => e.stopPropagation()}
-                    onMouseLeave={(e) => e.stopPropagation()}
-                  >
-                    Try This Feature
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
-                </Link>
-              </div>
             </div>
           ))}
         </div>
@@ -383,93 +363,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick Feedback Section */}
-      <section className="quick-feedback-section">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto">
-            <div className="feedback-card" data-aos="fade-up">
-              <h3 data-aos="fade-up" data-aos-delay="200">
-                <MessageCircle className="h-6 w-6" />
-                Quick Feedback
-              </h3>
-              <p data-aos="fade-up" data-aos-delay="300">
-                Share your experience and help us improve Jharkhand tourism
-              </p>
-              
-              <div data-aos="fade-up" data-aos-delay="400">
-                <label>How was your experience?</label>
-                <div className="emotion-buttons">
-                  {[
-                    { emoji: "😍", label: "Loved it" },
-                    { emoji: "😊", label: "Good" },
-                    { emoji: "😐", label: "Okay" },
-                    { emoji: "😞", label: "Poor" },
-                    { emoji: "😡", label: "Terrible" }
-                  ].map(({ emoji, label }, index) => (
-                    <button
-                      key={emoji}
-                      onClick={() => {
-                        setSelectedEmotion(emoji)
-                        // Add haptic feedback if available
-                        if (navigator.vibrate) {
-                          navigator.vibrate(50)
-                        }
-                      }}
-                      className={`emotion-button ${
-                        selectedEmotion === emoji ? 'selected' : ''
-                      }`}
-                      title={label}
-                      data-aos="zoom-in"
-                      data-aos-delay={500 + (index * 100)}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'scale(1.15) translateY(-2px)'
-                      }}
-                      onMouseLeave={(e) => {
-                        if (selectedEmotion !== emoji) {
-                          e.currentTarget.style.transform = 'scale(1) translateY(0)'
-                        }
-                      }}
-                    >
-                      <span className="text-2xl">{emoji}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div data-aos="fade-up" data-aos-delay="1000">
-                <label htmlFor="quickFeedback">Tell us more (optional)</label>
-                <textarea
-                  id="quickFeedback"
-                  value={quickFeedback}
-                  onChange={(e) => setQuickFeedback(e.target.value)}
-                  placeholder="Share your thoughts about Jharkhand tourism..."
-                />
-              </div>
-
-              <div className="button-group" data-aos="fade-up" data-aos-delay="1100">
-                <button onClick={submitQuickFeedback} className="btn primary">
-                  <Send className="mr-2 h-4 w-4" />
-                  Submit Feedback
-                </button>
-                <button className="btn secondary">
-                  <Link href="/feedback">
-                    Detailed Feedback
-                  </Link>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Call to Action Section */}
       <section className="call-to-action-section">
         <h2 data-aos="fade-up">Ready to Explore Jharkhand?</h2>
         <p data-aos="fade-up" data-aos-delay="200">Join thousands of travelers discovering authentic experiences and supporting local communities</p>
-        <div className="cta-buttons" data-aos="fade-up" data-aos-delay="400">
-          <button className="btn primary">Download Mobile App</button>
+        <div className="cta-buttons" data-aos="fade-up" data-aos-delay="400" style={{justifyContent: 'center'}}>
           <Link href="/destinations">
-            <button className="btn secondary">Plan Your Trip</button>
+            <button className="btn primary">Plan Your Trip</button>
           </Link>
         </div>
       </section>
