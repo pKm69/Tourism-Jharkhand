@@ -640,6 +640,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$aos$2f$dist$
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/ui/button.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/navigation.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/footer.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__ = __turbopack_import__("[project]/node_modules/lucide-react/dist/esm/icons/shopping-bag.js [app-client] (ecmascript) <export default as ShoppingBag>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_import__("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__ = __turbopack_import__("[project]/node_modules/lucide-react/dist/esm/icons/map-pin.js [app-client] (ecmascript) <export default as MapPin>");
@@ -657,6 +658,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 var _s = __turbopack_refresh__.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -870,7 +872,7 @@ function MarketplacePage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 193,
+                    lineNumber: 194,
                     columnNumber: 16
                 }, this);
             case "Homestays":
@@ -878,7 +880,7 @@ function MarketplacePage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 195,
+                    lineNumber: 196,
                     columnNumber: 16
                 }, this);
             case "Experiences":
@@ -886,7 +888,7 @@ function MarketplacePage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 197,
+                    lineNumber: 198,
                     columnNumber: 16
                 }, this);
             case "Food":
@@ -894,7 +896,7 @@ function MarketplacePage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 199,
+                    lineNumber: 200,
                     columnNumber: 16
                 }, this);
             case "Transport":
@@ -902,7 +904,7 @@ function MarketplacePage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 201,
+                    lineNumber: 202,
                     columnNumber: 16
                 }, this);
             case "Guides":
@@ -910,7 +912,7 @@ function MarketplacePage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 203,
+                    lineNumber: 204,
                     columnNumber: 16
                 }, this);
             default:
@@ -918,7 +920,7 @@ function MarketplacePage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 205,
+                    lineNumber: 206,
                     columnNumber: 16
                 }, this);
         }
@@ -928,7 +930,7 @@ function MarketplacePage() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 211,
+                lineNumber: 212,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -946,13 +948,13 @@ function MarketplacePage() {
                                     children: "Supporting Communities"
                                 }, void 0, false, {
                                     fileName: "[project]/app/marketplace/page.tsx",
-                                    lineNumber: 218,
+                                    lineNumber: 219,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 216,
+                            lineNumber: 217,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -961,7 +963,7 @@ function MarketplacePage() {
                             children: "Discover authentic tribal handicrafts, stay with local families, and support sustainable tourism initiatives"
                         }, void 0, false, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 220,
+                            lineNumber: 221,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -993,12 +995,12 @@ function MarketplacePage() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/marketplace/page.tsx",
-                                        lineNumber: 227,
+                                        lineNumber: 228,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/marketplace/page.tsx",
-                                    lineNumber: 226,
+                                    lineNumber: 227,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1017,12 +1019,12 @@ function MarketplacePage() {
                                             ]
                                         }, category, true, {
                                             fileName: "[project]/app/marketplace/page.tsx",
-                                            lineNumber: 247,
+                                            lineNumber: 248,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/marketplace/page.tsx",
-                                    lineNumber: 245,
+                                    lineNumber: 246,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1040,36 +1042,36 @@ function MarketplacePage() {
                                                     className: "h-4 w-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 266,
+                                                    lineNumber: 267,
                                                     columnNumber: 19
                                                 }, this),
                                                 location
                                             ]
                                         }, location, true, {
                                             fileName: "[project]/app/marketplace/page.tsx",
-                                            lineNumber: 260,
+                                            lineNumber: 261,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/marketplace/page.tsx",
-                                    lineNumber: 258,
+                                    lineNumber: 259,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 225,
+                            lineNumber: 226,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 215,
+                    lineNumber: 216,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 214,
+                lineNumber: 215,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1102,7 +1104,7 @@ function MarketplacePage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/marketplace/page.tsx",
-                                        lineNumber: 288,
+                                        lineNumber: 289,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1116,7 +1118,7 @@ function MarketplacePage() {
                                                 children: "Sort by:"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                lineNumber: 290,
+                                                lineNumber: 291,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1133,51 +1135,51 @@ function MarketplacePage() {
                                                         children: "Most Popular"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 298,
+                                                        lineNumber: 299,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                         children: "Price: Low to High"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 299,
+                                                        lineNumber: 300,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                         children: "Price: High to Low"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 300,
+                                                        lineNumber: 301,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                         children: "Highest Rated"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 301,
+                                                        lineNumber: 302,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                lineNumber: 291,
+                                                lineNumber: 292,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/marketplace/page.tsx",
-                                        lineNumber: 289,
+                                        lineNumber: 290,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 287,
+                                lineNumber: 288,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 279,
+                            lineNumber: 280,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1195,7 +1197,7 @@ function MarketplacePage() {
                                                     alt: product.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 316,
+                                                    lineNumber: 317,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1206,7 +1208,7 @@ function MarketplacePage() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 320,
+                                                    lineNumber: 321,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1216,20 +1218,20 @@ function MarketplacePage() {
                                                             className: "h-4 w-4 fill-current"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 325,
+                                                            lineNumber: 326,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: product.rating
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 326,
+                                                            lineNumber: 327,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 324,
+                                                    lineNumber: 325,
                                                     columnNumber: 19
                                                 }, this),
                                                 product.originalPrice && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1240,13 +1242,13 @@ function MarketplacePage() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 329,
+                                                    lineNumber: 330,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/marketplace/page.tsx",
-                                            lineNumber: 315,
+                                            lineNumber: 316,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1259,20 +1261,20 @@ function MarketplacePage() {
                                                             children: product.name
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 338,
+                                                            lineNumber: 339,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"], {
                                                             className: `h-4 w-4 ${product.isFavorite ? "fill-red-500 text-red-500" : "text-gold"}`
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 339,
+                                                            lineNumber: 340,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 337,
+                                                    lineNumber: 338,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1280,7 +1282,7 @@ function MarketplacePage() {
                                                     children: product.description
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 343,
+                                                    lineNumber: 344,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1293,14 +1295,14 @@ function MarketplacePage() {
                                                                     className: "h-4 w-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                                    lineNumber: 347,
+                                                                    lineNumber: 348,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 product.location
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 346,
+                                                            lineNumber: 347,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1310,7 +1312,7 @@ function MarketplacePage() {
                                                                     className: "h-4 w-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                                    lineNumber: 351,
+                                                                    lineNumber: 352,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 "by ",
@@ -1318,7 +1320,7 @@ function MarketplacePage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 350,
+                                                            lineNumber: 351,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1331,18 +1333,18 @@ function MarketplacePage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                                lineNumber: 355,
+                                                                lineNumber: 356,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 354,
+                                                            lineNumber: 355,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 345,
+                                                    lineNumber: 346,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1353,7 +1355,7 @@ function MarketplacePage() {
                                                             children: "Tags:"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 360,
+                                                            lineNumber: 361,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1363,18 +1365,18 @@ function MarketplacePage() {
                                                                     children: tag
                                                                 }, index, false, {
                                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                                    lineNumber: 363,
+                                                                    lineNumber: 364,
                                                                     columnNumber: 25
                                                                 }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 361,
+                                                            lineNumber: 362,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 359,
+                                                    lineNumber: 360,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1388,7 +1390,7 @@ function MarketplacePage() {
                                                                     children: product.price
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                                    lineNumber: 372,
+                                                                    lineNumber: 373,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 product.originalPrice && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1402,53 +1404,60 @@ function MarketplacePage() {
                                                                     children: product.originalPrice
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                                    lineNumber: 374,
+                                                                    lineNumber: 375,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 371,
+                                                            lineNumber: 372,
                                                             columnNumber: 21
                                                         }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            className: "btn primary",
-                                                            children: [
-                                                                product.category === "Guides" || product.category === "Transport" ? "Book" : "Buy",
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
-                                                                    className: "ml-1 h-4 w-4"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/app/marketplace/page.tsx",
-                                                                    lineNumber: 384,
-                                                                    columnNumber: 23
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                                            href: `/marketplace/product/${product.id}`,
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                className: "btn primary",
+                                                                children: [
+                                                                    product.category === "Guides" || product.category === "Transport" ? "Book" : "Buy",
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
+                                                                        className: "ml-1 h-4 w-4"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/marketplace/page.tsx",
+                                                                        lineNumber: 386,
+                                                                        columnNumber: 5
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/marketplace/page.tsx",
+                                                                lineNumber: 384,
+                                                                columnNumber: 3
+                                                            }, this)
+                                                        }, void 0, false, {
                                                             fileName: "[project]/app/marketplace/page.tsx",
-                                                            lineNumber: 382,
+                                                            lineNumber: 383,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 370,
+                                                    lineNumber: 371,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/marketplace/page.tsx",
-                                            lineNumber: 336,
+                                            lineNumber: 337,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, product.id, true, {
                                     fileName: "[project]/app/marketplace/page.tsx",
-                                    lineNumber: 309,
+                                    lineNumber: 310,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 307,
+                            lineNumber: 308,
                             columnNumber: 11
                         }, this),
                         filteredProducts.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1462,7 +1471,7 @@ function MarketplacePage() {
                                     children: "No products found matching your criteria."
                                 }, void 0, false, {
                                     fileName: "[project]/app/marketplace/page.tsx",
-                                    lineNumber: 394,
+                                    lineNumber: 397,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1482,24 +1491,24 @@ function MarketplacePage() {
                                     children: "Clear All Filters"
                                 }, void 0, false, {
                                     fileName: "[project]/app/marketplace/page.tsx",
-                                    lineNumber: 395,
+                                    lineNumber: 398,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 393,
+                            lineNumber: 396,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 278,
+                    lineNumber: 279,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 277,
+                lineNumber: 278,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1515,7 +1524,7 @@ function MarketplacePage() {
                                 children: "Join Our Marketplace"
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 415,
+                                lineNumber: 418,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1525,7 +1534,7 @@ function MarketplacePage() {
                                 children: "Become a verified seller and reach thousands of travelers looking for authentic experiences"
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 416,
+                                lineNumber: 419,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1551,12 +1560,12 @@ function MarketplacePage() {
                                                     className: "h-12 w-12"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/marketplace/page.tsx",
-                                                    lineNumber: 425,
+                                                    lineNumber: 428,
                                                     columnNumber: 95
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                lineNumber: 425,
+                                                lineNumber: 428,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1567,7 +1576,7 @@ function MarketplacePage() {
                                                         children: "Trust & Safety Guaranteed"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 427,
+                                                        lineNumber: 430,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1575,19 +1584,19 @@ function MarketplacePage() {
                                                         children: "Shop with confidence knowing that every transaction is secured by blockchain technology and every seller is verified"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 428,
+                                                        lineNumber: 431,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                lineNumber: 426,
+                                                lineNumber: 429,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/marketplace/page.tsx",
-                                        lineNumber: 424,
+                                        lineNumber: 427,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1602,7 +1611,7 @@ function MarketplacePage() {
                                                         className: "h-5 w-5 mt-0.5 flex-shrink-0 text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 434,
+                                                        lineNumber: 437,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1610,13 +1619,13 @@ function MarketplacePage() {
                                                         children: "Blockchain-secured transactions"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 435,
+                                                        lineNumber: 438,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                lineNumber: 433,
+                                                lineNumber: 436,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1628,7 +1637,7 @@ function MarketplacePage() {
                                                         className: "h-5 w-5 mt-0.5 flex-shrink-0 text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 438,
+                                                        lineNumber: 441,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1636,13 +1645,13 @@ function MarketplacePage() {
                                                         children: "Verified seller certifications"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 439,
+                                                        lineNumber: 442,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                lineNumber: 437,
+                                                lineNumber: 440,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1654,7 +1663,7 @@ function MarketplacePage() {
                                                         className: "h-5 w-5 mt-0.5 flex-shrink-0 text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 442,
+                                                        lineNumber: 445,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1662,13 +1671,13 @@ function MarketplacePage() {
                                                         children: "24/7 customer support"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 443,
+                                                        lineNumber: 446,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                lineNumber: 441,
+                                                lineNumber: 444,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1680,7 +1689,7 @@ function MarketplacePage() {
                                                         className: "h-5 w-5 mt-0.5 flex-shrink-0 text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 446,
+                                                        lineNumber: 449,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1688,19 +1697,19 @@ function MarketplacePage() {
                                                         children: "Money-back guarantee"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/page.tsx",
-                                                        lineNumber: 447,
+                                                        lineNumber: 450,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                lineNumber: 445,
+                                                lineNumber: 448,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/marketplace/page.tsx",
-                                        lineNumber: 432,
+                                        lineNumber: 435,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1713,46 +1722,46 @@ function MarketplacePage() {
                                                 className: "ml-2 h-5 w-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/marketplace/page.tsx",
-                                                lineNumber: 453,
+                                                lineNumber: 456,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/marketplace/page.tsx",
-                                        lineNumber: 451,
+                                        lineNumber: 454,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 419,
+                                lineNumber: 422,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/marketplace/page.tsx",
-                        lineNumber: 414,
+                        lineNumber: 417,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 413,
+                    lineNumber: 416,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 412,
+                lineNumber: 415,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 461,
+                lineNumber: 464,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/marketplace/page.tsx",
-        lineNumber: 210,
+        lineNumber: 211,
         columnNumber: 5
     }, this);
 }

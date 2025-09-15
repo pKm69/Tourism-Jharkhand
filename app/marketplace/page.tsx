@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+import Link from "next/link"
 import {
   ShoppingBag,
   Star,
@@ -379,10 +380,12 @@ export default function MarketplacePage() {
                         }}>{product.originalPrice}</span>
                       )}
                     </div>
-                    <button className="btn primary">
-                      {product.category === "Guides" || product.category === "Transport" ? "Book" : "Buy"}
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </button>
+                    <Link href={`/marketplace/product/${product.id}`}>
+  <button className="btn primary">
+    {product.category === "Guides" || product.category === "Transport" ? "Book" : "Buy"}
+    <ArrowRight className="ml-1 h-4 w-4" />
+  </button>
+</Link>
                   </div>
                 </div>
               </div>

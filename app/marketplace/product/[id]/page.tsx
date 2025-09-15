@@ -97,36 +97,188 @@ export default function ProductDetailPage() {
 
   const fetchProduct = async () => {
     try {
-      // Mock product data - in production, this would fetch from the API
-      const mockProduct: Product = {
-        id: 1,
-        name: "Traditional Sohrai Art Painting",
-        images: [
-          "/jharkhand-tribal-handicrafts-marketplace-artisans.jpg",
-          "/sohrai-art-detail.jpg",
-          "/sohrai-art-process.jpg",
-          "/sohrai-art-artist.jpg"
-        ],
-        price: 2500,
-        originalPrice: 3000,
-        rating: 4.8,
-        reviews: 24,
-        sellerId: "seller_1",
-        seller: "Kumari Devi",
-        location: "Hazaribagh",
-        category: "Handicrafts",
-        description: "Authentic tribal wall art featuring traditional Sohrai patterns passed down through generations",
-        longDescription: "This beautiful Sohrai art painting represents centuries of tribal tradition from Hazaribagh. Each piece is hand-painted using natural pigments and traditional techniques that have been preserved by the Kurmi and Santhal communities. The intricate patterns tell stories of harvest festivals and nature worship, making each artwork a unique cultural artifact.",
-        isVerified: true,
-        tags: ["Handmade", "Traditional", "Eco-friendly"],
-        stock: 5,
-        dimensions: "24x18 inches",
-        materials: ["Natural pigments", "Canvas", "Bamboo frame"],
-        craftingTime: "7-10 days",
-        shippingTime: "3-5 days",
-        returnPolicy: "30 days return policy"
-      }
-      setProduct(mockProduct)
+      // In a real app, fetch from your backend: `/api/products/${id}`
+      // For now, use the dataset you provided (expanded to match Product interface)
+      const mockProducts: Product[] = [
+        {
+          id: 1,
+          name: "Traditional Sohrai Art Painting",
+          images: [
+            "/jharkhand-tribal-handicrafts-marketplace-artisans.jpg",
+            "/sohrai-art-detail.jpg",
+            "/sohrai-art-process.jpg",
+            "/sohrai-art-artist.jpg"
+          ],
+          price: 2500,
+          originalPrice: 3000,
+          rating: 4.8,
+          reviews: 24,
+          sellerId: "seller_1",
+          seller: "Kumari Devi",
+          location: "Hazaribagh",
+          category: "Handicrafts",
+          description: "Authentic tribal wall art featuring traditional Sohrai patterns",
+          longDescription: "Hand-painted Sohrai art using natural pigments and traditional motifs celebrating harvest and nature.",
+          isVerified: true,
+          tags: ["Handmade", "Traditional", "Eco-friendly"],
+          stock: 5,
+          dimensions: "24x18 inches",
+          materials: ["Natural pigments", "Canvas", "Bamboo frame"],
+          craftingTime: "7-10 days",
+          shippingTime: "3-5 days",
+          returnPolicy: "30 days return policy"
+        },
+        {
+          id: 2,
+          name: "Tribal Homestay Experience",
+          images: ["/netarhat-hill-station-sunrise-jharkhand.jpg"],
+          price: 1200,
+          rating: 4.9,
+          reviews: 18,
+          sellerId: "seller_homestay_1",
+          seller: "Birsa Munda Family",
+          location: "Netarhat",
+          category: "Homestays",
+          description: "Stay with a local tribal family and experience authentic culture",
+          longDescription: "Immersive stay including traditional meals, folklore evenings, and guided walks in the serene hills of Netarhat.",
+          isVerified: true,
+          tags: ["Cultural", "Authentic", "Family-friendly"],
+          stock: 20,
+          amenities: ["Meals", "Guided Walks", "Cultural Evenings"],
+          maxGuests: 6,
+          checkInTime: "12:00",
+          checkOutTime: "11:00",
+          cancellationPolicy: "Free cancellation up to 48h prior",
+          returnPolicy: "N/A"
+        },
+        {
+          id: 3,
+          name: "Dokra Metal Craft Workshop",
+          images: ["/jharkhand-landscape-forest-mountains-tribal-cultur.jpg"],
+          price: 800,
+          rating: 4.7,
+          reviews: 32,
+          sellerId: "seller_workshop_1",
+          seller: "Raman Kumar",
+          location: "Ranchi",
+          category: "Experiences",
+          description: "Learn the ancient art of Dokra metal casting from master artisans",
+          longDescription: "Hands-on session covering each stage of the lost-wax Dokra technique with a keepsake souvenir.",
+          isVerified: true,
+          tags: ["Workshop", "Traditional", "Hands-on"],
+          stock: 12,
+          duration: "3 hours",
+          groupSize: "Up to 8",
+          includes: ["Materials", "Safety Gear", "Refreshments"],
+          skillLevel: "Beginner",
+          languages: ["Hindi", "English"],
+          returnPolicy: "Non-refundable"
+        },
+        {
+          id: 4,
+          name: "Organic Tribal Honey",
+          images: ["/deoghar-temple-spiritual-jharkhand.jpg"],
+          price: 450,
+          originalPrice: 500,
+          rating: 4.6,
+          reviews: 45,
+          sellerId: "seller_food_1",
+          seller: "Jharkhand Tribal Cooperative",
+          location: "Deoghar",
+          category: "Food",
+          description: "Pure honey collected from forest beehives by tribal communities",
+          longDescription: "Raw, unprocessed honey rich in regional floral notes, sustainably harvested from forest edges.",
+          isVerified: true,
+          tags: ["Organic", "Pure", "Forest"],
+          stock: 50,
+          returnPolicy: "7 day replacement for damage"
+        },
+        {
+          id: 5,
+          name: "Local Guide - Wildlife Safari",
+          images: ["/betla-national-park-wildlife-tigers-jharkhand.jpg"],
+          price: 1500,
+            rating: 5.0,
+          reviews: 28,
+          sellerId: "seller_guide_1",
+          seller: "Suresh Oraon",
+          location: "Betla",
+          category: "Guides",
+          description: "Expert wildlife guide with 15 years experience in Betla National Park",
+          longDescription: "Personalized safari experience focusing on ecology, conservation, and safe wildlife observation.",
+          isVerified: true,
+          tags: ["Expert", "Wildlife", "Experienced"],
+          stock: 10,
+          duration: "Half Day",
+          groupSize: "Up to 5",
+          languages: ["Hindi", "English"],
+          returnPolicy: "Non-refundable"
+        },
+        {
+          id: 6,
+          name: "Bamboo Handicraft Set",
+          images: ["/hazaribagh-national-park-jharkhand-wildlife-forest.jpg"],
+          price: 1800,
+          originalPrice: 2200,
+          rating: 4.5,
+          reviews: 19,
+          sellerId: "seller_handicraft_2",
+          seller: "Santhal Craft Collective",
+          location: "Jamshedpur",
+          category: "Handicrafts",
+          description: "Beautiful bamboo baskets and decorative items made by Santhal artisans",
+          longDescription: "Curated set of handwoven bamboo crafts supporting sustainable livelihoods and traditional techniques.",
+          isVerified: true,
+          tags: ["Sustainable", "Handwoven", "Traditional"],
+          stock: 25,
+          materials: ["Bamboo", "Natural Dyes"],
+          craftingTime: "5 days",
+          shippingTime: "4-6 days",
+          returnPolicy: "15 days return policy"
+        },
+        {
+          id: 7,
+          name: "Traditional Jharkhand Thali",
+          images: ["/jamshedpur-jharkhand-steel-city-jubilee-park.jpg"],
+          price: 300,
+          rating: 4.8,
+          reviews: 67,
+          sellerId: "seller_food_2",
+          seller: "Maa Durga Restaurant",
+          location: "Ranchi",
+          category: "Food",
+          description: "Authentic tribal cuisine featuring local ingredients and recipes",
+          longDescription: "Full thali highlighting seasonal indigenous grains and traditional cooking methods.",
+          isVerified: true,
+          tags: ["Authentic", "Local", "Traditional"],
+          stock: 100,
+          returnPolicy: "Not applicable"
+        },
+        {
+          id: 8,
+          name: "Eco-friendly Transport Service",
+          images: ["/parasnath-hills-jharkhand-jain-temple-mountain.jpg"],
+          price: 12, // per km
+          rating: 4.4,
+          reviews: 156,
+          sellerId: "seller_transport_1",
+          seller: "Green Wheels Jharkhand",
+          location: "Ranchi",
+          category: "Transport",
+          description: "Electric vehicle transport service for eco-conscious travelers",
+          longDescription: "On-demand EV transport. Displayed price represents per-kilometer base rate (final total distance-based).",
+          isVerified: true,
+          tags: ["Eco-friendly", "Electric", "Sustainable"],
+          stock: 999,
+          returnPolicy: "Usage-based; no returns"
+        }
+      ]
+
+      const rawId = Array.isArray(params.id) ? params.id[0] : params.id
+      const numericId = Number(rawId)
+      const found = !isNaN(numericId) ? mockProducts.find(p => p.id === numericId) : undefined
+
+      setProduct(found || null)
       setLoading(false)
     } catch (error) {
       console.error('Failed to fetch product:', error)
