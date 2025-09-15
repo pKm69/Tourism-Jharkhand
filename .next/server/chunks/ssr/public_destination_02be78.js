@@ -1,0 +1,250 @@
+module.exports = {
+
+"[project]/public/destination.js [app-ssr] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>__TURBOPACK__default__export__
+});
+const destinations = [
+    {
+        id: "Netarhat Hills",
+        name: "Netarhat",
+        image: "",
+        description: "Known as the 'Queen of Chotanagpur', Netarhat offers breathtaking sunrise and sunset views from its hilltops.",
+        longDescription: "Netarhat is a hill station located in the Latehar district of Jharkhand. At an elevation of 1,128 meters, it's famous for its scenic beauty, dense forests, and pleasant climate. The sunrise and sunset views from Magnolia Point are absolutely spectacular.",
+        category: "Hill Station",
+        rating: 4.8,
+        duration: "2-3 days",
+        bestTime: "Oct-Mar",
+        temperature: "15-25°C",
+        highlights: [
+            "Sunrise Point",
+            "Sunset Point",
+            "Netarhat Dam",
+            "Dense Forests",
+            "Pleasant Climate"
+        ],
+        activities: [
+            "Trekking",
+            "Photography",
+            "Nature Walks",
+            "Camping"
+        ],
+        distance: "156 km from Ranchi"
+    },
+    {
+        id: "Patratu Valley",
+        name: "Patratu",
+        image: "",
+        description: "Patratu Valley is a picturesque valley near Ranchi with winding roads and stunning hill views.",
+        longDescription: "Patratu Valley is a scenic mountain pass near Ranchi, Jharkhand, known for its winding roads, lush greenery, and breathtaking views of hills and reservoirs.",
+        category: "Hill Station",
+        rating: 4.7,
+        duration: "2-3 days",
+        bestTime: "Nov-Apr",
+        temperature: "20-35°C",
+        highlights: [
+            "Scenic Valley Views",
+            "Winding Ghats",
+            "Patratu Dam",
+            "Lush Green Hills",
+            "Sunset Point"
+        ],
+        activities: [
+            "Road Trip",
+            "Photography",
+            "Nature Walks",
+            "Picnic by the Dam"
+        ],
+        distance: "40 km from Ranchi"
+    },
+    {
+        id: "Hundru Falls",
+        name: "Hundru Falls",
+        image: "",
+        description: "A spectacular 98-meter waterfall on the Subarnarekha River, perfect for nature lovers.",
+        longDescription: "Hundru Falls is one of the highest waterfalls in Jharkhand, created by the Subarnarekha River. The waterfall drops from a height of 98 meters, creating a mesmerizing sight especially during monsoons when it's at its full glory.",
+        category: "Waterfall",
+        rating: 4.6,
+        duration: "1 day",
+        bestTime: "Jul-Feb",
+        temperature: "18-30°C",
+        highlights: [
+            "98m Waterfall",
+            "Subarnarekha River",
+            "Rock Formations",
+            "Natural Pool",
+            "Scenic Views"
+        ],
+        activities: [
+            "Photography",
+            "Picnicking",
+            "Rock Climbing",
+            "Swimming"
+        ],
+        distance: "45 km from Ranchi"
+    },
+    {
+        id: "Baidyanath Temple",
+        name: "Baidyanath Temple",
+        image: "",
+        description: "One of the twelve Jyotirlingas of Lord Shiva, attracting millions of devotees every year.",
+        longDescription: "Baidyanath Temple, also known as Baba Baidyanath Dham, is one of the twelve sacred Jyotirlingas dedicated to Lord Shiva. Located in Deoghar, it is a major pilgrimage site, especially during the Shravan Mela when millions of devotees come to offer holy water from the Ganga. The temple complex also houses shrines dedicated to Parvati and other deities, making it a spiritually enriching experience for visitors.",
+        category: "Temple",
+        rating: 4.8,
+        duration: "Half Day - 1 Day",
+        bestTime: "Jul-Mar",
+        temperature: "15-32°C",
+        highlights: [
+            "Jyotirlinga Shrine",
+            "Shravan Mela",
+            "Spiritual Ambience",
+            "Historic Temple Complex"
+        ],
+        activities: [
+            "Darshan",
+            "Spiritual Rituals",
+            "Temple Tour",
+            "Photography"
+        ],
+        distance: "1 km from Deoghar Town"
+    },
+    {
+        id: "Trikut Hill",
+        name: "Trikut Hill",
+        image: "",
+        description: "A scenic hill with three prominent peaks, offering a mix of spirituality, adventure, and breathtaking views.",
+        longDescription: "Trikut Hill, located near Deoghar, is famous for its three majestic peaks and spiritual significance. It is a popular spot for devotees visiting Baba Baidyanath Dham as well as for adventure seekers who enjoy trekking and the ropeway ride. The hill offers panoramic views of the surrounding landscape, making it a favorite destination for photographers and nature lovers.",
+        category: "Hill Station",
+        rating: 4.6,
+        duration: "1 day",
+        bestTime: "Oct-Mar",
+        temperature: "15-30°C",
+        highlights: [
+            "Three Peaks",
+            "Ropeway Ride",
+            "Trekking Trails",
+            "Scenic Views",
+            "Spiritual Significance"
+        ],
+        activities: [
+            "Trekking",
+            "Ropeway Ride",
+            "Photography",
+            "Nature Walks",
+            "Pilgrimage"
+        ],
+        distance: "20 km from Deoghar"
+    },
+    {
+        id: "Parasnath Hill",
+        name: "Parasnath Hills",
+        image: "",
+        description: "Highest peak in Jharkhand and sacred Jain pilgrimage site with ancient temples.",
+        longDescription: "Parasnath Hills, at 1,365 meters, is the highest peak in Jharkhand. It's a sacred Jain pilgrimage site with 24 temples dedicated to Jain Tirthankaras. The hill offers panoramic views and is known for its spiritual significance and natural beauty.",
+        category: "Spiritual",
+        rating: 4.7,
+        duration: "2 days",
+        bestTime: "Oct-Mar",
+        temperature: "12-25°C",
+        highlights: [
+            "Highest Peak",
+            "Jain Temples",
+            "Panoramic Views",
+            "Spiritual Significance",
+            "Trekking Trails"
+        ],
+        activities: [
+            "Temple Visits",
+            "Trekking",
+            "Photography",
+            "Meditation"
+        ],
+        distance: "165 km from Ranchi"
+    },
+    {
+        id: "Canary Hill",
+        name: "Canary Hill",
+        image: "",
+        description: "Wildlife sanctuary known for its diverse flora and fauna, including tigers and leopards.",
+        description: "A popular hilltop viewpoint offering panoramic views of Hazaribagh town and its surrounding forests.",
+        longDescription: "Canary Hill is a scenic hill located near Hazaribagh, known for its serene environment and breathtaking views of the town and surrounding greenery. The hill features a watchtower at the top, making it an excellent spot for photography and sunset views. It is a peaceful retreat for nature lovers and a must-visit for those exploring Hazaribagh.",
+        category: "Hill",
+        rating: 4.3,
+        duration: "Half Day",
+        bestTime: "Oct-Mar",
+        temperature: "15-28°C",
+        highlights: [
+            "Watchtower",
+            "Panoramic Views",
+            "Sunset Point",
+            "Lush Greenery"
+        ],
+        activities: [
+            "Photography",
+            "Nature Walks",
+            "Sightseeing"
+        ],
+        distance: "2 km from Hazaribagh Town"
+    },
+    {
+        id: "Moti Jharna Waterfall",
+        name: "Moti Jharna Waterfall",
+        image: "",
+        description: "A serene waterfall cascading through rocky terrain, perfect for a peaceful nature escape.",
+        longDescription: "Moti Jharna Waterfall is a hidden gem located near Jamshedpur, known for its sparkling white waters that resemble pearls, giving it the name 'Moti' (meaning pearl). Surrounded by rocky hills and lush greenery, it is an ideal spot for picnics, short treks, and photography. The tranquil environment makes it a great weekend getaway for nature lovers.",
+        category: "Waterfall",
+        rating: 4.2,
+        duration: "Half Day",
+        bestTime: "Jul-Feb",
+        temperature: "18-28°C",
+        highlights: [
+            "Sparkling Waterfall",
+            "Rocky Terrain",
+            "Lush Green Surroundings",
+            "Peaceful Atmosphere"
+        ],
+        activities: [
+            "Photography",
+            "Picnicking",
+            "Short Trekking",
+            "Nature Walks"
+        ],
+        distance: "60 km from Jamshedpur"
+    },
+    {
+        id: "Jawaharlal Nehru Biological Park",
+        name: "Jawaharlal Nehru Biological Park",
+        image: "",
+        description: "The largest zoological park in Jharkhand, located in Bokaro and home to a wide variety of animals and birds.",
+        longDescription: "Jawaharlal Nehru Biological Park in Bokaro is the largest zoo in Jharkhand and a popular attraction for wildlife enthusiasts and families. The park is home to tigers, leopards, lions, elephants, and many exotic bird species. With boating facilities, a well-maintained lake, and lush greenery, it offers a perfect blend of recreation, education, and relaxation.",
+        category: "Wildlife",
+        rating: 4.4,
+        duration: "Half Day - 1 Day",
+        bestTime: "Oct-Mar",
+        temperature: "18-32°C",
+        highlights: [
+            "Tigers & Lions",
+            "Elephants",
+            "Exotic Birds",
+            "Boating Facility",
+            "Scenic Lake"
+        ],
+        activities: [
+            "Wildlife Viewing",
+            "Boating",
+            "Photography",
+            "Family Outing",
+            "Nature Walks"
+        ],
+        distance: "2 km from Bokaro Steel City"
+    }
+];
+const __TURBOPACK__default__export__ = destinations;
+
+})()),
+
+};
+
+//# sourceMappingURL=public_destination_02be78.js.map

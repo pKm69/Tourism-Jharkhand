@@ -7,7 +7,8 @@ const {
   getImageByFilename,
   getAllImages,
   deleteImage,
-  getImagesForPlace
+  getImagesForPlace,
+  getImageByDestinationName
 } = require('../controllers/imagesController');
 
 // Upload multiple images
@@ -24,6 +25,9 @@ router.get('/download/:filename', getImageByFilename);
 
 // Get images for a specific place
 router.get('/place/:placeId', getImagesForPlace);
+
+// Get image URL by destination name
+router.get('/destination/:destinationName', getImageByDestinationName);
 
 // Delete image by ID
 router.delete('/:id', deleteImage);
