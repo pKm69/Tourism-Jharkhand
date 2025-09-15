@@ -2,14 +2,6 @@
   "/page": "app/page.js",
   "/api/feedback/route": "app/api/feedback/route.js",
   "/api/analytics/route": "app/api/analytics/route.js",
-  "/auth/page": "app/auth/page.js",
-  "/destinations/page": "app/destinations/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/profile/page": "app/profile/page.js",
-  "/ai-features/page": "app/ai-features/page.js",
   "/marketplace/page": "app/marketplace/page.js",
-  "/ar-vr/page": "app/ar-vr/page.js",
-  "/marketplace/product/[id]/page": "app/marketplace/product/[id]/page.js",
-  "/destinations/[destination]/page": "app/destinations/[destination]/page.js",
-  "/api/wikipedia/route": "app/api/wikipedia/route.js"
+  "/auth/page": "app/auth/page.js"
 }
