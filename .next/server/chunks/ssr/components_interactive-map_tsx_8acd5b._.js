@@ -5,7 +5,7 @@ module.exports = {
 __turbopack_export_value__((__turbopack_import__) => {
     return Promise.all([
   "server/chunks/ssr/node_modules_4ef1ae._.js",
-  "server/chunks/ssr/_6e2ca8._.js",
+  "server/chunks/ssr/components_interactive-map_tsx_e17285._.js",
   {
     "path": "server/chunks/ssr/node_modules_leaflet_dist_leaflet_02f82d.css",
     "included": [

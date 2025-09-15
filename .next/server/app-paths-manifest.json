@@ -4,5 +4,7 @@
   "/api/analytics/route": "app/api/analytics/route.js",
   "/ai-features/page": "app/ai-features/page.js",
   "/ar-vr/page": "app/ar-vr/page.js",
-  "/_not-found/page": "app/_not-found/page.js"
+  "/destinations/page": "app/destinations/page.js",
+  "/destinations/[destination]/page": "app/destinations/[destination]/page.js",
+  "/api/wikipedia/route": "app/api/wikipedia/route.js"
 }

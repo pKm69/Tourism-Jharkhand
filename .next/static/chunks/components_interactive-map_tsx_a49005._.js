@@ -5,7 +5,7 @@
 __turbopack_export_value__((__turbopack_import__) => {
     return Promise.all([
   "static/chunks/node_modules_ddd2cd._.js",
-  "static/chunks/_98d929._.js",
+  "static/chunks/components_interactive-map_tsx_aec261._.js",
   {
     "path": "static/chunks/node_modules_leaflet_dist_leaflet_88e19f.css",
     "included": [
@@ -15,7 +15,7 @@ __turbopack_export_value__((__turbopack_import__) => {
       "static/chunks/node_modules_leaflet_dist_leaflet_b52d8e.css"
     ]
   },
-  "static/chunks/components_interactive-map_tsx_a38adf._.js"
+  "static/chunks/components_interactive-map_tsx_ccd808._.js"
 ].map((chunk) => __turbopack_load__(chunk))).then(() => {
         return __turbopack_import__("[project]/components/interactive-map.tsx [app-client] (ecmascript)");
     });
