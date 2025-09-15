@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: jharkhand_tourism_db
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: jharkhand_tourism
+    volumes:
+      - mongodb_data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - tourism_network
+
+  api:
+    build: .
+    container_name: jharkhand_tourism_api
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/jharkhand_tourism?authSource=admin
+      - PORT=5000
+    depends_on:
+      - mongodb
+    volumes:
+      - ./public:/app/public:ro
+    networks:
+      - tourism_network
+
+volumes:
+  mongodb_data:
+
+networks:
+  tourism_network:
+    driver: bridge

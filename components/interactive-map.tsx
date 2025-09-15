@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { MapContainer, TileLayer, GeoJSON, Marker } from "react-leaflet";
-import jharkhandTouristPlaces from "../public/places.js";
+// Removed local import - now fetching from API
 import L, { LatLngExpression, Layer, Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Feature, FeatureCollection } from "geojson";
@@ -16,17 +16,21 @@ Icon.Default.mergeOptions({
 });
 
 interface Place {
+  _id?: string;
   district: string;
   name: string;
   lat: number;
   lon: number;
   streetView?: string;
+  imageId?: string;
+  imageName?: string;
 }
 
 export default function InteractiveMap() {
   const [geoData, setGeoData] = useState<FeatureCollection | null>(null);
   const [districtColors, setDistrictColors] = useState<{ [key: string]: string }>({});
   const [markers, setMarkers] = useState<Place[]>([]);
+  const [places, setPlaces] = useState<Place[]>([]);
   const mapRef = useRef<L.Map | null>(null);
   const layerGroupRef = useRef<Layer[]>([]);
   const hoveredLayerRef = useRef<Layer | null>(null);
@@ -63,6 +67,7 @@ export default function InteractiveMap() {
   };
 
   useEffect(() => {
+    // Fetch GeoJSON data
     fetch("/JHARKHAND_DISTRICTS.geojson")
       .then((r) => r.json())
       .then((data: FeatureCollection) => {
@@ -81,6 +86,16 @@ export default function InteractiveMap() {
         }
       })
       .catch((err) => console.error("Failed to load geojson:", err));
+
+    // Fetch places data from backend API
+    fetch("http://localhost:5000/api/places")
+      .then((r) => r.json())
+      .then((response) => {
+        if (response.success && response.data) {
+          setPlaces(response.data);
+        }
+      })
+      .catch((err) => console.error("Failed to load places:", err));
   }, []);
 
   const getLayerElement = (layer: any) => {
@@ -202,10 +217,10 @@ export default function InteractiveMap() {
             }
           });
 
-          const places = (jharkhandTouristPlaces as Place[])
+          const districtPlaces = places
             .filter((place) => place.district === districtName && place.streetView)
             .slice(0, 2);
-          setMarkers(places);
+          setMarkers(districtPlaces);
         } else {
           setMarkers([]);
         }
@@ -275,17 +290,50 @@ export default function InteractiveMap() {
                 ×
               </button>
             </div>
-            {selectedPlace.streetView && (
-              <button
-                className="explore-button"
-                onClick={() => {
-                  setStreetViewUrl(selectedPlace.streetView!);
-                  setSelectedPlace(null);
-                }}
-              >
-                Explore Now!
-              </button>
-            )}
+            <div className="info-box-content">
+              <div className="info-box-image">
+                {selectedPlace.imageId ? (
+                  <img 
+                    src={`http://localhost:5000/api/images/${selectedPlace.imageId}`}
+                    alt={selectedPlace.name}
+                    onLoad={() => console.log(`Image loaded: ${selectedPlace.name}`)}
+                    onError={(e) => {
+                      console.error(`Failed to load image for ${selectedPlace.name}:`, e);
+                      const img = e.target as HTMLImageElement;
+                      img.src = `/arvrPics/${selectedPlace.name}.jpg`;
+                    }}
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />
+                ) : (
+                  <img 
+                    src={`/arvrPics/${selectedPlace.name}.jpg`}
+                    alt={selectedPlace.name}
+                    onError={(e) => {
+                      const img = e.target as HTMLImageElement;
+                      if (img.src.endsWith('.jpg')) {
+                        img.src = `/arvrPics/${selectedPlace.name}.jpeg`;
+                      } else if (img.src.endsWith('.jpeg')) {
+                        img.src = `/arvrPics/${selectedPlace.name}.png`;
+                      } else {
+                        img.style.display = 'none';
+                      }
+                    }}
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />
+                )}
+              </div>
+              {selectedPlace.streetView && (
+                <button
+                  className="explore-button"
+                  onClick={() => {
+                    setStreetViewUrl(selectedPlace.streetView!);
+                    setSelectedPlace(null);
+                  }}
+                >
+                  Explore Now!
+                </button>
+              )}
+            </div>
           </div>
         )}
 
