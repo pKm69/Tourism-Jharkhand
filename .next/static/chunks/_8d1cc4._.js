@@ -593,6 +593,88 @@ function DestinationsPage() {
     _s();
     const [searchTerm, setSearchTerm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [selectedCategory, setSelectedCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("All");
+    const [destinationsWithImages, setDestinationsWithImages] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    // Function to fetch image URL for a destination
+    const fetchImageForDestination = async (destinationId)=>{
+        try {
+            console.log(`🔍 Fetching image for destination: "${destinationId}"`);
+            const url = `http://localhost:5000/api/images/destination/${encodeURIComponent(destinationId)}`;
+            console.log(`📡 API URL: ${url}`);
+            const response = await fetch(url);
+            console.log(`📊 Response status: ${response.status}`);
+            if (response.ok) {
+                const data = await response.json();
+                console.log(`✅ Image data for ${destinationId}:`, data);
+                const fullImageUrl = `http://localhost:5000${data.data.imageUrl}`;
+                console.log(`🖼️ Full image URL: ${fullImageUrl}`);
+                return fullImageUrl;
+            } else if (response.status === 404) {
+                console.log(`❌ No image found for ${destinationId}`);
+                return null;
+            } else {
+                const errorText = await response.text();
+                console.error(`❌ Error ${response.status} for ${destinationId}:`, errorText);
+                return null;
+            }
+        } catch (error) {
+            console.error(`💥 Network error fetching image for ${destinationId}:`, error);
+            return null;
+        }
+    };
+    // Load destinations with images from MongoDB
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const loadDestinationsWithImages = async ()=>{
+            try {
+                setLoading(true);
+                // Import destinations data dynamically
+                const destinationsModule = await __turbopack_require__("[project]/public/destination.js [app-client] (ecmascript, async loader)")(__turbopack_import__);
+                const destinationsData = destinationsModule.default;
+                console.log('Loaded destinations data:', destinationsData?.length);
+                if (!destinationsData || !Array.isArray(destinationsData)) {
+                    console.error('Invalid destinations data');
+                    setLoading(false);
+                    return;
+                }
+                // Simplified approach - load destinations first, then fetch images
+                const destinationsWithPlaceholders = destinationsData.map((dest)=>({
+                        ...dest,
+                        image: dest.image || "/placeholder.svg"
+                    }));
+                setDestinationsWithImages(destinationsWithPlaceholders);
+                setLoading(false);
+                // Fetch images in background after initial load
+                console.log('🚀 Starting background image fetch for', destinationsData.length, 'destinations');
+                setTimeout(async ()=>{
+                    console.log('⏰ Background image fetch timeout triggered');
+                    const updatedDestinations = [];
+                    for (const destination of destinationsData){
+                        try {
+                            console.log(`🔄 Processing destination: ${destination.name} (ID: ${destination.id})`);
+                            const imageUrl = await fetchImageForDestination(destination.id);
+                            updatedDestinations.push({
+                                ...destination,
+                                image: imageUrl || destination.image || "/placeholder.svg"
+                            });
+                            console.log(`✅ Processed ${destination.name}, image: ${imageUrl ? 'found' : 'not found'}`);
+                        } catch (error) {
+                            console.error(`❌ Failed to fetch image for ${destination.id}:`, error);
+                            updatedDestinations.push({
+                                ...destination,
+                                image: destination.image || "/placeholder.svg"
+                            });
+                        }
+                    }
+                    console.log('🏁 Finished processing all destinations, updating state');
+                    setDestinationsWithImages(updatedDestinations);
+                }, 100);
+            } catch (error) {
+                console.error('Error loading destinations:', error);
+                setLoading(false);
+            }
+        };
+        loadDestinationsWithImages();
+    }, []);
     // Initialize AOS - Match home page settings
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$aos$2f$dist$2f$aos$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].init({
@@ -602,225 +684,18 @@ function DestinationsPage() {
             offset: 50
         });
     }, []);
-    const destinations = [
-        {
-            id: "netarhat",
-            name: "Netarhat",
-            image: "/netarhat-hill-station-sunrise-jharkhand.jpg",
-            description: "Known as the 'Queen of Chotanagpur', Netarhat offers breathtaking sunrise and sunset views from its hilltops.",
-            longDescription: "Netarhat is a hill station located in the Latehar district of Jharkhand. At an elevation of 1,128 meters, it's famous for its scenic beauty, dense forests, and pleasant climate. The sunrise and sunset views from Magnolia Point are absolutely spectacular.",
-            category: "Hill Station",
-            rating: 4.8,
-            duration: "2-3 days",
-            bestTime: "Oct-Mar",
-            temperature: "15-25°C",
-            highlights: [
-                "Sunrise Point",
-                "Sunset Point",
-                "Netarhat Dam",
-                "Dense Forests",
-                "Pleasant Climate"
-            ],
-            activities: [
-                "Trekking",
-                "Photography",
-                "Nature Walks",
-                "Camping"
-            ],
-            distance: "156 km from Ranchi"
-        },
-        {
-            id: "betla",
-            name: "Betla National Park",
-            image: "/betla-national-park-wildlife-tigers-jharkhand.jpg",
-            description: "One of the first national parks in India, home to tigers, elephants, and diverse wildlife.",
-            longDescription: "Betla National Park, established in 1986, is located in the Latehar and Palamu districts. Spread over 979 sq km, it's part of the Palamu Tiger Reserve and houses a variety of wildlife including tigers, elephants, leopards, and over 174 bird species.",
-            category: "Wildlife",
-            rating: 4.7,
-            duration: "2-3 days",
-            bestTime: "Nov-Apr",
-            temperature: "20-35°C",
-            highlights: [
-                "Tiger Safari",
-                "Elephant Spotting",
-                "Bird Watching",
-                "Betla Fort",
-                "Kechki Waterfalls"
-            ],
-            activities: [
-                "Wildlife Safari",
-                "Bird Watching",
-                "Photography",
-                "Nature Trails"
-            ],
-            distance: "170 km from Ranchi"
-        },
-        {
-            id: "hundru",
-            name: "Hundru Falls",
-            image: "/hundru-falls-waterfall-jharkhand.jpg",
-            description: "A spectacular 98-meter waterfall on the Subarnarekha River, perfect for nature lovers.",
-            longDescription: "Hundru Falls is one of the highest waterfalls in Jharkhand, created by the Subarnarekha River. The waterfall drops from a height of 98 meters, creating a mesmerizing sight especially during monsoons when it's at its full glory.",
-            category: "Waterfall",
-            rating: 4.6,
-            duration: "1 day",
-            bestTime: "Jul-Feb",
-            temperature: "18-30°C",
-            highlights: [
-                "98m Waterfall",
-                "Subarnarekha River",
-                "Rock Formations",
-                "Natural Pool",
-                "Scenic Views"
-            ],
-            activities: [
-                "Photography",
-                "Picnicking",
-                "Rock Climbing",
-                "Swimming"
-            ],
-            distance: "45 km from Ranchi"
-        },
-        {
-            id: "deoghar",
-            name: "Deoghar",
-            image: "/deoghar-temple-spiritual-jharkhand.jpg",
-            description: "Sacred pilgrimage site famous for the Baidyanath Temple, one of the twelve Jyotirlingas.",
-            longDescription: "Deoghar, meaning 'abode of the gods', is one of the most sacred pilgrimage sites in India. The Baidyanath Temple, dedicated to Lord Shiva, is one of the twelve Jyotirlingas and attracts millions of devotees annually, especially during the holy month of Shravan.",
-            category: "Spiritual",
-            rating: 4.9,
-            duration: "1-2 days",
-            bestTime: "Oct-Mar",
-            temperature: "20-32°C",
-            highlights: [
-                "Baidyanath Temple",
-                "Nandan Pahar",
-                "Tapovan",
-                "Trikuta Parvat",
-                "Basukinath Temple"
-            ],
-            activities: [
-                "Temple Visits",
-                "Spiritual Tours",
-                "Cable Car Ride",
-                "Meditation"
-            ],
-            distance: "253 km from Ranchi"
-        },
-        {
-            id: "dassam",
-            name: "Dassam Falls",
-            image: "/dassam-falls-jharkhand-waterfall-nature.jpg",
-            description: "A beautiful waterfall formed by the Kanchi River, surrounded by dense forests.",
-            longDescription: "Dassam Falls is a spectacular waterfall located near Taimara village. The Kanchi River creates this 44-meter high waterfall, which is surrounded by dense forests and rocky terrain, making it a perfect spot for nature enthusiasts and photographers.",
-            category: "Waterfall",
-            rating: 4.5,
-            duration: "1 day",
-            bestTime: "Jul-Feb",
-            temperature: "18-28°C",
-            highlights: [
-                "44m Waterfall",
-                "Dense Forests",
-                "Rocky Terrain",
-                "Kanchi River",
-                "Natural Beauty"
-            ],
-            activities: [
-                "Photography",
-                "Trekking",
-                "Picnicking",
-                "Nature Walks"
-            ],
-            distance: "40 km from Ranchi"
-        },
-        {
-            id: "parasnath",
-            name: "Parasnath Hills",
-            image: "/parasnath-hills-jharkhand-jain-temple-mountain.jpg",
-            description: "Highest peak in Jharkhand and sacred Jain pilgrimage site with ancient temples.",
-            longDescription: "Parasnath Hills, at 1,365 meters, is the highest peak in Jharkhand. It's a sacred Jain pilgrimage site with 24 temples dedicated to Jain Tirthankaras. The hill offers panoramic views and is known for its spiritual significance and natural beauty.",
-            category: "Spiritual",
-            rating: 4.7,
-            duration: "2 days",
-            bestTime: "Oct-Mar",
-            temperature: "12-25°C",
-            highlights: [
-                "Highest Peak",
-                "Jain Temples",
-                "Panoramic Views",
-                "Spiritual Significance",
-                "Trekking Trails"
-            ],
-            activities: [
-                "Temple Visits",
-                "Trekking",
-                "Photography",
-                "Meditation"
-            ],
-            distance: "165 km from Ranchi"
-        },
-        {
-            id: "hazaribagh",
-            name: "Hazaribagh National Park",
-            image: "/hazaribagh-national-park-jharkhand-wildlife-forest.jpg",
-            description: "Wildlife sanctuary known for its diverse flora and fauna, including tigers and leopards.",
-            longDescription: "Hazaribagh National Park, established in 1955, covers an area of 186 sq km. It's known for its diverse wildlife including tigers, leopards, wild boars, and various bird species. The park also features beautiful landscapes with hills, valleys, and streams.",
-            category: "Wildlife",
-            rating: 4.4,
-            duration: "2 days",
-            bestTime: "Nov-Apr",
-            temperature: "18-32°C",
-            highlights: [
-                "Wildlife Safari",
-                "Bird Watching",
-                "Canary Hill",
-                "Hazaribagh Lake",
-                "Dense Forests"
-            ],
-            activities: [
-                "Wildlife Safari",
-                "Bird Watching",
-                "Boating",
-                "Photography"
-            ],
-            distance: "91 km from Ranchi"
-        },
-        {
-            id: "jamshedpur",
-            name: "Jamshedpur",
-            image: "/jamshedpur-jharkhand-steel-city-jubilee-park.jpg",
-            description: "The Steel City of India, known for its planned infrastructure and beautiful parks.",
-            longDescription: "Jamshedpur, founded by Jamsetji Tata, is known as the Steel City of India. It's famous for its well-planned infrastructure, beautiful parks like Jubilee Park, and the Tata Steel Plant. The city offers a perfect blend of industrial heritage and natural beauty.",
-            category: "City",
-            rating: 4.3,
-            duration: "2-3 days",
-            bestTime: "Oct-Mar",
-            temperature: "20-35°C",
-            highlights: [
-                "Jubilee Park",
-                "Tata Steel Plant",
-                "Dimna Lake",
-                "Dalma Wildlife Sanctuary",
-                "Tribal Museum"
-            ],
-            activities: [
-                "City Tours",
-                "Boating",
-                "Wildlife Safari",
-                "Cultural Visits"
-            ],
-            distance: "135 km from Ranchi"
-        }
-    ];
+    // Update categories to match destinations.js structure
     const categories = [
         "All",
         "Hill Station",
-        "Wildlife",
         "Waterfall",
+        "Temple",
         "Spiritual",
+        "Wildlife",
+        "Hill",
         "City"
     ];
-    const filteredDestinations = destinations.filter((destination)=>{
+    const filteredDestinations = destinationsWithImages.filter((destination)=>{
         const matchesSearch = destination.name.toLowerCase().includes(searchTerm.toLowerCase()) || destination.description.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesCategory = selectedCategory === "All" || destination.category === selectedCategory;
         return matchesSearch && matchesCategory;
@@ -832,7 +707,7 @@ function DestinationsPage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/destinations/page.tsx",
-                    lineNumber: 188,
+                    lineNumber: 170,
                     columnNumber: 16
                 }, this);
             case "Wildlife":
@@ -840,7 +715,7 @@ function DestinationsPage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/destinations/page.tsx",
-                    lineNumber: 190,
+                    lineNumber: 172,
                     columnNumber: 16
                 }, this);
             case "Waterfall":
@@ -848,7 +723,7 @@ function DestinationsPage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/destinations/page.tsx",
-                    lineNumber: 192,
+                    lineNumber: 174,
                     columnNumber: 16
                 }, this);
             case "Spiritual":
@@ -856,7 +731,23 @@ function DestinationsPage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/destinations/page.tsx",
-                    lineNumber: 194,
+                    lineNumber: 176,
+                    columnNumber: 16
+                }, this);
+            case "Temple":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$building$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Building2$3e$__["Building2"], {
+                    className: "h-4 w-4"
+                }, void 0, false, {
+                    fileName: "[project]/app/destinations/page.tsx",
+                    lineNumber: 178,
+                    columnNumber: 16
+                }, this);
+            case "Hill":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mountain$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mountain$3e$__["Mountain"], {
+                    className: "h-4 w-4"
+                }, void 0, false, {
+                    fileName: "[project]/app/destinations/page.tsx",
+                    lineNumber: 180,
                     columnNumber: 16
                 }, this);
             case "City":
@@ -864,7 +755,7 @@ function DestinationsPage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/destinations/page.tsx",
-                    lineNumber: 196,
+                    lineNumber: 182,
                     columnNumber: 16
                 }, this);
             default:
@@ -872,7 +763,7 @@ function DestinationsPage() {
                     className: "h-4 w-4"
                 }, void 0, false, {
                     fileName: "[project]/app/destinations/page.tsx",
-                    lineNumber: 198,
+                    lineNumber: 184,
                     columnNumber: 16
                 }, this);
         }
@@ -882,7 +773,7 @@ function DestinationsPage() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/destinations/page.tsx",
-                lineNumber: 204,
+                lineNumber: 190,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -900,13 +791,13 @@ function DestinationsPage() {
                                     children: "Hidden Treasures"
                                 }, void 0, false, {
                                     fileName: "[project]/app/destinations/page.tsx",
-                                    lineNumber: 211,
+                                    lineNumber: 197,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/destinations/page.tsx",
-                            lineNumber: 209,
+                            lineNumber: 195,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -915,7 +806,7 @@ function DestinationsPage() {
                             children: "From mystical waterfalls to sacred temples, explore the diverse landscapes and rich cultural heritage of Jharkhand"
                         }, void 0, false, {
                             fileName: "[project]/app/destinations/page.tsx",
-                            lineNumber: 213,
+                            lineNumber: 199,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -947,12 +838,12 @@ function DestinationsPage() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 221,
+                                        lineNumber: 207,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/destinations/page.tsx",
-                                    lineNumber: 220,
+                                    lineNumber: 206,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -971,32 +862,61 @@ function DestinationsPage() {
                                             ]
                                         }, category, true, {
                                             fileName: "[project]/app/destinations/page.tsx",
-                                            lineNumber: 241,
+                                            lineNumber: 227,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/destinations/page.tsx",
-                                    lineNumber: 239,
+                                    lineNumber: 225,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/destinations/page.tsx",
-                            lineNumber: 219,
+                            lineNumber: 205,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/destinations/page.tsx",
-                    lineNumber: 208,
+                    lineNumber: 194,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/destinations/page.tsx",
-                lineNumber: 207,
+                lineNumber: 193,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+            loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "destinations-grid-section",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "container mx-auto px-4 sm:px-6 lg:px-8",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "text-center py-12",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-lg text-gray-600",
+                            children: "Loading destinations..."
+                        }, void 0, false, {
+                            fileName: "[project]/app/destinations/page.tsx",
+                            lineNumber: 247,
+                            columnNumber: 15
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/app/destinations/page.tsx",
+                        lineNumber: 246,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/app/destinations/page.tsx",
+                    lineNumber: 245,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/destinations/page.tsx",
+                lineNumber: 244,
+                columnNumber: 9
+            }, this),
+            !loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                 className: "destinations-grid-section",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "container mx-auto px-4 sm:px-6 lg:px-8",
@@ -1016,7 +936,7 @@ function DestinationsPage() {
                                                     alt: destination.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                    lineNumber: 268,
+                                                    lineNumber: 266,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1027,7 +947,7 @@ function DestinationsPage() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                    lineNumber: 272,
+                                                    lineNumber: 270,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1037,26 +957,26 @@ function DestinationsPage() {
                                                             className: "h-4 w-4 fill-current"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 277,
+                                                            lineNumber: 275,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: destination.rating
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 278,
+                                                            lineNumber: 276,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                    lineNumber: 276,
+                                                    lineNumber: 274,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/destinations/page.tsx",
-                                            lineNumber: 267,
+                                            lineNumber: 265,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1069,20 +989,20 @@ function DestinationsPage() {
                                                             children: destination.name
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 284,
+                                                            lineNumber: 282,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__["MapPin"], {
                                                             className: "h-4 w-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 285,
+                                                            lineNumber: 283,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                    lineNumber: 283,
+                                                    lineNumber: 281,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1090,7 +1010,7 @@ function DestinationsPage() {
                                                     children: destination.description
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                    lineNumber: 287,
+                                                    lineNumber: 285,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1103,14 +1023,14 @@ function DestinationsPage() {
                                                                     className: "h-4 w-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                                    lineNumber: 291,
+                                                                    lineNumber: 289,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 destination.duration
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 290,
+                                                            lineNumber: 288,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1120,14 +1040,14 @@ function DestinationsPage() {
                                                                     className: "h-4 w-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                                    lineNumber: 295,
+                                                                    lineNumber: 293,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 destination.bestTime
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 294,
+                                                            lineNumber: 292,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1137,20 +1057,20 @@ function DestinationsPage() {
                                                                     className: "h-4 w-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                                    lineNumber: 299,
+                                                                    lineNumber: 297,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 destination.temperature
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 298,
+                                                            lineNumber: 296,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                    lineNumber: 289,
+                                                    lineNumber: 287,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1161,7 +1081,7 @@ function DestinationsPage() {
                                                             children: "Top Highlights:"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 305,
+                                                            lineNumber: 303,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1172,7 +1092,7 @@ function DestinationsPage() {
                                                                         children: highlight
                                                                     }, index, false, {
                                                                         fileName: "[project]/app/destinations/page.tsx",
-                                                                        lineNumber: 308,
+                                                                        lineNumber: 306,
                                                                         columnNumber: 25
                                                                     }, this)),
                                                                 destination.highlights.length > 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1184,19 +1104,19 @@ function DestinationsPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                                    lineNumber: 313,
+                                                                    lineNumber: 311,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 306,
+                                                            lineNumber: 304,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                    lineNumber: 304,
+                                                    lineNumber: 302,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1207,7 +1127,7 @@ function DestinationsPage() {
                                                             children: destination.distance
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 321,
+                                                            lineNumber: 319,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1220,41 +1140,41 @@ function DestinationsPage() {
                                                                         className: "ml-1 h-4 w-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/destinations/page.tsx",
-                                                                        lineNumber: 325,
+                                                                        lineNumber: 323,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/destinations/page.tsx",
-                                                                lineNumber: 323,
+                                                                lineNumber: 321,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/destinations/page.tsx",
-                                                            lineNumber: 322,
+                                                            lineNumber: 320,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/destinations/page.tsx",
-                                                    lineNumber: 320,
+                                                    lineNumber: 318,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/destinations/page.tsx",
-                                            lineNumber: 282,
+                                            lineNumber: 280,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, destination.id, true, {
                                     fileName: "[project]/app/destinations/page.tsx",
-                                    lineNumber: 261,
+                                    lineNumber: 259,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/app/destinations/page.tsx",
-                            lineNumber: 259,
+                            lineNumber: 257,
                             columnNumber: 11
                         }, this),
                         filteredDestinations.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1264,7 +1184,7 @@ function DestinationsPage() {
                                     children: "No destinations found matching your criteria."
                                 }, void 0, false, {
                                     fileName: "[project]/app/destinations/page.tsx",
-                                    lineNumber: 336,
+                                    lineNumber: 334,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1276,24 +1196,24 @@ function DestinationsPage() {
                                     children: "Clear Filters"
                                 }, void 0, false, {
                                     fileName: "[project]/app/destinations/page.tsx",
-                                    lineNumber: 337,
+                                    lineNumber: 335,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/destinations/page.tsx",
-                            lineNumber: 335,
+                            lineNumber: 333,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/destinations/page.tsx",
-                    lineNumber: 258,
+                    lineNumber: 256,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/destinations/page.tsx",
-                lineNumber: 257,
+                lineNumber: 255,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1304,7 +1224,7 @@ function DestinationsPage() {
                         children: "Plan Your Perfect Trip"
                     }, void 0, false, {
                         fileName: "[project]/app/destinations/page.tsx",
-                        lineNumber: 353,
+                        lineNumber: 352,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1314,7 +1234,7 @@ function DestinationsPage() {
                         children: "Let our AI-powered platform create a personalized itinerary based on your preferences"
                     }, void 0, false, {
                         fileName: "[project]/app/destinations/page.tsx",
-                        lineNumber: 354,
+                        lineNumber: 353,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1331,32 +1251,32 @@ function DestinationsPage() {
                                             className: "h-8 w-8"
                                         }, void 0, false, {
                                             fileName: "[project]/app/destinations/page.tsx",
-                                            lineNumber: 361,
+                                            lineNumber: 360,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 360,
+                                        lineNumber: 359,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                         children: "Personalized Recommendations"
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 363,
+                                        lineNumber: 362,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         children: "Get destination suggestions based on your interests and travel style"
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 364,
+                                        lineNumber: 363,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/destinations/page.tsx",
-                                lineNumber: 359,
+                                lineNumber: 358,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1370,32 +1290,32 @@ function DestinationsPage() {
                                             className: "h-8 w-8"
                                         }, void 0, false, {
                                             fileName: "[project]/app/destinations/page.tsx",
-                                            lineNumber: 370,
+                                            lineNumber: 369,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 369,
+                                        lineNumber: 368,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                         children: "Smart Itinerary Planning"
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 372,
+                                        lineNumber: 371,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         children: "AI-powered trip planning with optimal routes and timing"
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 373,
+                                        lineNumber: 372,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/destinations/page.tsx",
-                                lineNumber: 368,
+                                lineNumber: 367,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1409,38 +1329,38 @@ function DestinationsPage() {
                                             className: "h-8 w-8"
                                         }, void 0, false, {
                                             fileName: "[project]/app/destinations/page.tsx",
-                                            lineNumber: 377,
+                                            lineNumber: 376,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 376,
+                                        lineNumber: 375,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                         children: "Local Experiences"
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 379,
+                                        lineNumber: 378,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         children: "Connect with local guides and authentic cultural experiences"
                                     }, void 0, false, {
                                         fileName: "[project]/app/destinations/page.tsx",
-                                        lineNumber: 380,
+                                        lineNumber: 379,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/destinations/page.tsx",
-                                lineNumber: 375,
+                                lineNumber: 374,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/destinations/page.tsx",
-                        lineNumber: 358,
+                        lineNumber: 357,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1455,39 +1375,39 @@ function DestinationsPage() {
                                     className: "ml-2 h-5 w-5"
                                 }, void 0, false, {
                                     fileName: "[project]/app/destinations/page.tsx",
-                                    lineNumber: 387,
+                                    lineNumber: 386,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/destinations/page.tsx",
-                            lineNumber: 385,
+                            lineNumber: 384,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/destinations/page.tsx",
-                        lineNumber: 384,
+                        lineNumber: 383,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/destinations/page.tsx",
-                lineNumber: 352,
+                lineNumber: 351,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/destinations/page.tsx",
-                lineNumber: 392,
+                lineNumber: 391,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/destinations/page.tsx",
-        lineNumber: 203,
+        lineNumber: 189,
         columnNumber: 5
     }, this);
 }
-_s(DestinationsPage, "BKPTPuyWFJ4keMF1nYQasOmvzkY=");
+_s(DestinationsPage, "VTQiqqfXcLtxMLYOjbMiaFzBmdQ=");
 _c = DestinationsPage;
 var _c;
 __turbopack_refresh__.register(_c, "DestinationsPage");

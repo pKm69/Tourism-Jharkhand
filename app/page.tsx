@@ -34,6 +34,23 @@ import {
   Meh
 } from "lucide-react"
 
+// Define types
+interface Destination {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+  longDescription: string;
+  category: string;
+  rating: number;
+  duration: string;
+  bestTime: string;
+  temperature: string;
+  highlights: string[];
+  activities: string[];
+  distance: string;
+}
+
 export default function HomePage() {
   const [activeFeature, setActiveFeature] = useState(0)
   const [isUserInteracting, setIsUserInteracting] = useState(false)
@@ -41,11 +58,109 @@ export default function HomePage() {
   const [feedbackStats, setFeedbackStats] = useState<any>(null)
   const [quickFeedback, setQuickFeedback] = useState("")
   const [selectedEmotion, setSelectedEmotion] = useState("")
+  const [randomDestinations, setRandomDestinations] = useState<Destination[]>([])
+  const [destinationsLoading, setDestinationsLoading] = useState(true)
   const [counters, setCounters] = useState({
     visitors: 0,
     satisfaction: 0,
     feedback: 0
   })
+
+  // Function to fetch image URL for a destination
+  const fetchImageForDestination = async (destinationId: string): Promise<string | null> => {
+    try {
+      console.log(`🏠 Home: Fetching image for destination: "${destinationId}"`);
+      const url = `http://localhost:5000/api/images/destination/${encodeURIComponent(destinationId)}`;
+      console.log(`🏠 Home: API URL: ${url}`);
+      
+      const response = await fetch(url);
+      console.log(`🏠 Home: Response status: ${response.status}`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log(`🏠 Home: Image data for ${destinationId}:`, data);
+        const fullImageUrl = `http://localhost:5000${data.data.imageUrl}`;
+        console.log(`🏠 Home: Full image URL: ${fullImageUrl}`);
+        return fullImageUrl;
+      } else if (response.status === 404) {
+        console.log(`🏠 Home: No image found for ${destinationId}`);
+        return null;
+      } else {
+        const errorText = await response.text();
+        console.error(`🏠 Home: Error ${response.status} for ${destinationId}:`, errorText);
+        return null;
+      }
+    } catch (error: any) {
+      console.error(`🏠 Home: Network error fetching image for ${destinationId}:`, error);
+      return null;
+    }
+  };
+
+  // Load random destinations with images from MongoDB
+  useEffect(() => {
+    const loadRandomDestinations = async () => {
+      try {
+        setDestinationsLoading(true);
+        
+        // Import destinations data dynamically
+        const destinationsModule = await import('../public/destination.js');
+        const destinationsData = destinationsModule.default;
+        
+        console.log('Home: Loaded destinations data:', destinationsData?.length);
+        
+        if (!destinationsData || !Array.isArray(destinationsData)) {
+          console.error('Home: Invalid destinations data');
+          setDestinationsLoading(false);
+          return;
+        }
+        
+        // Shuffle and select 3 random destinations
+        const shuffled = [...destinationsData].sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, 3);
+        
+        // Load destinations with placeholders first
+        const destinationsWithPlaceholders = selected.map(dest => ({
+          ...dest,
+          image: dest.image || "/placeholder.svg"
+        }));
+        
+        setRandomDestinations(destinationsWithPlaceholders);
+        setDestinationsLoading(false);
+        
+        // Fetch images in background
+        console.log('🏠 Home: Starting background image fetch for', selected.length, 'destinations');
+        setTimeout(async () => {
+          console.log('🏠 Home: Background image fetch timeout triggered');
+          const destinationsWithImages = [];
+          for (const destination of selected) {
+            try {
+              console.log(`🏠 Home: Processing destination: ${destination.name} (ID: ${destination.id})`);
+              const imageUrl = await fetchImageForDestination(destination.id);
+              destinationsWithImages.push({
+                ...destination,
+                image: imageUrl || destination.image || "/placeholder.svg"
+              });
+              console.log(`🏠 Home: Processed ${destination.name}, image: ${imageUrl ? 'found' : 'not found'}`);
+            } catch (error) {
+              console.error(`🏠 Home: Failed to fetch image for ${destination.id}:`, error);
+              destinationsWithImages.push({
+                ...destination,
+                image: destination.image || "/placeholder.svg"
+              });
+            }
+          }
+          console.log('🏠 Home: Finished processing all destinations, updating state');
+          setRandomDestinations(destinationsWithImages);
+        }, 200);
+        
+      } catch (error) {
+        console.error('Home: Error loading destinations:', error);
+        setDestinationsLoading(false);
+      }
+    };
+
+    loadRandomDestinations();
+  }, []);
 
   // Initialize AOS
   useEffect(() => {
@@ -186,26 +301,6 @@ export default function HomePage() {
     },
   ]
 
-  const destinations = [
-    {
-      name: "Netarhat",
-      image: "/netarhat-hill-station-sunrise-jharkhand.jpg",
-      description: "Queen of Chotanagpur - breathtaking sunrise views",
-      category: "Hill Station",
-    },
-    {
-      name: "Betla National Park",
-      image: "/betla-national-park-wildlife-tigers-jharkhand.jpg",
-      description: "Wildlife sanctuary with tigers and elephants",
-      category: "Wildlife",
-    },
-    {
-      name: "Hundru Falls",
-      image: "/hundru-falls-waterfall-jharkhand.jpg",
-      description: "Spectacular 98-meter waterfall cascade",
-      category: "Waterfall",
-    },
-  ]
 
   return (
     <div className="min-h-screen">
@@ -258,23 +353,29 @@ export default function HomePage() {
         <h2 data-aos="fade-up">Explore Iconic Destinations</h2>
         <p className="subtitle" data-aos="fade-up" data-aos-delay="200">From mystical waterfalls to sacred temples, discover Jharkhand's hidden gems</p>
 
-        <div className="destination-grid">
-          {destinations.map((destination, index) => (
-            <div 
-              key={index} 
-              className="destination-card clickable"
-              data-aos="fade-up"
-              data-aos-delay={300 + (index * 150)}
-            >
-              <img src={destination.image || "/placeholder.svg"} alt={destination.name} />
-              <div className="card-info">
-                <h3>{destination.name}</h3>
-                <p>{destination.description}</p>
-                <div className="rating">⭐ 4.8</div>
+        {destinationsLoading ? (
+          <div className="text-center py-12">
+            <p className="text-lg text-gray-600">Loading destinations...</p>
+          </div>
+        ) : (
+          <div className="destination-grid">
+            {randomDestinations.map((destination, index) => (
+              <div 
+                key={destination.id} 
+                className="destination-card clickable"
+                data-aos="fade-up"
+                data-aos-delay={300 + (index * 150)}
+              >
+                <img src={destination.image || "/placeholder.svg"} alt={destination.name} />
+                <div className="card-info">
+                  <h3>{destination.name}</h3>
+                  <p>{destination.description}</p>
+                  <div className="rating">⭐ {destination.rating}</div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
         <Link href="/destinations">
           <button className="btn primary" data-aos="fade-up" data-aos-delay="750">View All Destinations</button>
         </Link>
