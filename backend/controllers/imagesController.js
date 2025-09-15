@@ -328,11 +328,87 @@ const getImagesForPlace = async (req, res) => {
   }
 };
 
+// Get image URL by destination name/id
+const getImageByDestinationName = async (req, res) => {
+  try {
+    const { destinationName } = req.params;
+    
+    // First try to find by exact name match
+    let place = await Place.findOne({ 
+      name: new RegExp(`^${destinationName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') 
+    });
+    
+    // If not found, try partial match
+    if (!place) {
+      place = await Place.findOne({ 
+        name: new RegExp(destinationName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') 
+      });
+    }
+    
+    // If still not found, try to match by the destination ID from destinations.js
+    if (!place) {
+      // Try to find by matching common keywords
+      const searchTerms = destinationName.toLowerCase().split(/[\s-_]+/);
+      for (const term of searchTerms) {
+        if (term.length > 2) { // Only search for terms longer than 2 characters
+          place = await Place.findOne({ 
+            name: new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') 
+          });
+          if (place) break;
+        }
+      }
+    }
+
+    if (!place || !place.imageId) {
+      return res.status(404).json({
+        success: false,
+        message: 'No image found for this destination',
+        destinationSearched: destinationName
+      });
+    }
+
+    const gridfsBucket = getGridFSBucket();
+    const files = await gridfsBucket.find({ _id: place.imageId }).toArray();
+    
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Associated image file not found in database'
+      });
+    }
+
+    const file = files[0];
+    
+    res.status(200).json({
+      success: true,
+      data: {
+        imageUrl: `/api/images/${file._id}`,
+        filename: file.filename,
+        originalName: file.metadata?.originalName,
+        place: {
+          id: place._id,
+          name: place.name,
+          district: place.district
+        }
+      }
+    });
+
+  } catch (error) {
+    console.error('Get image by destination name error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching image for destination',
+      error: error.message
+    });
+  }
+};
+
 module.exports = {
   uploadImages,
   getImageById,
   getImageByFilename,
   getAllImages,
   deleteImage,
-  getImagesForPlace
+  getImagesForPlace,
+  getImageByDestinationName
 };

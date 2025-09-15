@@ -26,9 +26,122 @@ import {
   Thermometer,
 } from "lucide-react"
 
+// Define types
+interface Destination {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+  longDescription: string;
+  category: string;
+  rating: number;
+  duration: string;
+  bestTime: string;
+  temperature: string;
+  highlights: string[];
+  activities: string[];
+  distance: string;
+}
+
 export default function DestinationsPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [destinationsWithImages, setDestinationsWithImages] = useState<Destination[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Function to fetch image URL for a destination
+  const fetchImageForDestination = async (destinationId: string): Promise<string | null> => {
+    try {
+      console.log(`🔍 Fetching image for destination: "${destinationId}"`);
+      const url = `http://localhost:5000/api/images/destination/${encodeURIComponent(destinationId)}`;
+      console.log(`📡 API URL: ${url}`);
+      
+      const response = await fetch(url);
+      console.log(`📊 Response status: ${response.status}`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log(`✅ Image data for ${destinationId}:`, data);
+        const fullImageUrl = `http://localhost:5000${data.data.imageUrl}`;
+        console.log(`🖼️ Full image URL: ${fullImageUrl}`);
+        return fullImageUrl;
+      } else if (response.status === 404) {
+        console.log(`❌ No image found for ${destinationId}`);
+        return null;
+      } else {
+        const errorText = await response.text();
+        console.error(`❌ Error ${response.status} for ${destinationId}:`, errorText);
+        return null;
+      }
+    } catch (error: any) {
+      console.error(`💥 Network error fetching image for ${destinationId}:`, error);
+      return null;
+    }
+  };
+
+  // Load destinations with images from MongoDB
+  useEffect(() => {
+    const loadDestinationsWithImages = async () => {
+      try {
+        setLoading(true);
+        
+        // Import destinations data dynamically
+        const destinationsModule = await import('../../public/destination.js');
+        const destinationsData = destinationsModule.default;
+        
+        console.log('Loaded destinations data:', destinationsData?.length);
+        
+        if (!destinationsData || !Array.isArray(destinationsData)) {
+          console.error('Invalid destinations data');
+          setLoading(false);
+          return;
+        }
+        
+        // Simplified approach - load destinations first, then fetch images
+        const destinationsWithPlaceholders = destinationsData.map(dest => ({
+          ...dest,
+          image: dest.image || "/placeholder.svg"
+        }));
+        
+        setDestinationsWithImages(destinationsWithPlaceholders);
+        setLoading(false);
+        
+        // Fetch images in background after initial load
+        console.log('🚀 Starting background image fetch for', destinationsData.length, 'destinations');
+        setTimeout(async () => {
+          console.log('⏰ Background image fetch timeout triggered');
+          const updatedDestinations = [];
+          
+          for (const destination of destinationsData) {
+            try {
+              console.log(`🔄 Processing destination: ${destination.name} (ID: ${destination.id})`);
+              const imageUrl = await fetchImageForDestination(destination.id);
+              updatedDestinations.push({
+                ...destination,
+                image: imageUrl || destination.image || "/placeholder.svg"
+              });
+              console.log(`✅ Processed ${destination.name}, image: ${imageUrl ? 'found' : 'not found'}`);
+            } catch (error) {
+              console.error(`❌ Failed to fetch image for ${destination.id}:`, error);
+              updatedDestinations.push({
+                ...destination,
+                image: destination.image || "/placeholder.svg"
+              });
+            }
+          }
+          
+          console.log('🏁 Finished processing all destinations, updating state');
+          setDestinationsWithImages(updatedDestinations);
+        }, 100);
+        
+      } catch (error) {
+        console.error('Error loading destinations:', error);
+        setLoading(false);
+      }
+    };
+
+    loadDestinationsWithImages();
+  }, []);
 
   // Initialize AOS - Match home page settings
   useEffect(() => {
@@ -40,141 +153,10 @@ export default function DestinationsPage() {
     })
   }, [])
 
-  const destinations = [
-    {
-      id: "netarhat",
-      name: "Netarhat",
-      image: "/netarhat-hill-station-sunrise-jharkhand.jpg",
-      description:
-        "Known as the 'Queen of Chotanagpur', Netarhat offers breathtaking sunrise and sunset views from its hilltops.",
-      longDescription:
-        "Netarhat is a hill station located in the Latehar district of Jharkhand. At an elevation of 1,128 meters, it's famous for its scenic beauty, dense forests, and pleasant climate. The sunrise and sunset views from Magnolia Point are absolutely spectacular.",
-      category: "Hill Station",
-      rating: 4.8,
-      duration: "2-3 days",
-      bestTime: "Oct-Mar",
-      temperature: "15-25°C",
-      highlights: ["Sunrise Point", "Sunset Point", "Netarhat Dam", "Dense Forests", "Pleasant Climate"],
-      activities: ["Trekking", "Photography", "Nature Walks", "Camping"],
-      distance: "156 km from Ranchi",
-    },
-    {
-      id: "betla",
-      name: "Betla National Park",
-      image: "/betla-national-park-wildlife-tigers-jharkhand.jpg",
-      description: "One of the first national parks in India, home to tigers, elephants, and diverse wildlife.",
-      longDescription:
-        "Betla National Park, established in 1986, is located in the Latehar and Palamu districts. Spread over 979 sq km, it's part of the Palamu Tiger Reserve and houses a variety of wildlife including tigers, elephants, leopards, and over 174 bird species.",
-      category: "Wildlife",
-      rating: 4.7,
-      duration: "2-3 days",
-      bestTime: "Nov-Apr",
-      temperature: "20-35°C",
-      highlights: ["Tiger Safari", "Elephant Spotting", "Bird Watching", "Betla Fort", "Kechki Waterfalls"],
-      activities: ["Wildlife Safari", "Bird Watching", "Photography", "Nature Trails"],
-      distance: "170 km from Ranchi",
-    },
-    {
-      id: "hundru",
-      name: "Hundru Falls",
-      image: "/hundru-falls-waterfall-jharkhand.jpg",
-      description: "A spectacular 98-meter waterfall on the Subarnarekha River, perfect for nature lovers.",
-      longDescription:
-        "Hundru Falls is one of the highest waterfalls in Jharkhand, created by the Subarnarekha River. The waterfall drops from a height of 98 meters, creating a mesmerizing sight especially during monsoons when it's at its full glory.",
-      category: "Waterfall",
-      rating: 4.6,
-      duration: "1 day",
-      bestTime: "Jul-Feb",
-      temperature: "18-30°C",
-      highlights: ["98m Waterfall", "Subarnarekha River", "Rock Formations", "Natural Pool", "Scenic Views"],
-      activities: ["Photography", "Picnicking", "Rock Climbing", "Swimming"],
-      distance: "45 km from Ranchi",
-    },
-    {
-      id: "deoghar",
-      name: "Deoghar",
-      image: "/deoghar-temple-spiritual-jharkhand.jpg",
-      description: "Sacred pilgrimage site famous for the Baidyanath Temple, one of the twelve Jyotirlingas.",
-      longDescription:
-        "Deoghar, meaning 'abode of the gods', is one of the most sacred pilgrimage sites in India. The Baidyanath Temple, dedicated to Lord Shiva, is one of the twelve Jyotirlingas and attracts millions of devotees annually, especially during the holy month of Shravan.",
-      category: "Spiritual",
-      rating: 4.9,
-      duration: "1-2 days",
-      bestTime: "Oct-Mar",
-      temperature: "20-32°C",
-      highlights: ["Baidyanath Temple", "Nandan Pahar", "Tapovan", "Trikuta Parvat", "Basukinath Temple"],
-      activities: ["Temple Visits", "Spiritual Tours", "Cable Car Ride", "Meditation"],
-      distance: "253 km from Ranchi",
-    },
-    {
-      id: "dassam",
-      name: "Dassam Falls",
-      image: "/dassam-falls-jharkhand-waterfall-nature.jpg",
-      description: "A beautiful waterfall formed by the Kanchi River, surrounded by dense forests.",
-      longDescription:
-        "Dassam Falls is a spectacular waterfall located near Taimara village. The Kanchi River creates this 44-meter high waterfall, which is surrounded by dense forests and rocky terrain, making it a perfect spot for nature enthusiasts and photographers.",
-      category: "Waterfall",
-      rating: 4.5,
-      duration: "1 day",
-      bestTime: "Jul-Feb",
-      temperature: "18-28°C",
-      highlights: ["44m Waterfall", "Dense Forests", "Rocky Terrain", "Kanchi River", "Natural Beauty"],
-      activities: ["Photography", "Trekking", "Picnicking", "Nature Walks"],
-      distance: "40 km from Ranchi",
-    },
-    {
-      id: "parasnath",
-      name: "Parasnath Hills",
-      image: "/parasnath-hills-jharkhand-jain-temple-mountain.jpg",
-      description: "Highest peak in Jharkhand and sacred Jain pilgrimage site with ancient temples.",
-      longDescription:
-        "Parasnath Hills, at 1,365 meters, is the highest peak in Jharkhand. It's a sacred Jain pilgrimage site with 24 temples dedicated to Jain Tirthankaras. The hill offers panoramic views and is known for its spiritual significance and natural beauty.",
-      category: "Spiritual",
-      rating: 4.7,
-      duration: "2 days",
-      bestTime: "Oct-Mar",
-      temperature: "12-25°C",
-      highlights: ["Highest Peak", "Jain Temples", "Panoramic Views", "Spiritual Significance", "Trekking Trails"],
-      activities: ["Temple Visits", "Trekking", "Photography", "Meditation"],
-      distance: "165 km from Ranchi",
-    },
-    {
-      id: "hazaribagh",
-      name: "Hazaribagh National Park",
-      image: "/hazaribagh-national-park-jharkhand-wildlife-forest.jpg",
-      description: "Wildlife sanctuary known for its diverse flora and fauna, including tigers and leopards.",
-      longDescription:
-        "Hazaribagh National Park, established in 1955, covers an area of 186 sq km. It's known for its diverse wildlife including tigers, leopards, wild boars, and various bird species. The park also features beautiful landscapes with hills, valleys, and streams.",
-      category: "Wildlife",
-      rating: 4.4,
-      duration: "2 days",
-      bestTime: "Nov-Apr",
-      temperature: "18-32°C",
-      highlights: ["Wildlife Safari", "Bird Watching", "Canary Hill", "Hazaribagh Lake", "Dense Forests"],
-      activities: ["Wildlife Safari", "Bird Watching", "Boating", "Photography"],
-      distance: "91 km from Ranchi",
-    },
-    {
-      id: "jamshedpur",
-      name: "Jamshedpur",
-      image: "/jamshedpur-jharkhand-steel-city-jubilee-park.jpg",
-      description: "The Steel City of India, known for its planned infrastructure and beautiful parks.",
-      longDescription:
-        "Jamshedpur, founded by Jamsetji Tata, is known as the Steel City of India. It's famous for its well-planned infrastructure, beautiful parks like Jubilee Park, and the Tata Steel Plant. The city offers a perfect blend of industrial heritage and natural beauty.",
-      category: "City",
-      rating: 4.3,
-      duration: "2-3 days",
-      bestTime: "Oct-Mar",
-      temperature: "20-35°C",
-      highlights: ["Jubilee Park", "Tata Steel Plant", "Dimna Lake", "Dalma Wildlife Sanctuary", "Tribal Museum"],
-      activities: ["City Tours", "Boating", "Wildlife Safari", "Cultural Visits"],
-      distance: "135 km from Ranchi",
-    },
-  ]
+  // Update categories to match destinations.js structure
+  const categories = ["All", "Hill Station", "Waterfall", "Temple", "Spiritual", "Wildlife", "Hill", "City"]
 
-  const categories = ["All", "Hill Station", "Wildlife", "Waterfall", "Spiritual", "City"]
-
-  const filteredDestinations = destinations.filter((destination) => {
+  const filteredDestinations = destinationsWithImages.filter((destination) => {
     const matchesSearch =
       destination.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       destination.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -192,6 +174,10 @@ export default function DestinationsPage() {
         return <Waves className="h-4 w-4" />
       case "Spiritual":
         return <Building2 className="h-4 w-4" />
+      case "Temple":
+        return <Building2 className="h-4 w-4" />
+      case "Hill":
+        return <Mountain className="h-4 w-4" />
       case "City":
         return <Building2 className="h-4 w-4" />
       default:
@@ -253,7 +239,19 @@ export default function DestinationsPage() {
         </div>
       </section>
 
+      {/* Loading State */}
+      {loading && (
+        <section className="destinations-grid-section">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center py-12">
+              <p className="text-lg text-gray-600">Loading destinations...</p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Destinations Grid */}
+      {!loading && (
       <section className="destinations-grid-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="destination-grid">
@@ -304,7 +302,7 @@ export default function DestinationsPage() {
                   <div className="destination-highlights">
                     <p className="highlights-label">Top Highlights:</p>
                     <div className="highlights-tags">
-                      {destination.highlights.slice(0, 3).map((highlight, index) => (
+                      {destination.highlights.slice(0, 3).map((highlight: string, index: number) => (
                         <span key={index} className="highlight-tag">
                           {highlight}
                         </span>
@@ -347,6 +345,7 @@ export default function DestinationsPage() {
           )}
         </div>
       </section>
+      )}
 
       {/* Planning Section */}
       <section className="smart-tourism-section">
