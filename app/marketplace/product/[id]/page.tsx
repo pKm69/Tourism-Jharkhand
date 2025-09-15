@@ -131,10 +131,59 @@ export default function SimpleProductPage() {
       name: "Jharkhand Tourism",
       description: product.name,
       image: "/Full.ico",
-      handler: function (response: any) {
+      handler: async function (response: any) {
         console.log('Payment successful:', response)
-        alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`)
-        window.location.href = `/order/success?payment_id=${response.razorpay_payment_id}`
+        
+        try {
+          // Record payment on blockchain
+          console.log('🔗 Recording payment on blockchain...')
+          
+          const blockchainPayload = {
+            razorpayPaymentId: response.razorpay_payment_id,
+            razorpayOrderId: response.razorpay_order_id || 'ORDER_' + Date.now(),
+            razorpaySignature: response.razorpay_signature,
+            productId: product.id,
+            productName: product.name,
+            productPrice: product.price,
+            quantity: quantity,
+            userName: "Customer",
+            userEmail: "customer@example.com",
+            userMobile: "9999999999"
+          }
+
+          const blockchainResponse = await fetch('http://localhost:5000/api/payment/process', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(blockchainPayload)
+          })
+
+          const blockchainResult = await blockchainResponse.json()
+
+          if (blockchainResult.success) {
+            console.log('✅ Payment recorded on blockchain!')
+            console.log('🔗 Blockchain Hash:', blockchainResult.blockchainHash)
+            console.log('📦 Transaction Hash:', blockchainResult.transactionHash)
+            
+            alert(`Payment successful! 
+Payment ID: ${response.razorpay_payment_id}
+Blockchain Hash: ${blockchainResult.blockchainHash}
+Your payment is now secured on blockchain!`)
+            
+            window.location.href = `/order/success?payment_id=${response.razorpay_payment_id}&blockchain_hash=${blockchainResult.blockchainHash}`
+          } else {
+            console.warn('⚠️ Blockchain recording failed:', blockchainResult.error)
+            alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}
+Note: Blockchain recording failed, but your payment is confirmed.`)
+            window.location.href = `/order/success?payment_id=${response.razorpay_payment_id}`
+          }
+        } catch (error) {
+          console.error('❌ Blockchain integration error:', error)
+          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}
+Note: Blockchain recording failed, but your payment is confirmed.`)
+          window.location.href = `/order/success?payment_id=${response.razorpay_payment_id}`
+        }
       },
       prefill: {
         name: "Customer",

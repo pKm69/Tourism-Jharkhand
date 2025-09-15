@@ -11,6 +11,7 @@ const errorHandler = require('./middleware/errorHandler');
 const placesRoutes = require('./routes/places');
 const imagesRoutes = require('./routes/images');
 const authRoutes = require('./routes/auth');
+const paymentRoutes = require('./routes/payment');
 
 const app = express();
 
@@ -66,6 +67,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/api/places', placesRoutes);
 app.use('/api/images', imagesRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/payment', paymentRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -106,6 +108,11 @@ app.get('/api/docs', (req, res) => {
         'PUT /api/auth/profile': 'Update user profile (requires auth)',
         'PUT /api/auth/change-password': 'Change password (requires auth)',
         'POST /api/auth/logout': 'Logout user (requires auth)'
+      },
+      payment: {
+        'POST /api/payment/process': 'Process payment with blockchain integration',
+        'GET /api/payment/blockchain/:transactionHash': 'Get blockchain transaction details',
+        'GET /api/payment/blockchain/stats': 'Get blockchain statistics'
       }
     }
   });
