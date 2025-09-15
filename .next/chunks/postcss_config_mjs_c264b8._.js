@@ -19,7 +19,7 @@ __turbopack_esm__({
     "default": ()=>transform,
     "init": ()=>init
 });
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$node_modules$2f$postcss$2f$lib$2f$postcss$2e$mjs__$5b$postcss$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/node_modules/postcss/lib/postcss.mjs [postcss] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$postcss$2f$lib$2f$postcss$2e$mjs__$5b$postcss$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/postcss/lib/postcss.mjs [postcss] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$postcss$2e$config$2e$mjs__$5b$postcss$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/postcss.config.mjs [postcss] (ecmascript)");
 var __TURBOPACK__commonjs__external__path__ = __turbopack_external_require__("path", true);
 "__TURBOPACK__ecmascript__hoisting__location__";
@@ -78,7 +78,7 @@ const init = async (ipc)=>{
         }
         return plugin;
     });
-    processor = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$node_modules$2f$postcss$2f$lib$2f$postcss$2e$mjs__$5b$postcss$5d$__$28$ecmascript$29$__["default"])(loadedPlugins);
+    processor = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$postcss$2f$lib$2f$postcss$2e$mjs__$5b$postcss$5d$__$28$ecmascript$29$__["default"])(loadedPlugins);
 };
 async function transform(ipc, cssContent, name) {
     const { css, map, messages } = await processor.process(cssContent, {

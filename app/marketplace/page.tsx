@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import AOS from "aos"
 import "aos/dist/aos.css"
 import { Button } from "@/components/ui/button"
@@ -10,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import Link from "next/link"
+import { useAuth } from "@/hooks/use-auth"
 import {
   ShoppingBag,
   Star,
@@ -31,6 +33,8 @@ import {
 } from "lucide-react"
 
 export default function MarketplacePage() {
+  const router = useRouter()
+  const { isAuthenticated, isLoading } = useAuth()
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [selectedLocation, setSelectedLocation] = useState("All")
@@ -187,6 +191,17 @@ export default function MarketplacePage() {
     const matchesLocation = selectedLocation === "All" || product.location === selectedLocation
     return matchesSearch && matchesCategory && matchesLocation
   })
+
+  const handleBuyClick = (product: any) => {
+    if (!isAuthenticated) {
+      // Show alert and redirect to login
+      alert('Please login to purchase items from our marketplace!')
+      router.push('/auth')
+      return
+    }
+    // If authenticated, proceed to product page
+    router.push(`/marketplace/product/${product.id}`)
+  }
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -380,12 +395,13 @@ export default function MarketplacePage() {
                         }}>{product.originalPrice}</span>
                       )}
                     </div>
-                    <Link href={`/marketplace/product/${product.id}`}>
-  <button className="btn primary">
-    {product.category === "Guides" || product.category === "Transport" ? "Book" : "Buy"}
-    <ArrowRight className="ml-1 h-4 w-4" />
-  </button>
-</Link>
+                    <button 
+                      className="btn primary"
+                      onClick={() => handleBuyClick(product)}
+                    >
+                      {product.category === "Guides" || product.category === "Transport" ? "Book" : "Buy"}
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </button>
                   </div>
                 </div>
               </div>

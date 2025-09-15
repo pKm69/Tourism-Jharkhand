@@ -2,10 +2,13 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Menu, X, Mountain } from "lucide-react"
+import { Menu, X, Mountain, User, LogOut } from "lucide-react"
+import { useAuth } from "@/hooks/use-auth"
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+  const { user, isAuthenticated, logout, isLoading } = useAuth()
 
   return (
     <nav className="navbar">
@@ -33,9 +36,54 @@ export default function Navigation() {
         </li>
       </ul>
 
-      <Link href="/destinations">
-        <button className="navbar-button">Get Started</button>
-      </Link>
+      {/* Authentication Section */}
+      {!isLoading && (
+        <>
+          {isAuthenticated ? (
+            <div className="relative">
+              <button
+                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                className="flex items-center space-x-2 navbar-button"
+              >
+                <User className="h-4 w-4" />
+                <span>{user?.name || 'User'}</span>
+              </button>
+              
+              {isUserMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50" style={{
+                  background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.95) 0%, rgba(30, 58, 138, 0.95) 100%)',
+                  border: '1px solid rgba(244, 208, 63, 0.3)'
+                }}>
+                  <div className="py-1">
+                    <Link
+                      href="/profile"
+                      className="flex items-center px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+                      onClick={() => setIsUserMenuOpen(false)}
+                    >
+                      <User className="h-4 w-4 mr-2" />
+                      Profile
+                    </Link>
+                    <button
+                      onClick={() => {
+                        logout()
+                        setIsUserMenuOpen(false)
+                      }}
+                      className="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link href="/auth">
+              <button className="navbar-button">Get Started</button>
+            </Link>
+          )}
+        </>
+      )}
 
       {/* Mobile menu button */}
       <button className="mobile-menu-button md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -60,9 +108,34 @@ export default function Navigation() {
           <Link href="/about" onClick={() => setIsMenuOpen(false)}>
             About
           </Link>
-          <Link href="/destinations" onClick={() => setIsMenuOpen(false)}>
-            <button className="navbar-button w-full">Get Started</button>
-          </Link>
+          
+          {/* Mobile Authentication */}
+          {!isLoading && (
+            <>
+              {isAuthenticated ? (
+                <>
+                  <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="flex items-center text-white hover:text-yellow-300 transition-colors">
+                    <User className="h-4 w-4 mr-2" />
+                    Profile ({user?.name})
+                  </Link>
+                  <button
+                    onClick={() => {
+                      logout()
+                      setIsMenuOpen(false)
+                    }}
+                    className="flex items-center text-white hover:text-yellow-300 transition-colors w-full text-left"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link href="/auth" onClick={() => setIsMenuOpen(false)}>
+                  <button className="navbar-button w-full">Get Started</button>
+                </Link>
+              )}
+            </>
+          )}
         </div>
       )}
     </nav>
