@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
+import Script from "next/script"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -286,31 +287,87 @@ export default function ProductDetailPage() {
     }
   }
 
-  const handleBooking = async () => {
+  // Razorpay payment integration
+  const startRazorpay = async () => {
+    if (!product) return
+    const qty = product.category === "Homestays" ? guestCount : quantity
+    if ((product.category === "Homestays" || product.category === "Experiences") && !selectedDate) {
+      alert("Please select a date before proceeding.")
+      return
+    }
+
     try {
-      const orderData = {
-        productId: product?.id,
-        vendorId: product?.sellerId,
-        quantity: product?.category === "Homestays" ? guestCount : quantity,
-        totalAmount: (product?.price || 0) * (product?.category === "Homestays" ? guestCount : quantity),
-        paymentMethod,
-        customerInfo,
-        bookingDate: selectedDate,
-        orderType: product?.category === "Homestays" || product?.category === "Experiences" ? "booking" : "purchase"
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productId: product.id,
+          name: product.name,
+          qty,
+          amount: product.price * qty
+        })
+      })
+      if (!res.ok) {
+        alert("Failed to initiate payment.")
+        return
+      }
+      const data = await res.json()
+
+      // @ts-ignore
+      if (!window.Razorpay) {
+        alert("Payment SDK not loaded. Please retry in a moment.")
+        return
       }
 
-      // Mock API call - in production, this would call the actual API
-      console.log('Creating order:', orderData)
-      
-      // Simulate API response
-      setTimeout(() => {
-        alert(`Order placed successfully! Order ID: ORD_${Math.random().toString(36).substr(2, 9).toUpperCase()}`)
-        setIsBookingDialogOpen(false)
-      }, 1000)
-    } catch (error) {
-      console.error('Failed to place order:', error)
-      alert('Failed to place order. Please try again.')
+      // @ts-ignore
+      const rzp = new window.Razorpay({
+        key: data.keyId,
+        amount: data.amount,
+        currency: data.currency,
+        name: "Marketplace",
+        description: product.name,
+        order_id: data.razorpayOrderId,
+        prefill: {
+          name: customerInfo.name || "Guest",
+          email: customerInfo.email || "guest@example.com",
+          contact: customerInfo.phone || "9999999999"
+        },
+        notes: { localOrderId: data.orderId },
+        handler: async function (response: any) {
+          const verifyRes = await fetch("/api/checkout/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              orderId: data.orderId,
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature
+            })
+          })
+          if (verifyRes.ok) {
+            setIsBookingDialogOpen(false)
+            window.location.href = `/order/${data.orderId}/confirmation`
+          } else {
+            alert("Payment verification failed.")
+          }
+        },
+        theme: { color: "#dc2626" }
+      })
+
+      rzp.on("payment.failed", function () {
+        alert("Payment failed. Please try again.")
+      })
+
+      rzp.open()
+    } catch (err) {
+      console.error("Razorpay init error", err)
+      alert("Unexpected error starting payment.")
     }
+  }
+
+  // Replace previous mock order placement with real payment flow
+  const handleBooking = async () => {
+    await startRazorpay()
   }
 
   if (loading) {
@@ -353,6 +410,7 @@ export default function ProductDetailPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
       <Navigation />
 
       <div className="container mx-auto px-4 py-8">
