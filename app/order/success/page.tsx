@@ -10,17 +10,24 @@ import {
   CheckCircle,
   ArrowLeft,
   Download,
-  Share2
+  Share2,
+  Shield,
+  Link as LinkIcon
 } from "lucide-react"
 
 export default function PaymentSuccessPage() {
   const searchParams = useSearchParams()
   const [paymentId, setPaymentId] = useState("")
+  const [blockchainHash, setBlockchainHash] = useState("")
 
   useEffect(() => {
     const id = searchParams.get('payment_id')
+    const hash = searchParams.get('blockchain_hash')
     if (id) {
       setPaymentId(id)
+    }
+    if (hash) {
+      setBlockchainHash(hash)
     }
   }, [searchParams])
 
@@ -40,12 +47,28 @@ export default function PaymentSuccessPage() {
             Thank you for your purchase. Your payment has been processed successfully.
           </p>
 
-          {paymentId && (
-            <div className="bg-muted/30 rounded-lg p-4 mb-6">
-              <p className="text-sm text-muted-foreground">Payment ID:</p>
-              <p className="font-mono text-sm font-medium">{paymentId}</p>
-            </div>
-          )}
+          <div className="space-y-4 mb-6">
+            {paymentId && (
+              <div className="bg-muted/30 rounded-lg p-4">
+                <p className="text-sm text-muted-foreground">Payment ID:</p>
+                <p className="font-mono text-sm font-medium break-all">{paymentId}</p>
+              </div>
+            )}
+
+            {blockchainHash && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Shield className="h-4 w-4 text-blue-600" />
+                  <p className="text-sm font-medium text-blue-800">Blockchain Secured</p>
+                </div>
+                <p className="text-xs text-blue-600 mb-1">Blockchain Hash:</p>
+                <p className="font-mono text-xs font-medium text-blue-800 break-all">{blockchainHash}</p>
+                <p className="text-xs text-blue-600 mt-2">
+                  Your payment data is permanently recorded on our private blockchain for security and verification.
+                </p>
+              </div>
+            )}
+          </div>
 
           <div className="space-y-3">
             <Button asChild className="w-full">
