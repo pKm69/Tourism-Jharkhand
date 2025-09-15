@@ -97,7 +97,7 @@ function useAuth() {
         updateUser
     };
 }
-_s(useAuth, "avZL2qnAExxZn0GWw8e+eZcW0UE=", false, function() {
+_s(useAuth, "h+a2mE4yeVSEvbw2SP0xdrvhka4=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
@@ -1642,7 +1642,7 @@ function AuthPage() {
         columnNumber: 5
     }, this);
 }
-_s(AuthPage, "8x9nEZPHJ/2Par6TzgD+uHXWSAQ=", false, function() {
+_s(AuthPage, "bMlvwl2h3uGNLsW0PX3J5Z+5Uyg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"]
