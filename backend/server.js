@@ -10,6 +10,7 @@ const errorHandler = require('./middleware/errorHandler');
 // Import routes
 const placesRoutes = require('./routes/places');
 const imagesRoutes = require('./routes/images');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // API routes
 app.use('/api/places', placesRoutes);
 app.use('/api/images', imagesRoutes);
+app.use('/api/auth', authRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -96,6 +98,14 @@ app.get('/api/docs', (req, res) => {
         'GET /api/images/download/:filename': 'Download image by filename',
         'GET /api/images/place/:placeId': 'Get images for specific place',
         'DELETE /api/images/:id': 'Delete image by ID'
+      },
+      auth: {
+        'POST /api/auth/register': 'Register new user',
+        'POST /api/auth/login': 'Login user',
+        'GET /api/auth/profile': 'Get user profile (requires auth)',
+        'PUT /api/auth/profile': 'Update user profile (requires auth)',
+        'PUT /api/auth/change-password': 'Change password (requires auth)',
+        'POST /api/auth/logout': 'Logout user (requires auth)'
       }
     }
   });
