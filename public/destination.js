@@ -2,7 +2,7 @@ const destinations = [
     {
         id: "Netarhat Hills",
         name: "Netarhat",
-        image: "/netarhat-hill-station-sunrise-jharkhand.jpg",
+        image: "",
         description:
             "Known as the 'Queen of Chotanagpur', Netarhat offers breathtaking sunrise and sunset views from its hilltops.",
         longDescription:
@@ -19,7 +19,7 @@ const destinations = [
     {
         id: "Patratu Valley",
         name: "Patratu",
-        image: "/betla-national-park-wildlife-tigers-jharkhand.jpg",
+        image: "",
         description: "Patratu Valley is a picturesque valley near Ranchi with winding roads and stunning hill views.",
         longDescription:
             "Patratu Valley is a scenic mountain pass near Ranchi, Jharkhand, known for its winding roads, lush greenery, and breathtaking views of hills and reservoirs.",
@@ -35,7 +35,7 @@ const destinations = [
     {
         id: "Hundru Falls",
         name: "Hundru Falls",
-        image: "/hundru-falls-waterfall-jharkhand.jpg",
+        image: "",
         description: "A spectacular 98-meter waterfall on the Subarnarekha River, perfect for nature lovers.",
         longDescription:
             "Hundru Falls is one of the highest waterfalls in Jharkhand, created by the Subarnarekha River. The waterfall drops from a height of 98 meters, creating a mesmerizing sight especially during monsoons when it's at its full glory.",
@@ -51,7 +51,7 @@ const destinations = [
     {
         id: "Baidyanath Temple",
         name: "Baidyanath Temple",
-        image: "/deoghar-temple-spiritual-jharkhand.jpg",
+        image: "",
        description: "One of the twelve Jyotirlingas of Lord Shiva, attracting millions of devotees every year.",
         longDescription:
         "Baidyanath Temple, also known as Baba Baidyanath Dham, is one of the twelve sacred Jyotirlingas dedicated to Lord Shiva. Located in Deoghar, it is a major pilgrimage site, especially during the Shravan Mela when millions of devotees come to offer holy water from the Ganga. The temple complex also houses shrines dedicated to Parvati and other deities, making it a spiritually enriching experience for visitors.",
@@ -67,7 +67,7 @@ const destinations = [
     {
         id: "Trikut Hill",
         name: "Trikut Hill",
-        image: "/dassam-falls-jharkhand-waterfall-nature.jpg",
+        image: "",
         description: "A scenic hill with three prominent peaks, offering a mix of spirituality, adventure, and breathtaking views.",
         longDescription:
         "Trikut Hill, located near Deoghar, is famous for its three majestic peaks and spiritual significance. It is a popular spot for devotees visiting Baba Baidyanath Dham as well as for adventure seekers who enjoy trekking and the ropeway ride. The hill offers panoramic views of the surrounding landscape, making it a favorite destination for photographers and nature lovers.",
@@ -83,7 +83,7 @@ const destinations = [
     {
         id: "Parasnath Hill",
         name: "Parasnath Hills",
-        image: "/parasnath-hills-jharkhand-jain-temple-mountain.jpg",
+        image: "",
         description: "Highest peak in Jharkhand and sacred Jain pilgrimage site with ancient temples.",
         longDescription:
             "Parasnath Hills, at 1,365 meters, is the highest peak in Jharkhand. It's a sacred Jain pilgrimage site with 24 temples dedicated to Jain Tirthankaras. The hill offers panoramic views and is known for its spiritual significance and natural beauty.",
@@ -99,7 +99,7 @@ const destinations = [
     {
         id: "Canary Hill",
         name: "Canary Hill",
-        image: "/hazaribagh-national-park-jharkhand-wildlife-forest.jpg",
+        image: "",
         description: "Wildlife sanctuary known for its diverse flora and fauna, including tigers and leopards.",
         description: "A popular hilltop viewpoint offering panoramic views of Hazaribagh town and its surrounding forests.",
         longDescription:
@@ -117,7 +117,7 @@ const destinations = [
     {
         id: "Moti Jharna Waterfall",
         name: "Moti Jharna Waterfall",
-        image: "/jamshedpur-jharkhand-steel-city-jubilee-park.jpg",
+        image: "",
         description: "A serene waterfall cascading through rocky terrain, perfect for a peaceful nature escape.",
         longDescription:
         "Moti Jharna Waterfall is a hidden gem located near Jamshedpur, known for its sparkling white waters that resemble pearls, giving it the name 'Moti' (meaning pearl). Surrounded by rocky hills and lush greenery, it is an ideal spot for picnics, short treks, and photography. The tranquil environment makes it a great weekend getaway for nature lovers.",
@@ -133,7 +133,7 @@ const destinations = [
     {
         id: "Jawaharlal Nehru Biological Park",
         name: "Jawaharlal Nehru Biological Park",
-        image: "/jamshedpur-jharkhand-steel-city-jubilee-park.jpg",
+        image: "",
         description: "The largest zoological park in Jharkhand, located in Bokaro and home to a wide variety of animals and birds.",
         longDescription:
         "Jawaharlal Nehru Biological Park in Bokaro is the largest zoo in Jharkhand and a popular attraction for wildlife enthusiasts and families. The park is home to tigers, leopards, lions, elephants, and many exotic bird species. With boating facilities, a well-maintained lake, and lush greenery, it offers a perfect blend of recreation, education, and relaxation.",
