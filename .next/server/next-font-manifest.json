@@ -8,7 +8,11 @@
       "static/media/Geist_Variable-s.p.f406b17f.woff2",
       "static/media/GeistMono_Variable.p.6bae060c.woff2"
     ],
-    "[project]/app/auth/page": [
+    "[project]/app/marketplace/product/[id]/page": [
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/GeistMono_Variable.p.6bae060c.woff2"
+    ],
+    "[project]/app/order/success/page": [
       "static/media/Geist_Variable-s.p.f406b17f.woff2",
       "static/media/GeistMono_Variable.p.6bae060c.woff2"
     ]

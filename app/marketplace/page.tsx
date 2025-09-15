@@ -193,13 +193,9 @@ export default function MarketplacePage() {
   })
 
   const handleBuyClick = (product: any) => {
-    if (!isAuthenticated) {
-      // Show alert and redirect to login
-      alert('Please login to purchase items from our marketplace!')
-      router.push('/auth')
-      return
-    }
-    // If authenticated, proceed to product page
+    // Add console log for debugging
+    console.log('Buy button clicked for product:', product.id)
+    // Direct navigation to product page - no authentication check
     router.push(`/marketplace/product/${product.id}`)
   }
 
