@@ -18,8 +18,9 @@ const processPayment = async (req, res) => {
         } = req.body;
 
         console.log('🔄 Processing payment with blockchain integration...');
+        console.log('📋 Full request body:', JSON.stringify(req.body, null, 2));
         console.log('Payment ID:', razorpayPaymentId);
-        console.log('Product:', productName);
+        console.log('Product:', productName, 'Price:', productPrice, 'Quantity:', quantity);
         console.log('User:', userName, userEmail);
 
         // Verify Razorpay payment signature (basic verification)

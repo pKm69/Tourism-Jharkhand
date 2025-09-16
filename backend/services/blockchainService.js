@@ -73,24 +73,24 @@ class BlockchainService {
 
             // Create blockchain transaction data
             const blockchainData = {
-                transactionId: paymentData.transactionId || `TXN_${Date.now()}`,
-                timestamp: new Date().toISOString(),
+                transactionId: paymentData.transactionId,
+                timestamp: paymentData.metadata?.timestamp || new Date().toISOString(),
                 encryptedCustomer: encryptedUserData,
                 product: {
-                    id: paymentData.productId,
-                    name: paymentData.productName,
-                    price: paymentData.productPrice,
-                    quantity: paymentData.quantity
+                    id: paymentData.product?.id,
+                    name: paymentData.product?.name,
+                    price: paymentData.product?.price,
+                    quantity: paymentData.product?.quantity
                 },
                 payment: {
-                    razorpayId: paymentData.razorpayPaymentId,
-                    amount: paymentData.amount,
-                    currency: paymentData.currency || 'INR'
+                    razorpayId: paymentData.payment?.razorpayId,
+                    amount: paymentData.payment?.amount,
+                    currency: paymentData.payment?.currency || 'INR'
                 },
                 metadata: {
-                    platform: 'Jharkhand Tourism Marketplace',
-                    userAgent: paymentData.userAgent,
-                    ipAddress: paymentData.ipAddress || 'localhost'
+                    platform: paymentData.metadata?.platform || 'Jharkhand Tourism Marketplace',
+                    userAgent: paymentData.metadata?.userAgent || 'Unknown',
+                    ipAddress: paymentData.metadata?.ipAddress || 'localhost'
                 }
             };
 
