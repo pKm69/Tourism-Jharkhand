@@ -377,7 +377,7 @@ function InteractiveMap() {
                                         onError: (e)=>{
                                             console.error(`Failed to load image for ${selectedPlace.name}:`, e);
                                             const img = e.target;
-                                            img.src = `/arvrPics/${selectedPlace.name}.jpg`;
+                                            img.src = `http://localhost:5000/api/images/place-name/${encodeURIComponent(selectedPlace.name)}`;
                                         },
                                         style: {
                                             maxWidth: '100%',
@@ -388,17 +388,11 @@ function InteractiveMap() {
                                         lineNumber: 296,
                                         columnNumber: 19
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                        src: `/arvrPics/${selectedPlace.name}.jpg`,
+                                        src: `http://localhost:5000/api/images/place-name/${encodeURIComponent(selectedPlace.name)}`,
                                         alt: selectedPlace.name,
                                         onError: (e)=>{
                                             const img = e.target;
-                                            if (img.src.endsWith('.jpg')) {
-                                                img.src = `/arvrPics/${selectedPlace.name}.jpeg`;
-                                            } else if (img.src.endsWith('.jpeg')) {
-                                                img.src = `/arvrPics/${selectedPlace.name}.png`;
-                                            } else {
-                                                img.style.display = 'none';
-                                            }
+                                            img.style.display = 'none';
                                         },
                                         style: {
                                             maxWidth: '100%',
@@ -423,7 +417,7 @@ function InteractiveMap() {
                                     children: "Explore Now!"
                                 }, void 0, false, {
                                     fileName: "[project]/components/interactive-map.tsx",
-                                    lineNumber: 326,
+                                    lineNumber: 320,
                                     columnNumber: 17
                                 }, this)
                             ]
@@ -458,7 +452,7 @@ function InteractiveMap() {
                     children: "×"
                 }, void 0, false, {
                     fileName: "[project]/components/interactive-map.tsx",
-                    lineNumber: 340,
+                    lineNumber: 334,
                     columnNumber: 9
                 }, this)
             ]

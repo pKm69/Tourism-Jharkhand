@@ -70,24 +70,21 @@ export default function HomePage() {
   const fetchImageForDestination = async (destinationId: string): Promise<string | null> => {
     try {
       console.log(`🏠 Home: Fetching image for destination: "${destinationId}"`);
-      const url = `http://localhost:5000/api/images/destination/${encodeURIComponent(destinationId)}`;
+      const url = `http://localhost:5000/api/images/place-name/${encodeURIComponent(destinationId)}`;
       console.log(`🏠 Home: API URL: ${url}`);
       
       const response = await fetch(url);
       console.log(`🏠 Home: Response status: ${response.status}`);
       
       if (response.ok) {
-        const data = await response.json();
-        console.log(`🏠 Home: Image data for ${destinationId}:`, data);
-        const fullImageUrl = `http://localhost:5000${data.data.imageUrl}`;
-        console.log(`🏠 Home: Full image URL: ${fullImageUrl}`);
-        return fullImageUrl;
+        console.log(`🏠 Home: Successfully found image for ${destinationId}`);
+        return url; // Return the direct URL instead of processing JSON
       } else if (response.status === 404) {
         console.log(`🏠 Home: No image found for ${destinationId}`);
         return null;
       } else {
         const errorText = await response.text();
-        console.error(`🏠 Home: Error ${response.status} for ${destinationId}:`, errorText);
+        console.error(`🏠 Home: Error ${response.status}: ${errorText}`);
         return null;
       }
     } catch (error: any) {

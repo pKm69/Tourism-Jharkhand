@@ -53,27 +53,21 @@ export default function DestinationsPage() {
   const fetchImageForDestination = async (destinationId: string): Promise<string | null> => {
     try {
       console.log(`🔍 Fetching image for destination: "${destinationId}"`);
-      const url = `http://localhost:5000/api/images/destination/${encodeURIComponent(destinationId)}`;
-      console.log(`📡 API URL: ${url}`);
+      const url = `http://localhost:5000/api/images/place-name/${encodeURIComponent(destinationId)}`;
+      console.log(`📡 Making request to: ${url}`);
       
       const response = await fetch(url);
       console.log(`📊 Response status: ${response.status}`);
       
       if (response.ok) {
-        const data = await response.json();
-        console.log(`✅ Image data for ${destinationId}:`, data);
-        const fullImageUrl = `http://localhost:5000${data.data.imageUrl}`;
-        console.log(`🖼️ Full image URL: ${fullImageUrl}`);
-        return fullImageUrl;
-      } else if (response.status === 404) {
-        console.log(`❌ No image found for ${destinationId}`);
-        return null;
+        console.log(`✅ Successfully found image for ${destinationId}`);
+        return url; // Return the direct URL instead of creating blob
       } else {
-        const errorText = await response.text();
-        console.error(`❌ Error ${response.status} for ${destinationId}:`, errorText);
+        console.log(`⚠️ No image found for ${destinationId} (${response.status})`);
         return null;
       }
-    } catch (error: any) {
+    } catch (error) {
+      console.error(`❌ Error fetching image for ${destinationId}:`, error);
       console.error(`💥 Network error fetching image for ${destinationId}:`, error);
       return null;
     }

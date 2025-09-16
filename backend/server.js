@@ -1,9 +1,11 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
+const { spawn } = require('child_process');
+const path = require('path');
 const { connectDB } = require('./config/database');
 const errorHandler = require('./middleware/errorHandler');
 
@@ -12,8 +14,12 @@ const placesRoutes = require('./routes/places');
 const imagesRoutes = require('./routes/images');
 const authRoutes = require('./routes/auth');
 const paymentRoutes = require('./routes/payment');
+const chatbotRoutes = require('./routes/chatbot');
 
 const app = express();
+
+// Chatbot service is now integrated directly with Gemini API
+console.log('🤖 Chatbot service integrated with Gemini API');
 
 // Connect to MongoDB
 connectDB();
@@ -68,6 +74,7 @@ app.use('/api/places', placesRoutes);
 app.use('/api/images', imagesRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/chatbot', chatbotRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -113,6 +120,10 @@ app.get('/api/docs', (req, res) => {
         'POST /api/payment/process': 'Process payment with blockchain integration',
         'GET /api/payment/blockchain/:transactionHash': 'Get blockchain transaction details',
         'GET /api/payment/blockchain/stats': 'Get blockchain statistics'
+      },
+      chatbot: {
+        'POST /api/chatbot/message': 'Send message to AI chatbot',
+        'GET /api/chatbot/health': 'Check chatbot service health'
       }
     }
   });
@@ -141,8 +152,20 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
+// Graceful shutdown handling
+process.on('SIGINT', () => {
+  console.log('\n🛑 Received SIGINT. Shutting down gracefully...');
+  process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+  console.log('\n🛑 Received SIGTERM. Shutting down gracefully...');
+  process.exit(0);
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Jharkhand Tourism API Server running on port ${PORT}`);
   console.log(`📖 API Documentation: http://localhost:${PORT}/api/docs`);
   console.log(`🏥 Health Check: http://localhost:${PORT}/api/health`);
+  console.log(`🤖 Chatbot API: http://localhost:${PORT}/api/chatbot/health`);
 });

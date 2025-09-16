@@ -1,6 +1,16 @@
 /* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
+/* Chatbot Widget Styles */
+.chatbot-widget-container {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  transition: none !important;
+}
+
 /* CSS Reset and Base Styles */
 *,
 *::before,
@@ -29,22 +39,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-/* Scrollbar Styling */
+/* Custom scrollbar styles */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f4d03f;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(128, 0, 32, 0.95);
+  background: oklch(0.8 0.12 85);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(30, 58, 138, 0.95);
+  background: oklch(0.7 0.15 85);
+}
+
+/* Chatbot scrollbar styles */
+.chatbot-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-track {
+  background: rgba(244, 208, 63, 0.1);
+  border-radius: 3px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-thumb {
+  background: #f4d03f;
+  border-radius: 3px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e6c547;
 }
 
 /* Selection Styling */

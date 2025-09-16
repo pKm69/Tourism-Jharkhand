@@ -1,5 +1,14 @@
 @import "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap";
 /* [project]/styles/globals.css [app-client] (css, ) */
+.chatbot-widget-container {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  transition: none !important;
+}
+
 *, :before, :after {
   box-sizing: border-box;
 }
@@ -28,16 +37,34 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f4d03f;
+  background: none;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #800020f2;
+  background: oklch(.8 .12 85);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1e3a8af2;
+  background: oklch(.7 .15 85);
+}
+
+.chatbot-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-track {
+  background: #f4d03f1a;
+  border-radius: 3px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-thumb {
+  background: #f4d03f;
+  border-radius: 3px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e6c547;
 }
 
 ::selection {

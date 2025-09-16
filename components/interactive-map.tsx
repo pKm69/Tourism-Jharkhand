@@ -300,23 +300,17 @@ export default function InteractiveMap() {
                     onError={(e) => {
                       console.error(`Failed to load image for ${selectedPlace.name}:`, e);
                       const img = e.target as HTMLImageElement;
-                      img.src = `/arvrPics/${selectedPlace.name}.jpg`;
+                      img.src = `http://localhost:5000/api/images/place-name/${encodeURIComponent(selectedPlace.name)}`;
                     }}
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 ) : (
                   <img 
-                    src={`/arvrPics/${selectedPlace.name}.jpg`}
+                    src={`http://localhost:5000/api/images/place-name/${encodeURIComponent(selectedPlace.name)}`}
                     alt={selectedPlace.name}
                     onError={(e) => {
                       const img = e.target as HTMLImageElement;
-                      if (img.src.endsWith('.jpg')) {
-                        img.src = `/arvrPics/${selectedPlace.name}.jpeg`;
-                      } else if (img.src.endsWith('.jpeg')) {
-                        img.src = `/arvrPics/${selectedPlace.name}.png`;
-                      } else {
-                        img.style.display = 'none';
-                      }
+                      img.style.display = 'none';
                     }}
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />

@@ -2,11 +2,12 @@
   "pages": {
     "/marketplace/product/[id]/page": [
       "static/chunks/_4b9d0d._.css",
-      "static/chunks/_907329._.js",
-      "static/chunks/app_layout_tsx_3c961f._.js",
-      "static/chunks/_fa5bc7._.js",
-      "static/chunks/node_modules_c3d350._.js",
-      "static/chunks/app_marketplace_product_[id]_page_tsx_b0ebbb._.js",
+      "static/chunks/node_modules_fafa93._.js",
+      "static/chunks/_adfe07._.js",
+      "static/chunks/app_layout_tsx_a18694._.js",
+      "static/chunks/_ef4593._.js",
+      "static/chunks/node_modules_95529a._.js",
+      "static/chunks/app_marketplace_product_[id]_page_tsx_54ca33._.js",
       "static/chunks/node_modules_next_dist_compiled_react_a1d82d._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_cjs_react-dom_development_c9a189.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_87a050._.js",
