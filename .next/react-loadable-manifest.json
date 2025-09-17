@@ -1,1 +1,17 @@
-{}
+{
+  "app/ar-vr/page.tsx -> @/components/interactive-map": {
+    "id": "app/ar-vr/page.tsx -> @/components/interactive-map",
+    "files": [
+      "static/chunks/node_modules_next_dist_compiled_react_9f2580._.js",
+      "static/chunks/node_modules_next_dist_compiled_react-dom_cjs_react-dom_development_c9a189.js",
+      "static/chunks/node_modules_next_dist_compiled_react-dom_index_99aff8.js",
+      "static/chunks/node_modules_next_dist_compiled_154f7a._.js",
+      "static/chunks/node_modules_next_dist_build_polyfills_process_102af7.js",
+      "static/chunks/node_modules_leaflet_dist_9d2d04._.js",
+      "static/chunks/node_modules_a1bab6._.js",
+      "static/chunks/components_interactive-map_tsx_aec261._.js",
+      "static/chunks/node_modules_leaflet_dist_leaflet_88e19f.css",
+      "static/chunks/components_interactive-map_tsx_200b4a._.js"
+    ]
+  }
+}

@@ -3806,19 +3806,28 @@ img {
 }
 
 .destination-details {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin-bottom: 20px;
   padding: 16px;
   background: #f4d03f1a;
   border-radius: 12px;
 }
 
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .detail-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  min-width: 0;
   font-size: .875rem;
   color: #f4d03f;
   font-weight: 500;
@@ -3827,6 +3836,93 @@ img {
 
 .detail-item svg {
   color: #1e3a8a;
+  flex-shrink: 0;
+}
+
+.detail-item .truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+}
+
+.seller-info {
+  color: #faf7f2;
+  font-style: italic;
+}
+
+.seller-info .truncate {
+  max-width: 140px;
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sort-label {
+  font-size: .875rem;
+  font-weight: 600;
+  color: #f4d03f;
+  text-shadow: 0 1px 2px #0000004d;
+  white-space: nowrap;
+}
+
+.sort-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.sort-dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%);
+  color: #800020;
+  border: 2px solid #f4d03f;
+  border-radius: 25px;
+  padding: 8px 35px 8px 16px;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all .3s;
+  box-shadow: 0 4px 12px #f4d03f4d;
+  min-width: 160px;
+}
+
+.sort-dropdown:hover {
+  background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+  border-color: #d4af37;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px #d4af3766;
+}
+
+.sort-dropdown:focus {
+  border-color: #f4d03f;
+  box-shadow: 0 0 0 3px #f4d03f33;
+}
+
+.sort-dropdown option {
+  background: #fff;
+  color: #800020;
+  padding: 8px 12px;
+  font-weight: 500;
+}
+
+.sort-dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #800020;
+  transition: transform .3s;
+}
+
+.sort-dropdown:focus + .sort-dropdown-arrow {
+  transform: translateY(-50%)rotate(180deg);
 }
 
 .destination-highlights {
@@ -3922,8 +4018,32 @@ img {
   }
 
   .destination-details {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .detail-item .truncate {
+    max-width: 100px;
+  }
+
+  .seller-info .truncate {
+    max-width: 110px;
+  }
+
+  .sort-container {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+  }
+
+  .sort-dropdown {
+    min-width: 140px;
+    font-size: .8rem;
+    padding: 6px 30px 6px 12px;
+  }
+
+  .sort-label {
+    font-size: .8rem;
   }
 
   .destination-footer {

@@ -56,7 +56,7 @@ export default function MarketplacePage() {
     {
       id: 1,
       name: "Traditional Sohrai Art Painting",
-      image: "/jharkhand-tribal-handicrafts-marketplace-artisans.jpg",
+      image: "/mp/one.jpg",
       price: "₹2,500",
       originalPrice: "₹3,000",
       rating: 4.8,
@@ -72,7 +72,7 @@ export default function MarketplacePage() {
     {
       id: 2,
       name: "Tribal Homestay Experience",
-      image: "/netarhat-hill-station-sunrise-jharkhand.jpg",
+      image: "/mp/two.jpg",
       price: "₹1,200",
       originalPrice: null,
       rating: 4.9,
@@ -88,7 +88,7 @@ export default function MarketplacePage() {
     {
       id: 3,
       name: "Dokra Metal Craft Workshop",
-      image: "/jharkhand-landscape-forest-mountains-tribal-cultur.jpg",
+      image: "/mp/three.jpg",
       price: "₹800",
       originalPrice: null,
       rating: 4.7,
@@ -104,7 +104,7 @@ export default function MarketplacePage() {
     {
       id: 4,
       name: "Organic Tribal Honey",
-      image: "/deoghar-temple-spiritual-jharkhand.jpg",
+      image: "/mp/four.jpg",
       price: "₹450",
       originalPrice: "₹500",
       rating: 4.6,
@@ -120,7 +120,7 @@ export default function MarketplacePage() {
     {
       id: 5,
       name: "Local Guide - Wildlife Safari",
-      image: "/betla-national-park-wildlife-tigers-jharkhand.jpg",
+      image: "/mp/five.jpg",
       price: "₹1,500",
       originalPrice: null,
       rating: 5.0,
@@ -136,7 +136,7 @@ export default function MarketplacePage() {
     {
       id: 6,
       name: "Bamboo Handicraft Set",
-      image: "/hazaribagh-national-park-jharkhand-wildlife-forest.jpg",
+      image: "/mp/six.jpg",
       price: "₹1,800",
       originalPrice: "₹2,200",
       rating: 4.5,
@@ -152,7 +152,7 @@ export default function MarketplacePage() {
     {
       id: 7,
       name: "Traditional Jharkhand Thali",
-      image: "/jamshedpur-jharkhand-steel-city-jubilee-park.jpg",
+      image: "/mp/seven.jpg",
       price: "₹300",
       originalPrice: null,
       rating: 4.8,
@@ -168,7 +168,7 @@ export default function MarketplacePage() {
     {
       id: 8,
       name: "Eco-friendly Transport Service",
-      image: "/parasnath-hills-jharkhand-jain-temple-mountain.jpg",
+      image: "/mp/eight.webp",
       price: "₹12/km",
       originalPrice: null,
       rating: 4.4,
@@ -181,6 +181,22 @@ export default function MarketplacePage() {
       isFavorite: false,
       tags: ["Eco-friendly", "Electric", "Sustainable"],
     },
+    {
+      id: 9,
+      name: "Jharkhand Terracotta Handicrafts",
+      image: "/mp/nine.webp",
+      price: "₹2,000",
+      originalPrice: "₹2,500",
+      rating: 4.7,
+      reviews: 234,
+      seller: "Tribal Artisans Collective",
+      location: "Bastar, Jharkhand",
+      category: "Handicrafts",
+      description: "Beautifully handcrafted terracotta items made by skilled tribal artisans of Jharkhand, perfect for home décor and gifting.",
+      isVerified: true,
+      isFavorite: false,
+      tags: ["Terracotta", "Handmade", "Tribal Art", "Eco-friendly"]
+    },    
   ]
 
   const filteredProducts = products.filter((product) => {
@@ -309,20 +325,22 @@ export default function MarketplacePage() {
           }} data-aos="fade-up">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold" style={{color: '#f4d03f'}}>{filteredProducts.length} Products Found</h2>
-              <div className="flex items-center gap-2">
-                <span className="text-sm" style={{color: '#f4d03f'}}>Sort by:</span>
-                <select className="px-3 py-1 border rounded-md text-sm" style={{
-                  background: '#f4d03f',
-                  color: '#800020',
-                  border: '2px solid #f4d03f',
-                  borderRadius: '25px',
-                  fontWeight: '600'
-                }}>
-                  <option>Most Popular</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                  <option>Highest Rated</option>
-                </select>
+              <div className="sort-container">
+                <span className="sort-label">Sort by:</span>
+                <div className="sort-dropdown-wrapper">
+                  <select className="sort-dropdown">
+                    <option value="popular">Most Popular</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="newest">Newest First</option>
+                  </select>
+                  <div className="sort-dropdown-arrow">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                      <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -366,16 +384,20 @@ export default function MarketplacePage() {
                   <p className="destination-description">{product.description}</p>
 
                   <div className="destination-details">
-                    <div className="detail-item">
-                      <MapPin className="h-4 w-4" />
-                      {product.location}
+                    <div className="detail-row">
+                      <div className="detail-item">
+                        <MapPin className="h-4 w-4" />
+                        <span className="truncate">{product.location}</span>
+                      </div>
+                      <div className="detail-item">
+                        <span className="text-sm">({product.reviews} reviews)</span>
+                      </div>
                     </div>
-                    <div className="detail-item">
-                      <Users className="h-4 w-4" />
-                      by {product.seller}
-                    </div>
-                    <div className="detail-item">
-                      <span>({product.reviews} reviews)</span>
+                    <div className="detail-row">
+                      <div className="detail-item seller-info">
+                        <Users className="h-4 w-4" />
+                        <span className="truncate">by {product.seller}</span>
+                      </div>
                     </div>
                   </div>
 

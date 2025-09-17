@@ -30,6 +30,7 @@ interface Product {
   location: string
   category: string
   description: string
+  priceUnit?: string
 }
 
 export default function SimpleProductPage() {
@@ -61,7 +62,7 @@ export default function SimpleProductPage() {
       {
         id: 1,
         name: "Traditional Sohrai Art Painting",
-        image: "/jharkhand-tribal-handicrafts-marketplace-artisans.jpg",
+        image: "/mp/one.jpg",
         price: 2500,
         rating: 4.8,
         reviews: 24,
@@ -73,19 +74,20 @@ export default function SimpleProductPage() {
       {
         id: 2,
         name: "Tribal Homestay Experience",
-        image: "/netarhat-hill-station-sunrise-jharkhand.jpg",
+        image: "/mp/two.jpg",
         price: 1200,
         rating: 4.9,
         reviews: 18,
         seller: "Birsa Munda Family",
         location: "Netarhat",
         category: "Homestays",
-        description: "Stay with a local tribal family and experience authentic culture"
+        description: "Stay with a local tribal family and experience authentic culture",
+        priceUnit: "per night"
       },
       {
         id: 3,
         name: "Dokra Metal Craft Workshop",
-        image: "/jharkhand-landscape-forest-mountains-tribal-cultur.jpg",
+        image: "/mp/three.jpg",
         price: 800,
         rating: 4.7,
         reviews: 32,
@@ -93,7 +95,79 @@ export default function SimpleProductPage() {
         location: "Ranchi",
         category: "Experiences",
         description: "Learn the ancient art of Dokra metal casting from master artisans"
-      }
+      },
+      {
+        id: 4,
+        name: "Organic Tribal Honey",
+        image: "/mp/four.jpg",
+        price: 450,
+        rating: 4.6,
+        reviews: 45,
+        seller: "Jharkhand Tribal Cooperative",
+        location: "Deoghar",
+        category: "Food",
+        description: "Pure honey collected from forest beehives by tribal communities",
+      },
+      {
+        id: 5,
+        name: "Local Guide - Wildlife Safari",
+        image: "/mp/five.jpg",
+        price: 1500,
+        rating: 5.0,
+        reviews: 28,
+        seller: "Suresh Oraon",
+        location: "Betla",
+        category: "Guides",
+        description: "Expert wildlife guide with 15 years experience in Betla National Park",
+      },
+      {
+        id: 6,
+        name: "Bamboo Handicraft Set",
+        image: "/mp/six.jpg",
+        price: 1800,
+        rating: 4.5,
+        reviews: 19,
+        seller: "Santhal Craft Collective",
+        location: "Jamshedpur",
+        category: "Handicrafts",
+        description: "Beautiful bamboo baskets and decorative items made by Santhal artisans",
+      },
+      {
+        id: 7,
+        name: "Traditional Jharkhand Thali",
+        image: "/mp/seven.jpg",
+        price: 300,
+        rating: 4.8,
+        reviews: 67,
+        seller: "Maa Durga Restaurant",
+        location: "Ranchi",
+        category: "Food",
+        description: "Authentic tribal cuisine featuring local ingredients and recipes",
+      },
+      {
+        id: 8,
+        name: "Eco-friendly Transport Service",
+        image: "/mp/eight.webp",
+        price: 12,
+        rating: 4.4,
+        reviews: 156,
+        seller: "Green Wheels Jharkhand",
+        location: "Ranchi",
+        category: "Transport",
+        description: "Electric vehicle transport service for eco-conscious travelers",
+      },
+      {
+        id: 9,
+        name: "Jharkhand Terracotta Handicrafts",
+        image: "/mp/nine.webp",
+        price: 2000,
+        rating: 4.7,
+        reviews: 234,
+        seller: "Tribal Artisans Collective",
+        location: "Bastar, Jharkhand",
+        category: "Handicrafts",
+        description: "Beautifully handcrafted terracotta items made by skilled tribal artisans of Jharkhand, perfect for home décor and gifting.",
+      }, 
     ]
 
     const rawId = Array.isArray(params.id) ? params.id[0] : params.id
@@ -331,7 +405,26 @@ Note: Blockchain recording failed, but your payment is confirmed.`)
             <div className="bg-muted/30 rounded-lg p-6">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-3xl font-bold text-primary">₹{product.price.toLocaleString()}</span>
-                <span className="text-sm text-muted-foreground">per item</span>
+                <span className="text-sm text-muted-foreground">
+                  {product.priceUnit || (() => {
+                    switch (product.category) {
+                      case "Transport":
+                        return "per km";
+                      case "Homestays":
+                        return "per night";
+                      case "Guides":
+                        return "per day";
+                      case "Experiences":
+                        return "per session";
+                      case "Food":
+                        return "per plate";
+                      case "Handicrafts":
+                        return "per item";
+                      default:
+                        return "per item";
+                    }
+                  })()}
+                </span>
               </div>
 
               <div className="flex items-center gap-4 mb-4">
