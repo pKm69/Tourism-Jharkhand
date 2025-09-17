@@ -1,12 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import Script from "next/script"
 import { Button } from "@/components/ui/button"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+import { useAuth } from "@/hooks/use-auth"
 import {
   Star,
   MapPin,
@@ -33,6 +34,8 @@ interface Product {
 
 export default function SimpleProductPage() {
   const params = useParams()
+  const router = useRouter()
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth()
   const [product, setProduct] = useState<Product | null>(null)
   const [loading, setLoading] = useState(true)
   const [quantity, setQuantity] = useState(1)
@@ -42,6 +45,16 @@ export default function SimpleProductPage() {
     console.log('Product page loaded with ID:', params.id)
     fetchProduct()
   }, [params.id])
+
+  // Authentication check effect
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      console.log('User not authenticated on product page, redirecting to login')
+      // Store the current page for redirect after login
+      localStorage.setItem('redirectAfterLogin', window.location.pathname)
+      router.push('/auth')
+    }
+  }, [authLoading, isAuthenticated, router])
 
   const fetchProduct = async () => {
     const mockProducts: Product[] = [
@@ -114,7 +127,16 @@ export default function SimpleProductPage() {
   const handlePayment = () => {
     if (!product) return
 
+    // Double-check authentication before payment
+    if (!isAuthenticated || !user) {
+      console.log('User not authenticated, redirecting to login')
+      localStorage.setItem('redirectAfterLogin', window.location.pathname)
+      router.push('/auth')
+      return
+    }
+
     console.log('Payment button clicked for:', product.name, 'Quantity:', quantity)
+    console.log('Authenticated user:', user)
 
     // @ts-ignore
     if (!window.Razorpay) {
@@ -146,9 +168,10 @@ export default function SimpleProductPage() {
             productName: product.name,
             productPrice: product.price,
             quantity: quantity,
-            userName: "Customer",
-            userEmail: "customer@example.com",
-            userMobile: "9999999999"
+            userName: user.name,
+            userEmail: user.email,
+            userMobile: user.phone || "Not provided",
+            userId: user._id
           }
 
           const blockchainResponse = await fetch('http://localhost:5000/api/payment/process', {
@@ -186,9 +209,9 @@ Note: Blockchain recording failed, but your payment is confirmed.`)
         }
       },
       prefill: {
-        name: "Customer",
-        email: "customer@example.com",
-        contact: "9999999999"
+        name: user.name,
+        email: user.email,
+        contact: user.phone || ""
       },
       notes: {
         product_id: product.id,
@@ -213,12 +236,30 @@ Note: Blockchain recording failed, but your payment is confirmed.`)
     rzp.open()
   }
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <div className="min-h-screen bg-background">
         <Navigation />
         <div className="container mx-auto px-4 py-20">
-          <div className="animate-pulse text-center">Loading...</div>
+          <div className="animate-pulse text-center">
+            {authLoading ? "Checking authentication..." : "Loading product..."}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // If not authenticated, don't render the product page content
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <div className="container mx-auto px-4 py-20 text-center">
+          <h1 className="text-2xl font-bold mb-4">Authentication Required</h1>
+          <p className="mb-4">Please log in to view this product.</p>
+          <Link href="/auth">
+            <Button>Login</Button>
+          </Link>
         </div>
       </div>
     )

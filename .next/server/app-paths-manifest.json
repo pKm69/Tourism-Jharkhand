@@ -1,11 +1,10 @@
 {
   "/page": "app/page.js",
-  "/api/feedback/route": "app/api/feedback/route.js",
   "/api/analytics/route": "app/api/analytics/route.js",
-  "/destinations/page": "app/destinations/page.js",
-  "/destinations/[destination]/page": "app/destinations/[destination]/page.js",
-  "/api/wikipedia/route": "app/api/wikipedia/route.js",
-  "/ai-features/page": "app/ai-features/page.js",
-  "/ar-vr/page": "app/ar-vr/page.js",
-  "/marketplace/page": "app/marketplace/page.js"
+  "/api/feedback/route": "app/api/feedback/route.js",
+  "/marketplace/page": "app/marketplace/page.js",
+  "/auth/page": "app/auth/page.js",
+  "/marketplace/product/[id]/page": "app/marketplace/product/[id]/page.js",
+  "/order/success/page": "app/order/success/page.js",
+  "/api/chatbot/message/route": "app/api/chatbot/message/route.js"
 }

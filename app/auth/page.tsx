@@ -130,7 +130,15 @@ export default function AuthPage() {
         authLogin(data.data.user, data.data.token)
         
         alert(isLogin ? 'Login successful!' : 'Account created successfully!')
-        router.push('/destinations')
+        
+        // Check if there's a redirect URL stored
+        const redirectUrl = localStorage.getItem('redirectAfterLogin')
+        if (redirectUrl) {
+          localStorage.removeItem('redirectAfterLogin')
+          router.push(redirectUrl)
+        } else {
+          router.push('/destinations')
+        }
       } else {
         setErrors({ general: data.message || 'Authentication failed' })
       }

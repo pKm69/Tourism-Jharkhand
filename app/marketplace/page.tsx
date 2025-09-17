@@ -193,9 +193,20 @@ export default function MarketplacePage() {
   })
 
   const handleBuyClick = (product: any) => {
-    // Add console log for debugging
     console.log('Buy button clicked for product:', product.id)
-    // Direct navigation to product page - no authentication check
+    console.log('Authentication status:', { isAuthenticated, isLoading })
+    
+    // Check if user is authenticated
+    if (!isAuthenticated) {
+      console.log('User not authenticated, redirecting to login page')
+      // Store the intended destination in localStorage for redirect after login
+      localStorage.setItem('redirectAfterLogin', `/marketplace/product/${product.id}`)
+      router.push('/auth')
+      return
+    }
+    
+    // User is authenticated, proceed to product page
+    console.log('User authenticated, proceeding to product page')
     router.push(`/marketplace/product/${product.id}`)
   }
 

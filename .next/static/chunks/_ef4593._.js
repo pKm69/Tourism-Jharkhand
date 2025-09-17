@@ -823,6 +823,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$scri
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/ui/button.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/navigation.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/components/footer.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/hooks/use-auth.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_import__("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__ = __turbopack_import__("[project]/node_modules/lucide-react/dist/esm/icons/map-pin.js [app-client] (ecmascript) <export default as MapPin>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_import__("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-client] (ecmascript) <export default as Users>");
@@ -843,9 +844,12 @@ var _s = __turbopack_refresh__.signature();
 ;
 ;
 ;
+;
 function SimpleProductPage() {
     _s();
     const params = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"])();
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    const { user, isAuthenticated, isLoading: authLoading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"])();
     const [product, setProduct] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [quantity, setQuantity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1);
@@ -855,6 +859,19 @@ function SimpleProductPage() {
         fetchProduct();
     }, [
         params.id
+    ]);
+    // Authentication check effect
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!authLoading && !isAuthenticated) {
+            console.log('User not authenticated on product page, redirecting to login');
+            // Store the current page for redirect after login
+            localStorage.setItem('redirectAfterLogin', window.location.pathname);
+            router.push('/auth');
+        }
+    }, [
+        authLoading,
+        isAuthenticated,
+        router
     ]);
     const fetchProduct = async ()=>{
         const mockProducts = [
@@ -922,7 +939,15 @@ function SimpleProductPage() {
     };
     const handlePayment = ()=>{
         if (!product) return;
+        // Double-check authentication before payment
+        if (!isAuthenticated || !user) {
+            console.log('User not authenticated, redirecting to login');
+            localStorage.setItem('redirectAfterLogin', window.location.pathname);
+            router.push('/auth');
+            return;
+        }
         console.log('Payment button clicked for:', product.name, 'Quantity:', quantity);
+        console.log('Authenticated user:', user);
         // @ts-ignore
         if (!window.Razorpay) {
             alert("Payment system loading... Please try again in a moment.");
@@ -949,9 +974,10 @@ function SimpleProductPage() {
                         productName: product.name,
                         productPrice: product.price,
                         quantity: quantity,
-                        userName: "Customer",
-                        userEmail: "customer@example.com",
-                        userMobile: "9999999999"
+                        userName: user.name,
+                        userEmail: user.email,
+                        userMobile: user.phone || "Not provided",
+                        userId: user._id
                     };
                     const blockchainResponse = await fetch('http://localhost:5000/api/payment/process', {
                         method: 'POST',
@@ -984,9 +1010,9 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                 }
             },
             prefill: {
-                name: "Customer",
-                email: "customer@example.com",
-                contact: "9999999999"
+                name: user.name,
+                email: user.email,
+                contact: user.phone || ""
             },
             notes: {
                 product_id: product.id,
@@ -1006,34 +1032,90 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
         });
         rzp.open();
     };
-    if (loading) {
+    if (loading || authLoading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "min-h-screen bg-background",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                    lineNumber: 219,
+                    lineNumber: 242,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "container mx-auto px-4 py-20",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "animate-pulse text-center",
-                        children: "Loading..."
+                        children: authLoading ? "Checking authentication..." : "Loading product..."
                     }, void 0, false, {
                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                        lineNumber: 221,
+                        lineNumber: 244,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                    lineNumber: 220,
+                    lineNumber: 243,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-            lineNumber: 218,
+            lineNumber: 241,
+            columnNumber: 7
+        }, this);
+    }
+    // If not authenticated, don't render the product page content
+    if (!isAuthenticated) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "min-h-screen bg-background",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                    fileName: "[project]/app/marketplace/product/[id]/page.tsx",
+                    lineNumber: 256,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "container mx-auto px-4 py-20 text-center",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                            className: "text-2xl font-bold mb-4",
+                            children: "Authentication Required"
+                        }, void 0, false, {
+                            fileName: "[project]/app/marketplace/product/[id]/page.tsx",
+                            lineNumber: 258,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "mb-4",
+                            children: "Please log in to view this product."
+                        }, void 0, false, {
+                            fileName: "[project]/app/marketplace/product/[id]/page.tsx",
+                            lineNumber: 259,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                            href: "/auth",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                children: "Login"
+                            }, void 0, false, {
+                                fileName: "[project]/app/marketplace/product/[id]/page.tsx",
+                                lineNumber: 261,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/app/marketplace/product/[id]/page.tsx",
+                            lineNumber: 260,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/marketplace/product/[id]/page.tsx",
+                    lineNumber: 257,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/app/marketplace/product/[id]/page.tsx",
+            lineNumber: 255,
             columnNumber: 7
         }, this);
     }
@@ -1043,7 +1125,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                    lineNumber: 230,
+                    lineNumber: 271,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1054,7 +1136,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                             children: "Product not found"
                         }, void 0, false, {
                             fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                            lineNumber: 232,
+                            lineNumber: 273,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1063,24 +1145,24 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                 children: "Back to Marketplace"
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                lineNumber: 234,
+                                lineNumber: 275,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                            lineNumber: 233,
+                            lineNumber: 274,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                    lineNumber: 231,
+                    lineNumber: 272,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-            lineNumber: 229,
+            lineNumber: 270,
             columnNumber: 7
         }, this);
     }
@@ -1092,12 +1174,12 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                 strategy: "afterInteractive"
             }, void 0, false, {
                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                lineNumber: 243,
+                lineNumber: 284,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                lineNumber: 244,
+                lineNumber: 285,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1114,21 +1196,21 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                         className: "h-4 w-4"
                                     }, void 0, false, {
                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                        lineNumber: 249,
+                                        lineNumber: 290,
                                         columnNumber: 13
                                     }, this),
                                     "Marketplace"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                lineNumber: 248,
+                                lineNumber: 289,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "/"
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                lineNumber: 252,
+                                lineNumber: 293,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1136,13 +1218,13 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                 children: product.name
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                lineNumber: 253,
+                                lineNumber: 294,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                        lineNumber: 247,
+                        lineNumber: 288,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1158,17 +1240,17 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                         className: "w-full h-full object-cover"
                                     }, void 0, false, {
                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                        lineNumber: 259,
+                                        lineNumber: 300,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                    lineNumber: 258,
+                                    lineNumber: 299,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                lineNumber: 257,
+                                lineNumber: 298,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1181,7 +1263,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                 children: product.name
                                             }, void 0, false, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 269,
+                                                lineNumber: 310,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1189,7 +1271,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                 children: product.description
                                             }, void 0, false, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 270,
+                                                lineNumber: 311,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1202,7 +1284,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                                 className: "h-5 w-5 fill-current text-yellow-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 274,
+                                                                lineNumber: 315,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1210,7 +1292,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                                 children: product.rating
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 275,
+                                                                lineNumber: 316,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1222,13 +1304,13 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 276,
+                                                                lineNumber: 317,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 273,
+                                                        lineNumber: 314,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1238,26 +1320,26 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                                 className: "h-4 w-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 279,
+                                                                lineNumber: 320,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: product.location
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 280,
+                                                                lineNumber: 321,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 278,
+                                                        lineNumber: 319,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 272,
+                                                lineNumber: 313,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1267,7 +1349,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                         className: "h-4 w-4 text-muted-foreground"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 285,
+                                                        lineNumber: 326,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1275,19 +1357,19 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                         children: product.seller
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 286,
+                                                        lineNumber: 327,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 284,
+                                                lineNumber: 325,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                        lineNumber: 268,
+                                        lineNumber: 309,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1304,7 +1386,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 292,
+                                                        lineNumber: 333,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1312,13 +1394,13 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                         children: "per item"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 293,
+                                                        lineNumber: 334,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 291,
+                                                lineNumber: 332,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1329,7 +1411,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                         children: "Quantity:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 297,
+                                                        lineNumber: 338,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1344,12 +1426,12 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                                     className: "h-4 w-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                    lineNumber: 305,
+                                                                    lineNumber: 346,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 299,
+                                                                lineNumber: 340,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1357,7 +1439,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                                 children: quantity
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 307,
+                                                                lineNumber: 348,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1369,24 +1451,24 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                                     className: "h-4 w-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                    lineNumber: 314,
+                                                                    lineNumber: 355,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 308,
+                                                                lineNumber: 349,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 298,
+                                                        lineNumber: 339,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 296,
+                                                lineNumber: 337,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1397,7 +1479,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                         children: "Total:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 320,
+                                                        lineNumber: 361,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1408,19 +1490,19 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 321,
+                                                        lineNumber: 362,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 319,
+                                                lineNumber: 360,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                        lineNumber: 290,
+                                        lineNumber: 331,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1439,14 +1521,14 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                                 className: `mr-2 h-5 w-5 ${isFavorite ? 'fill-current' : ''}`
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 334,
+                                                                lineNumber: 375,
                                                                 columnNumber: 19
                                                             }, this),
                                                             isFavorite ? 'Favorited' : 'Add to Favorites'
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 328,
+                                                        lineNumber: 369,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1459,20 +1541,20 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                                 className: "mr-2 h-5 w-5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                                lineNumber: 344,
+                                                                lineNumber: 385,
                                                                 columnNumber: 19
                                                             }, this),
                                                             "Add to Cart"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 338,
+                                                        lineNumber: 379,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 327,
+                                                lineNumber: 368,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1490,7 +1572,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                         className: "mr-2 h-5 w-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                        lineNumber: 361,
+                                                        lineNumber: 402,
                                                         columnNumber: 17
                                                     }, this),
                                                     "Pay Now - ₹",
@@ -1498,7 +1580,7 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 350,
+                                                lineNumber: 391,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1506,48 +1588,50 @@ Note: Blockchain recording failed, but your payment is confirmed.`);
                                                 children: "Secure payment powered by Razorpay"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                                lineNumber: 365,
+                                                lineNumber: 406,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                        lineNumber: 325,
+                                        lineNumber: 366,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                                lineNumber: 267,
+                                lineNumber: 308,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                        lineNumber: 256,
+                        lineNumber: 297,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                lineNumber: 246,
+                lineNumber: 287,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-                lineNumber: 373,
+                lineNumber: 414,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/marketplace/product/[id]/page.tsx",
-        lineNumber: 242,
+        lineNumber: 283,
         columnNumber: 5
     }, this);
 }
-_s(SimpleProductPage, "cvub4CIu7mk5TiVp5YDhQoTlQg0=", false, function() {
+_s(SimpleProductPage, "RcKp3xxXGvwEoA7r3N3qrhX4hik=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"]
     ];
 });
 _c = SimpleProductPage;
