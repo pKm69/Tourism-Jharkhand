@@ -2,12 +2,13 @@
   "pages": {
     "/feedback/page": [
       "static/chunks/_4b9d0d._.css",
-      "static/chunks/_907329._.js",
-      "static/chunks/app_layout_tsx_3c961f._.js",
-      "static/chunks/_44cdf6._.js",
-      "static/chunks/node_modules_6b283a._.js",
+      "static/chunks/node_modules_f8094f._.js",
+      "static/chunks/_adfe07._.js",
+      "static/chunks/app_layout_tsx_823061._.js",
+      "static/chunks/_2c1921._.js",
+      "static/chunks/node_modules_547267._.js",
       "static/chunks/node_modules_aos_dist_aos_941406.css",
-      "static/chunks/app_feedback_page_tsx_ffe035._.js",
+      "static/chunks/app_feedback_page_tsx_f7c423._.js",
       "static/chunks/node_modules_next_dist_compiled_react_a1d82d._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_cjs_react-dom_development_c9a189.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_87a050._.js",

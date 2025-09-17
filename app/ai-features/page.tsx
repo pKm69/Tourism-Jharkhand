@@ -97,24 +97,6 @@ export default function AIFeaturesPage() {
       },
     },
     {
-      id: "blockchain",
-      icon: <Shield className="h-12 w-12" />,
-      title: "Blockchain Security",
-      description: "Secure transactions and verified guide certifications",
-      longDescription:
-        "All transactions are secured using blockchain technology, ensuring transparency and trust. Guide certifications, reviews, and payments are all verified and immutable, providing peace of mind for travelers.",
-      benefits: [
-        "Immutable transaction records",
-        "Verified guide and service provider credentials",
-        "Transparent pricing with no hidden fees",
-        "Secure digital identity for travelers",
-      ],
-      demoContent: {
-        title: "Secure Booking System",
-        subtitle: "Experience blockchain-powered security for all your bookings",
-      },
-    },
-    {
       id: "ar-vr",
       icon: <Eye className="h-12 w-12" />,
       title: "AR/VR Experiences",
@@ -166,24 +148,6 @@ export default function AIFeaturesPage() {
       demoContent: {
         title: "Tourism Intelligence Platform",
         subtitle: "Data-driven insights for sustainable tourism development",
-      },
-    },
-    {
-      id: "chatbot",
-      icon: <MessageCircle className="h-12 w-12" />,
-      title: "Multilingual AI Chatbot",
-      description: "24/7 assistance in multiple languages including local dialects",
-      longDescription:
-        "Our AI chatbot provides instant assistance in Hindi, English, and local tribal languages. Get answers to travel queries, booking assistance, and cultural information anytime, anywhere.",
-      benefits: [
-        "24/7 availability in multiple languages",
-        "Cultural context and local knowledge",
-        "Instant booking and reservation assistance",
-        "Emergency support and guidance",
-      ],
-      demoContent: {
-        title: "AI Travel Assistant",
-        subtitle: "Chat with our AI in your preferred language",
       },
     },
   ]
@@ -244,7 +208,7 @@ export default function AIFeaturesPage() {
             <p className="subtitle text-center mb-8" data-aos="fade-up" data-aos-delay="200">Interactive demonstrations of our cutting-edge technology stack</p>
             
             {/* Feature Buttons */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 max-w-6xl mx-auto mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 max-w-4xl mx-auto mb-8">
               {features.map((feature, index) => (
                 <button
                   key={feature.id}

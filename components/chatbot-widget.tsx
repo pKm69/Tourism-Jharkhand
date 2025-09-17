@@ -180,25 +180,24 @@ export default function ChatbotWidget() {
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
-          className="h-16 w-16 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group relative overflow-hidden"
+          className="h-20 w-20 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group relative overflow-hidden"
           style={{
             background: 'linear-gradient(135deg, #800020 0%, #1e3a8a 100%)',
-            border: '2px solid #f4d03f'
+            border: '3px solid #f4d03f'
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-          <MessageCircle className="h-7 w-7 text-white relative z-10" />
-          <Mountain className="h-4 w-4 text-yellow-300 absolute top-1 right-1 relative z-10" />
+          <Mountain className="h-10 w-10 text-yellow-300 relative z-10" style={{ color: '#f4d03f' }} />
         </Button>
       )}
 
       {/* Chat Window */}
       {isOpen && (
         <div 
-          className="bg-white rounded-3xl shadow-2xl border-2 border-yellow-200 flex flex-col overflow-hidden backdrop-blur-sm"
+          className="shadow-2xl flex flex-col overflow-hidden backdrop-blur-sm"
           style={{ 
             position: 'fixed', 
-            bottom: '100px', 
+            top: '60px', 
             right: '24px', 
             zIndex: 9999,
             width: '380px',
@@ -206,7 +205,11 @@ export default function ChatbotWidget() {
             height: '600px',
             minHeight: '600px',
             maxHeight: '600px',
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(244,208,63,0.05) 100%)'
+            background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.08) 0%, rgba(30, 58, 138, 0.08) 100%)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderRadius: '25px',
+            border: '3px solid #f4d03f'
           }}
         >
           {/* Header - Fixed */}
@@ -220,54 +223,27 @@ export default function ChatbotWidget() {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse"></div>
             <div className="flex items-center gap-3 relative z-10">
               <div className="relative">
-                <Mountain className="h-6 w-6 text-yellow-300" />
+                <Mountain className="h-5 w-5" style={{ color: '#f4d03f' }} />
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse border-2 border-white"></div>
               </div>
               <div>
-                <span className="font-bold text-sm">Jharkhand Tourism</span>
-                <div className="text-xs text-yellow-200 flex items-center gap-1">
-                  <Sparkles className="h-3 w-3" />
+                <span className="font-bold text-sm" style={{ color: '#f4d03f' }}>Jharkhand Tourism</span>
+                <div className="text-xs flex items-center gap-1" style={{ color: '#f4d03f' }}>
+                  <Sparkles className="h-3 w-3" style={{ color: '#f4d03f' }} />
                   AI Assistant
                 </div>
               </div>
             </div>
             
             <div className="flex items-center gap-2 relative z-10">
-              {/* Language Selector */}
-              <div className="relative" ref={languageMenuRef}>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                  className="text-white hover:bg-white/20 h-8 w-8 p-0 flex-shrink-0 rounded-full"
-                >
-                  <Globe className="h-4 w-4" />
-                </Button>
-                
-                {showLanguageMenu && (
-                  <div className="absolute top-10 right-0 bg-white rounded-xl shadow-xl border border-gray-200 py-2 min-w-[160px] z-50">
-                    {Object.entries(LANGUAGE_OPTIONS).map(([code, label]) => (
-                      <button
-                        key={code}
-                        onClick={() => changeLanguage(code)}
-                        className={`w-full text-left px-3 py-2 text-sm hover:bg-yellow-50 transition-colors ${
-                          selectedLanguage === code ? 'bg-yellow-100 text-yellow-800 font-medium' : 'text-gray-700'
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(false)}
-                className="text-white hover:bg-white/20 h-8 w-8 p-0 flex-shrink-0 rounded-full"
+                className="hover:bg-white/20 h-10 w-10 p-0 flex-shrink-0 rounded-full"
+                style={{ backgroundColor: 'rgba(255, 192, 203, 0.2)' }}
               >
-                <X className="h-4 w-4" />
+                <X className="h-6 w-6" style={{ color: '#ff69b4' }} />
               </Button>
             </div>
           </div>
@@ -276,7 +252,9 @@ export default function ChatbotWidget() {
           <div 
             className="flex-1 overflow-y-auto p-4 space-y-4 chatbot-scrollbar" 
             style={{
-              background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.1) 0%, rgba(30, 58, 138, 0.1) 100%)',
+              background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.12) 0%, rgba(30, 58, 138, 0.12) 100%)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
               height: '420px',
               maxHeight: '420px',
               overflowY: 'scroll'
@@ -285,18 +263,21 @@ export default function ChatbotWidget() {
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+                className={`flex items-start gap-2 ${message.isUser ? 'flex-row-reverse justify-start' : 'justify-start'}`}
               >
+                <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-lg" style={{ background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.2) 0%, rgba(30, 58, 138, 0.2) 100%)', border: '1px solid #f4d03f' }}>
+                  {message.isUser ? '👤' : '🤖'}
+                </div>
                 <div
-                  className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm break-words shadow-sm ${
-                    message.isUser
-                      ? 'rounded-br-md border-2 border-yellow-300 text-white'
-                      : 'rounded-bl-md border-2 border-yellow-300 shadow-md text-white'
-                  }`}
+                  className={`max-w-[75%] px-4 py-3 text-sm break-words shadow-sm text-white`}
                   style={{ 
                     background: message.isUser 
-                      ? 'linear-gradient(135deg, #800020 0%, #1e3a8a 100%)'
-                      : 'linear-gradient(135deg, rgba(128, 0, 32, 0.9) 0%, rgba(30, 58, 138, 0.9) 100%)',
+                      ? 'linear-gradient(135deg, rgba(128, 0, 32, 0.15) 0%, rgba(30, 58, 138, 0.15) 100%)'
+                      : 'linear-gradient(135deg, rgba(128, 0, 32, 0.12) 0%, rgba(30, 58, 138, 0.12) 100%)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    border: '2px solid #f4d03f',
+                    borderRadius: '20px',
                     wordWrap: 'break-word',
                     overflowWrap: 'break-word',
                     whiteSpace: 'pre-wrap',
@@ -309,10 +290,20 @@ export default function ChatbotWidget() {
             ))}
             
             {(isLoading || isTyping) && (
-              <div className="flex justify-start">
-                <div className="border-2 border-yellow-300 px-4 py-3 rounded-2xl rounded-bl-md shadow-md" style={{
-                  background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.9) 0%, rgba(30, 58, 138, 0.9) 100%)'
-                }}>
+              <div className="flex justify-start items-start gap-2">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-lg" style={{ background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.2) 0%, rgba(30, 58, 138, 0.2) 100%)', border: '1px solid #f4d03f' }}>
+                  🤖
+                </div>
+                <div 
+                  className="px-4 py-3 shadow-md" 
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.12) 0%, rgba(30, 58, 138, 0.12) 100%)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    border: '2px solid #f4d03f',
+                    borderRadius: '20px'
+                  }}
+                >
                   <div className="flex space-x-1">
                     <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
                     <div className="w-2 h-2 bg-yellow-300 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -327,7 +318,14 @@ export default function ChatbotWidget() {
           </div>
 
           {/* Input - Fixed */}
-          <div className="p-4 border-t-2 border-yellow-200 bg-white/90 backdrop-blur-sm flex-shrink-0">
+          <div 
+            className="p-4 border-t-2 border-yellow-200 flex-shrink-0"
+            style={{
+              background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.1) 0%, rgba(30, 58, 138, 0.1) 100%)',
+              backdropFilter: 'blur(15px)',
+              WebkitBackdropFilter: 'blur(15px)'
+            }}
+          >
             <div className="flex items-center gap-3">
               <input
                 type="text"
@@ -336,19 +334,26 @@ export default function ChatbotWidget() {
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about Jharkhand tourism..."
                 className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-200"
-                style={{ backgroundColor: 'rgba(255,255,255,0.95)' }}
+                style={{ 
+                  background: 'rgba(255,255,255,0.1)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  color: 'white',
+                  height: '40px'
+                }}
               />
               <Button
                 onClick={sendMessage}
                 disabled={!inputMessage.trim() || isLoading}
                 size="sm"
-                className="h-10 w-10 p-0 rounded-full flex-shrink-0 shadow-lg hover:shadow-xl transition-all duration-200 border-2 border-yellow-300"
+                className="h-10 w-10 p-0 rounded-full flex-shrink-0 shadow-lg hover:shadow-xl transition-all duration-200"
                 style={{ 
                   background: 'linear-gradient(135deg, #800020 0%, #1e3a8a 100%)',
+                  border: '2px solid #f4d03f',
                   opacity: (!inputMessage.trim() || isLoading) ? 0.5 : 1
                 }}
               >
-                <Send className="h-4 w-4 text-white" />
+                <Send className="h-4 w-4" style={{ color: '#f4d03f' }} />
               </Button>
             </div>
           </div>

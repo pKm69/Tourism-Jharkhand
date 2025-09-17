@@ -2,14 +2,14 @@
   "pages": {
     "/destinations/page": [
       "static/chunks/_4b9d0d._.css",
-      "static/chunks/node_modules_fafa93._.js",
+      "static/chunks/node_modules_f8094f._.js",
       "static/chunks/_adfe07._.js",
-      "static/chunks/app_layout_tsx_a18694._.js",
+      "static/chunks/app_layout_tsx_823061._.js",
       "static/chunks/_7e4529._.js",
       "static/chunks/node_modules_d10c96._.js",
       "static/chunks/node_modules_aos_dist_aos_941406.css",
-      "static/chunks/public_destination_ae6cc2.js",
-      "static/chunks/app_destinations_page_tsx_c431b5._.js",
+      "static/chunks/public_destination_fcec3f.js",
+      "static/chunks/app_destinations_page_tsx_ff49c2._.js",
       "static/chunks/node_modules_next_dist_compiled_react_a1d82d._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_cjs_react-dom_development_c9a189.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_87a050._.js",

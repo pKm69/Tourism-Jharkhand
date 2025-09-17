@@ -1,5 +1,11 @@
 const axios = require('axios');
 
+// Rate limiting and caching
+const API_CALL_CACHE = new Map();
+const API_CALL_TIMES = [];
+const MAX_CALLS_PER_MINUTE = 12; // Conservative limit (free tier is 15)
+const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes cache
+
 // Language detection and translation mappings
 const LANGUAGE_MAPPINGS = {
   'hi': 'Hindi',
@@ -46,6 +52,65 @@ function detectLanguage(text) {
 }
 
 /**
+ * Check if we can make API call (rate limiting)
+ */
+function canMakeAPICall() {
+  const now = Date.now();
+  const oneMinuteAgo = now - 60000;
+  
+  // Remove old timestamps
+  while (API_CALL_TIMES.length > 0 && API_CALL_TIMES[0] < oneMinuteAgo) {
+    API_CALL_TIMES.shift();
+  }
+  
+  return API_CALL_TIMES.length < MAX_CALLS_PER_MINUTE;
+}
+
+/**
+ * Get cached response if available
+ */
+function getCachedResponse(message, language) {
+  const cacheKey = `${message.toLowerCase().trim()}_${language}`;
+  const cached = API_CALL_CACHE.get(cacheKey);
+  
+  if (cached && (Date.now() - cached.timestamp) < CACHE_DURATION) {
+    return cached.response;
+  }
+  
+  return null;
+}
+
+/**
+ * Cache API response
+ */
+function cacheResponse(message, language, response) {
+  const cacheKey = `${message.toLowerCase().trim()}_${language}`;
+  API_CALL_CACHE.set(cacheKey, {
+    response,
+    timestamp: Date.now()
+  });
+  
+  // Clean old cache entries (keep only last 100)
+  if (API_CALL_CACHE.size > 100) {
+    const oldestKey = API_CALL_CACHE.keys().next().value;
+    API_CALL_CACHE.delete(oldestKey);
+  }
+}
+
+/**
+ * Determine if query needs AI or can use local data
+ */
+function needsAIResponse(message) {
+  const complexPatterns = [
+    /how to/i, /what is the best/i, /compare/i, /recommend/i,
+    /plan.*trip/i, /itinerary/i, /budget/i, /when to visit/i,
+    /weather/i, /season/i, /festival/i, /culture/i
+  ];
+  
+  return complexPatterns.some(pattern => pattern.test(message));
+}
+
+/**
  * Call Gemini API for chat responses
  */
 const callGeminiAPI = async (message, language) => {
@@ -53,6 +118,22 @@ const callGeminiAPI = async (message, language) => {
   if (!apiKey) {
     throw new Error('Gemini API key not configured');
   }
+
+  // Check cache first
+  const cachedResponse = getCachedResponse(message, language);
+  if (cachedResponse) {
+    console.log('📦 Using cached response');
+    return cachedResponse;
+  }
+
+  // Check rate limits
+  if (!canMakeAPICall()) {
+    console.log('⚠️ Rate limit reached, using fallback');
+    throw new Error('Rate limit exceeded');
+  }
+
+  // Record API call time
+  API_CALL_TIMES.push(Date.now());
 
   // Fetch relevant places from MongoDB or fallback to local files
   let contextData = '';
@@ -154,7 +235,10 @@ const callGeminiAPI = async (message, language) => {
     );
 
     if (response.data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-      return response.data.candidates[0].content.parts[0].text;
+      const result = response.data.candidates[0].content.parts[0].text;
+      // Cache successful response
+      cacheResponse(message, language, result);
+      return result;
     } else {
       throw new Error('Invalid response format from Gemini API');
     }
@@ -179,7 +263,10 @@ const callGeminiAPI = async (message, language) => {
     );
 
     if (response.data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-      return response.data.candidates[0].content.parts[0].text;
+      const result = response.data.candidates[0].content.parts[0].text;
+      // Cache successful response
+      cacheResponse(message, language, result);
+      return result;
     } else {
       throw new Error('Both Gemini models failed');
     }
@@ -284,25 +371,46 @@ const sendMessage = async (req, res) => {
     
     let response;
     
-    try {
-      // Try Gemini API first
-      console.log('🤖 Attempting Gemini API call...');
-      response = await callGeminiAPI(message, detectedLanguage);
-      console.log('✅ Gemini API success:', response.substring(0, 100) + '...');
-    } catch (geminiError) {
-      console.error('❌ Gemini API failed:', {
-        message: geminiError.message,
-        status: geminiError.response?.status,
-        statusText: geminiError.response?.statusText,
-        data: geminiError.response?.data
-      });
-      console.log('🔄 Trying intelligent fallback...');
+    // Smart routing: Use local data for simple queries, API for complex ones
+    const useAI = needsAIResponse(message);
+    
+    if (!useAI) {
+      // Try local data first for simple queries
+      console.log('🏠 Using local data for simple query...');
       try {
         response = await generateIntelligentFallback(message, detectedLanguage);
-        console.log('✅ Fallback success:', response.substring(0, 100) + '...');
-      } catch (fallbackError) {
-        console.error('❌ Fallback also failed:', fallbackError.message);
-        throw fallbackError;
+        console.log('✅ Local data success:', response.substring(0, 100) + '...');
+      } catch (localError) {
+        console.log('🤖 Local data failed, trying API...');
+        // If local fails, try API
+        try {
+          response = await callGeminiAPI(message, detectedLanguage);
+          console.log('✅ Gemini API success:', response.substring(0, 100) + '...');
+        } catch (geminiError) {
+          throw geminiError;
+        }
+      }
+    } else {
+      // Use API for complex queries
+      try {
+        console.log('🤖 Attempting Gemini API call for complex query...');
+        response = await callGeminiAPI(message, detectedLanguage);
+        console.log('✅ Gemini API success:', response.substring(0, 100) + '...');
+      } catch (geminiError) {
+        console.error('❌ Gemini API failed:', {
+          message: geminiError.message,
+          status: geminiError.response?.status,
+          statusText: geminiError.response?.statusText,
+          data: geminiError.response?.data
+        });
+        console.log('🔄 Trying intelligent fallback...');
+        try {
+          response = await generateIntelligentFallback(message, detectedLanguage);
+          console.log('✅ Fallback success:', response.substring(0, 100) + '...');
+        } catch (fallbackError) {
+          console.error('❌ Fallback also failed:', fallbackError.message);
+          throw fallbackError;
+        }
       }
     }
 
