@@ -354,58 +354,86 @@ Note: Blockchain recording failed, but your payment is confirmed.`)
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="product-page-container">
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
       <Navigation />
 
       <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center gap-2 mb-6 text-sm text-muted-foreground">
-          <Link href="/marketplace" className="hover:text-foreground flex items-center gap-1">
+        <div className="product-breadcrumb flex items-center gap-2 text-sm" style={{
+          background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.2) 0%, rgba(30, 58, 138, 0.2) 100%)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid #f4d03f',
+          borderRadius: '12px',
+          padding: '12px 16px',
+          marginBottom: '24px'
+        }}>
+          <Link href="/marketplace" className="hover:text-foreground flex items-center gap-1" style={{
+            color: '#f4d03f',fontWeight: '900'
+          }}>
             <ArrowLeft className="h-4 w-4" />
             Marketplace
           </Link>
-          <span>/</span>
-          <span className="text-foreground">{product.name}</span>
+          <span style={{ color: 'white' }}>/</span>
+          <span style={{ fontWeight: '450',color: 'white' }}>{product.name}</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="product-main-container" style={{
+          background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.25) 0%, rgba(30, 58, 138, 0.25) 100%)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: '2px solid rgba(244, 208, 63, 0.4)',
+          borderRadius: '24px',
+          padding: '32px',
+          margin: '20px 0',
+          boxShadow: '0 8px 32px rgba(128, 0, 32, 0.3), 0 16px 64px rgba(30, 58, 138, 0.2)',
+          position: 'relative'
+        }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="space-y-4">
-            <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
+            <div className="product-image-container relative" style={{
+              width: '300px',
+              height: '300px',
+              maxWidth: '100%',
+              margin: '0'
+            }}>
               <img
                 src={product.image || "/placeholder.svg"}
                 alt={product.name}
                 className="w-full h-full object-cover"
+                style={{
+                  borderRadius: '16px'
+                }}
               />
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="product-info-card space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-foreground mb-2">{product.name}</h1>
-              <p className="text-lg text-muted-foreground mb-4">{product.description}</p>
+              <h1 className="product-title" style={{color: '#f4d03f' }}>{product.name}</h1>
+              <p className="product-description" style={{color: 'white'}}>{product.description}</p>
               
-              <div className="flex items-center gap-4 mb-4">
+              <div className="product-rating-section">
                 <div className="flex items-center gap-1">
-                  <Star className="h-5 w-5 fill-current text-yellow-500" />
-                  <span className="font-medium">{product.rating}</span>
-                  <span className="text-muted-foreground">({product.reviews} reviews)</span>
+                  <Star className="h-5 w-5 fill-current text-yellow-500" style={{color: '#f4d03f' }} />
+                  <span className="font-medium text-white" style={{color: 'white' }}>{product.rating}</span>
+                  <span className="text-gray-300" style={{color: 'white' }}>({product.reviews} reviews)</span>
                 </div>
-                <div className="flex items-center gap-1 text-muted-foreground">
-                  <MapPin className="h-4 w-4" />
-                  <span>{product.location}</span>
+                <div className="flex items-center gap-1 text-gray-300">
+                  <MapPin className="h-4 w-4"  style={{color: '#f4d03f' }}/>
+                  <span style={{color: 'white' }}>{product.location}</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 mb-6">
-                <Users className="h-4 w-4 text-muted-foreground" />
-                <span className="text-primary">{product.seller}</span>
+              <div className="product-seller-info">
+                <Users className="h-4 w-4" style={{color: '#f4d03f' }}/>
+                <span style={{color: 'white' }}>by {product.seller}</span>
               </div>
             </div>
 
-            <div className="bg-muted/30 rounded-lg p-6">
+            <div className="product-pricing-card">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl font-bold text-primary">₹{product.price.toLocaleString()}</span>
-                <span className="text-sm text-muted-foreground">
+                <span className="product-price-display" style={{color: '#f4d03f',fontSize: '2rem', fontWeight: '800',marginRight: '10px' }}>₹{product.price.toLocaleString()}</span>
+                <span className="text-sm text-muted-foreground" style={{color: 'white' ,fontSize: '1rem'}}>
                   {product.priceUnit || (() => {
                     switch (product.category) {
                       case "Transport":
@@ -427,45 +455,72 @@ Note: Blockchain recording failed, but your payment is confirmed.`)
                 </span>
               </div>
 
-              <div className="flex items-center gap-4 mb-4">
-                <span className="text-lg font-medium">Quantity:</span>
+              <div className="product-quantity-controls flex items-center gap-4 mb-4">
+                <span className="text-lg font-medium text-white" style={{color: "#800020" ,fontSize: '2rem',fontWeight: "bold"}}>Quantity:</span>
                 <div className="flex items-center gap-2">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={decreaseQuantity}
                     className="h-8 w-8 p-0"
+                    style={{
+                      background: 'linear-gradient(135deg, #f4d03f 0%, #d4af37 100%)',
+                      border: '2px solid #f4d03f',
+                      color: '#800020',
+                      borderRadius: '8px',
+                      fontWeight: 'bold',
+                      transition: 'all 0.3s ease'
+                    }}
                   >
-                    <Minus className="h-4 w-4" />
+                    <Minus className="h-4 w-4" style={{ color: '#800020' }} />
                   </Button>
-                  <span className="text-lg font-medium min-w-[2rem] text-center">{quantity}</span>
+                  <span className="text-lg font-medium min-w-[2rem] text-center" style={{ color: 'white', fontSize: '1.5rem', fontWeight: 'bold' }}>{quantity}</span>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={increaseQuantity}
                     className="h-8 w-8 p-0"
+                    style={{
+                      background: 'linear-gradient(135deg, #f4d03f 0%, #d4af37 100%)',
+                      border: '2px solid #f4d03f',
+                      color: '#800020',
+                      borderRadius: '8px',
+                      fontWeight: 'bold',
+                      transition: 'all 0.3s ease'
+                    }}
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="h-4 w-4" style={{ color: '#800020' }} />
                   </Button>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between mt-4 pt-4 border-t">
-                <span className="text-lg font-medium">Total:</span>
-                <span className="text-2xl font-bold text-primary">₹{(product.price * quantity).toLocaleString()}</span>
+              <div className="product-total-section flex items-center justify-between mt-4 pt-4">
+                <span className="text-lg font-medium text-white" style={{color: '#f4d03f' ,fontSize: '2rem',fontWeight: "bold"}}>Total:</span>
+                <span className="text-2xl font-bold" style={{color: 'white' ,fontSize: '2rem',fontWeight: "bold"}}>₹{(product.price * quantity).toLocaleString()}</span>
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="product-action-buttons">
               {/* Action Buttons Row */}
               <div className="flex gap-3 mb-4">
                 <Button
                   variant="outline"
                   size="lg"
                   onClick={toggleFavorite}
-                  className={`flex-1 ${isFavorite ? 'bg-red-50 border-red-200 text-red-600' : ''}`}
+                  className={`product-favorite-btn flex-1 ${isFavorite ? 'bg-red-50 border-red-200 text-red-600' : ''}`}
+                  style={{
+                    background: 'linear-gradient(135deg, #800020 0%, #a00028 100%)',
+                    border: '2px solid #800020',
+                    color: '#f4d03f',
+                    borderRadius: '12px',
+                    fontWeight: '600',
+                    fontSize: '1rem',
+                    padding: '12px 16px',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 12px rgba(128, 0, 32, 0.3)'
+                  }}
                 >
-                  <Heart className={`mr-2 h-5 w-5 ${isFavorite ? 'fill-current' : ''}`} />
+                  <Heart className={`mr-2 h-5 w-5 ${isFavorite ? 'fill-current' : ''}`} style={{ color: '#f4d03f' }} />
                   {isFavorite ? 'Favorited' : 'Add to Favorites'}
                 </Button>
                 
@@ -473,33 +528,51 @@ Note: Blockchain recording failed, but your payment is confirmed.`)
                   variant="outline"
                   size="lg"
                   onClick={addToCart}
-                  className="flex-1"
+                  className="product-cart-btn flex-1"
+                  style={{
+                    background: 'linear-gradient(135deg, #800020 0%, #a00028 100%)',
+                    border: '2px solid #800020',
+                    color: '#f4d03f',
+                    borderRadius: '12px',
+                    fontWeight: '600',
+                    fontSize: '1rem',
+                    padding: '12px 16px',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 12px rgba(128, 0, 32, 0.3)'
+                  }}
                 >
-                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  <ShoppingCart className="mr-2 h-5 w-5" style={{ color: '#f4d03f' }} />
                   Add to Cart
                 </Button>
               </div>
 
-              {/* Pay Now Button */}
+              {/* Pay Now Button - KEEPING ORIGINAL PAYMENT LOGIC */}
               <Button 
                 size="lg" 
-                className="w-full"
+                className="product-pay-btn w-full"
                 onClick={handlePayment}
                 style={{
-                  backgroundColor: '#800020',
-                  color: 'white',
-                  fontSize: '18px',
-                  padding: '16px'
+                  background: 'linear-gradient(135deg, #f4d03f 0%, #d4af37 100%)',
+                  border: '2px solid #f4d03f',
+                  color: '#800020',
+                  borderRadius: '12px',
+                  fontWeight: '700',
+                  fontSize: '1.2rem',
+                  padding: '18px 24px',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 6px 20px rgba(244, 208, 63, 0.4)',
+                  width: '100%'
                 }}
               >
-                <ShoppingCart className="mr-2 h-5 w-5" />
+                <ShoppingCart className="mr-2 h-5 w-5" style={{ color: '#800020' }} />
                 Pay Now - ₹{(product.price * quantity).toLocaleString()}
               </Button>
               
-              <p className="text-sm text-center text-muted-foreground">
-                Secure payment powered by Razorpay
+              <p className="text-sm text-center text-muted-foreground" style={{color: 'white' }}>
+                🔒Secure payment powered by Razorpay
               </p>
             </div>
+          </div>
           </div>
         </div>
       </div>
