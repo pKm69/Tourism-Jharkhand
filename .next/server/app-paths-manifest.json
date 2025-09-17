@@ -8,5 +8,7 @@
   "/analytics/page": "app/analytics/page.js",
   "/ar-vr/page": "app/ar-vr/page.js",
   "/marketplace/product/[id]/page": "app/marketplace/product/[id]/page.js",
-  "/order/success/page": "app/order/success/page.js"
+  "/order/success/page": "app/order/success/page.js",
+  "/about/page": "app/about/page.js",
+  "/feedback/page": "app/feedback/page.js"
 }

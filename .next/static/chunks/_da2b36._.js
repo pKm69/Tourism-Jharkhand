@@ -1,4 +1,4 @@
-(globalThis.TURBOPACK = globalThis.TURBOPACK || []).push(["static/chunks/_e296ff._.js", {
+(globalThis.TURBOPACK = globalThis.TURBOPACK || []).push(["static/chunks/_da2b36._.js", {
 
 "[project]/hooks/use-auth.ts [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
 "use strict";
@@ -947,7 +947,7 @@ function PaymentSuccessPage() {
                                             style: {
                                                 color: '#f4d03f',
                                                 fontWeight: '600',
-                                                fontSize: '1.2rem'
+                                                fontSize: '2rem'
                                             },
                                             children: " 💳 Payment ID:"
                                         }, void 0, false, {
@@ -959,7 +959,7 @@ function PaymentSuccessPage() {
                                             className: "font-mono text-sm font-medium break-all",
                                             style: {
                                                 color: 'white',
-                                                fontSize: '1.2rem'
+                                                fontSize: '1rem'
                                             },
                                             children: paymentId
                                         }, void 0, false, {
@@ -976,7 +976,7 @@ function PaymentSuccessPage() {
                                 blockchainHash && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
                                         background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.1) 0%, rgba(128, 0, 32, 0.2) 100%)',
-                                        border: '2px solid rgba(128, 0, 32, 0.4)',
+                                        border: '2px solid rgba(244, 208, 63, 0.3)',
                                         borderRadius: '12px',
                                         padding: '20px',
                                         backdropFilter: 'blur(10px)',
@@ -1105,12 +1105,12 @@ function PaymentSuccessPage() {
                                             className: "flex-1",
                                             style: {
                                                 background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.1) 0%, rgba(128, 0, 32, 0.2) 100%)',
-                                                border: '2px solid #800020',
+                                                border: '2px solid rgba(244, 208, 63, 0.3)',
                                                 color: '#f4d03f',
                                                 borderRadius: '12px',
                                                 fontWeight: '600',
                                                 padding: '12px 16px',
-                                                boxShadow: '0 4px 12px rgba(128, 0, 32, 0.3)',
+                                                boxShadow: '0 4px 12px rgba(244, 208, 63, 0.3))',
                                                 transition: 'all 0.3s ease'
                                             },
                                             children: [
@@ -1136,7 +1136,7 @@ function PaymentSuccessPage() {
                                             className: "flex-1",
                                             style: {
                                                 background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.1) 0%, rgba(128, 0, 32, 0.2) 100%)',
-                                                border: '2px solid #800020',
+                                                border: '2px solid rgba(244, 208, 63, 0.3)',
                                                 color: '#f4d03f',
                                                 borderRadius: '12px',
                                                 fontWeight: '600',
@@ -3691,43 +3691,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 "__TURBOPACK__ecmascript__hoisting__location__";
 
 })()),
-"[project]/node_modules/lucide-react/dist/esm/icons/shield.js [app-client] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, k: __turbopack_refresh__ }) => (() => {
-"use strict";
-
-/**
- * @license lucide-react v0.454.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */ __turbopack_esm__({
-    "default": ()=>Shield
-});
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$createLucideIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/lucide-react/dist/esm/createLucideIcon.js [app-client] (ecmascript)");
-"__TURBOPACK__ecmascript__hoisting__location__";
-;
-const Shield = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$createLucideIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("Shield", [
-    [
-        "path",
-        {
-            d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
-            key: "oel41y"
-        }
-    ]
-]);
-;
- //# sourceMappingURL=shield.js.map
-
-})()),
-"[project]/node_modules/lucide-react/dist/esm/icons/shield.js [app-client] (ecmascript) <export default as Shield>": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname }) => (() => {
-"use strict";
-
-__turbopack_esm__({
-    "Shield": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]
-});
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/lucide-react/dist/esm/icons/shield.js [app-client] (ecmascript)");
-"__TURBOPACK__ecmascript__hoisting__location__";
-
-})()),
 }]);
 
-//# sourceMappingURL=_e296ff._.js.map
+//# sourceMappingURL=_da2b36._.js.map
