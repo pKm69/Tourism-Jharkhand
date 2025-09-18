@@ -1,10 +1,36 @@
 const axios = require('axios');
+const Groq = require('groq-sdk');
 
 // Rate limiting and caching
 const API_CALL_CACHE = new Map();
 const API_CALL_TIMES = [];
-const MAX_CALLS_PER_MINUTE = 12; // Conservative limit (free tier is 15)
+const MAX_CALLS_PER_MINUTE = 100; // Groq has much more generous limits
 const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes cache
+
+// Initialize Groq client (lazy initialization)
+let groqClient = null;
+
+function getGroqClient() {
+  if (!groqClient) {
+    try {
+      const apiKey = process.env.GROQ_API_KEY;
+      console.log('🔑 Initializing Groq client with key:', apiKey ? `${apiKey.substring(0, 20)}...` : 'undefined');
+      
+      if (!apiKey || apiKey === 'your_groq_api_key_here') {
+        throw new Error('GROQ_API_KEY is not set or still has placeholder value');
+      }
+      
+      groqClient = new Groq({
+        apiKey: apiKey
+      });
+      console.log('✅ Groq client initialized successfully');
+    } catch (error) {
+      console.error('❌ Groq client initialization failed:', error.message);
+      throw error;
+    }
+  }
+  return groqClient;
+}
 
 // Language detection and translation mappings
 const LANGUAGE_MAPPINGS = {
@@ -97,27 +123,13 @@ function cacheResponse(message, language, response) {
   }
 }
 
-/**
- * Determine if query needs AI or can use local data
- */
-function needsAIResponse(message) {
-  const complexPatterns = [
-    /how to/i, /what is the best/i, /compare/i, /recommend/i,
-    /plan.*trip/i, /itinerary/i, /budget/i, /when to visit/i,
-    /weather/i, /season/i, /festival/i, /culture/i
-  ];
-  
-  return complexPatterns.some(pattern => pattern.test(message));
-}
+// Removed needsAIResponse function - now always using Groq AI
 
 /**
- * Call Gemini API for chat responses
+ * Call Groq API with Llama 3 70B for chat responses
  */
-const callGeminiAPI = async (message, language) => {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    throw new Error('Gemini API key not configured');
-  }
+const callGroqAPI = async (message, language) => {
+  const client = getGroqClient(); // Use lazy initialization
 
   // Check cache first
   const cachedResponse = getCachedResponse(message, language);
@@ -195,80 +207,83 @@ const callGeminiAPI = async (message, language) => {
     }
   }
 
-  const prompt = `You are a helpful tourism assistant for Jharkhand, India. 
-  Respond in ${LANGUAGE_MAPPINGS[language] || 'English'} language.
-  User question: ${message}
-  
-  ${contextData}
-  
-  Instructions:
-  - Give direct, concise answers (2-3 sentences max)
-  - Use the provided place data when available
-  - Be helpful but brief
-  - Don't be overly enthusiastic or use excessive exclamation marks
-  - Focus on facts and practical information
-  
-  Provide a short, helpful response.`;
+  const systemPrompt = `You are a helpful tourism assistant for Jharkhand, India. You specialize in providing accurate information about tourist destinations, cultural sites, travel tips, and local attractions in Jharkhand.
+
+Instructions:
+- Respond in ${LANGUAGE_MAPPINGS[language] || 'English'} language
+- Give direct, concise answers (2-3 sentences max)
+- Use the provided place data when available
+- Be helpful but brief
+- Focus on facts and practical information
+- Don't be overly enthusiastic or use excessive exclamation marks`;
+
+  const userPrompt = `User question: ${message}
+
+${contextData ? 'Available tourism data:\n' + contextData : ''}
+
+Provide a short, helpful response about Jharkhand tourism.`;
 
   try {
-    const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-      {
-        contents: [{
-          parts: [{
-            text: prompt
-          }]
-        }],
-        generationConfig: {
-          temperature: 0.7,
-          topK: 40,
-          topP: 0.95,
-          maxOutputTokens: 1024,
-        }
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
+    const chatCompletion = await client.chat.completions.create({
+      messages: [
+        {
+          role: 'system',
+          content: systemPrompt
         },
-        timeout: 10000
-      }
-    );
+        {
+          role: 'user',
+          content: userPrompt
+        }
+      ],
+      model: 'llama-3.1-70b-versatile', // Llama 3.1 70B model
+      temperature: 0.7,
+      max_tokens: 1024,
+      top_p: 0.95,
+      stream: false
+    });
 
-    if (response.data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-      const result = response.data.candidates[0].content.parts[0].text;
+    if (chatCompletion?.choices?.[0]?.message?.content) {
+      const result = chatCompletion.choices[0].message.content.trim();
       // Cache successful response
       cacheResponse(message, language, result);
+      console.log('✅ Groq API success with Llama 3 70B');
       return result;
     } else {
-      throw new Error('Invalid response format from Gemini API');
+      throw new Error('Invalid response format from Groq API');
     }
   } catch (apiError) {
-    // If flash model fails, try pro model with simpler request
-    console.log('Flash model failed, trying pro model...');
-    const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apiKey}`,
-      {
-        contents: [{
-          parts: [{
-            text: `Tourism assistant for Jharkhand. User asks: ${message}. Respond in ${LANGUAGE_MAPPINGS[language] || 'English'}. ${contextData ? 'Context: ' + contextData : ''}`
-          }]
-        }]
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        timeout: 8000
-      }
-    );
+    console.error('❌ Groq API error:', apiError.message);
+    // If Llama 3 70B fails, try Llama 3 8B as fallback
+    try {
+      console.log('🔄 Trying Llama 3 8B as fallback...');
+      const fallbackCompletion = await client.chat.completions.create({
+        messages: [
+          {
+            role: 'system',
+            content: `Tourism assistant for Jharkhand, India. Respond in ${LANGUAGE_MAPPINGS[language] || 'English'}.`
+          },
+          {
+            role: 'user',
+            content: `${message}\n\n${contextData ? 'Context: ' + contextData : ''}`
+          }
+        ],
+        model: 'llama-3.1-8b-instant', // Fallback to Llama 3.1 8B
+        temperature: 0.7,
+        max_tokens: 512,
+        stream: false
+      });
 
-    if (response.data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-      const result = response.data.candidates[0].content.parts[0].text;
-      // Cache successful response
-      cacheResponse(message, language, result);
-      return result;
-    } else {
-      throw new Error('Both Gemini models failed');
+      if (fallbackCompletion?.choices?.[0]?.message?.content) {
+        const result = fallbackCompletion.choices[0].message.content.trim();
+        cacheResponse(message, language, result);
+        console.log('✅ Groq fallback success with Llama 3.1 8B');
+        return result;
+      } else {
+        throw new Error('Both Groq models failed');
+      }
+    } catch (fallbackError) {
+      console.error('❌ Groq fallback also failed:', fallbackError.message);
+      throw new Error('All Groq models failed: ' + fallbackError.message);
     }
   }
 };
@@ -371,46 +386,26 @@ const sendMessage = async (req, res) => {
     
     let response;
     
-    // Smart routing: Use local data for simple queries, API for complex ones
-    const useAI = needsAIResponse(message);
+    // Always use Groq AI for all queries
+    console.log('🤖 Using Groq AI for query:', message);
     
-    if (!useAI) {
-      // Try local data first for simple queries
-      console.log('🏠 Using local data for simple query...');
+    try {
+      response = await callGroqAPI(message, detectedLanguage);
+      console.log('✅ Groq API success:', response.substring(0, 100) + '...');
+    } catch (groqError) {
+      console.error('❌ Groq API failed:', {
+        message: groqError.message,
+        status: groqError.response?.status,
+        statusText: groqError.response?.statusText,
+        data: groqError.response?.data
+      });
+      console.log('🔄 Trying intelligent fallback...');
       try {
         response = await generateIntelligentFallback(message, detectedLanguage);
-        console.log('✅ Local data success:', response.substring(0, 100) + '...');
-      } catch (localError) {
-        console.log('🤖 Local data failed, trying API...');
-        // If local fails, try API
-        try {
-          response = await callGeminiAPI(message, detectedLanguage);
-          console.log('✅ Gemini API success:', response.substring(0, 100) + '...');
-        } catch (geminiError) {
-          throw geminiError;
-        }
-      }
-    } else {
-      // Use API for complex queries
-      try {
-        console.log('🤖 Attempting Gemini API call for complex query...');
-        response = await callGeminiAPI(message, detectedLanguage);
-        console.log('✅ Gemini API success:', response.substring(0, 100) + '...');
-      } catch (geminiError) {
-        console.error('❌ Gemini API failed:', {
-          message: geminiError.message,
-          status: geminiError.response?.status,
-          statusText: geminiError.response?.statusText,
-          data: geminiError.response?.data
-        });
-        console.log('🔄 Trying intelligent fallback...');
-        try {
-          response = await generateIntelligentFallback(message, detectedLanguage);
-          console.log('✅ Fallback success:', response.substring(0, 100) + '...');
-        } catch (fallbackError) {
-          console.error('❌ Fallback also failed:', fallbackError.message);
-          throw fallbackError;
-        }
+        console.log('✅ Fallback success:', response.substring(0, 100) + '...');
+      } catch (fallbackError) {
+        console.error('❌ Fallback also failed:', fallbackError.message);
+        throw fallbackError;
       }
     }
 
@@ -440,14 +435,14 @@ const sendMessage = async (req, res) => {
  */
 const healthCheck = async (req, res) => {
   try {
-    // Check if Gemini API key is configured
-    const apiKey = process.env.GEMINI_API_KEY;
-    
-    if (!apiKey) {
+    // Check if Groq API client can be initialized
+    try {
+      getGroqClient();
+    } catch (error) {
       return res.status(503).json({
         success: false,
         chatbotService: 'unavailable',
-        error: 'Gemini API key not configured'
+        error: 'Groq API client initialization failed: ' + error.message
       });
     }
     
@@ -455,10 +450,13 @@ const healthCheck = async (req, res) => {
       success: true,
       chatbotService: 'available',
       features: {
-        geminiAPI: 'configured',
+        groqAPI: 'configured',
+        model: 'llama-3.1-70b-versatile',
+        fallbackModel: 'llama-3.1-8b-instant',
         multilingualSupport: true,
         supportedLanguages: Object.keys(LANGUAGE_MAPPINGS),
-        tourismContext: 'Jharkhand focused'
+        tourismContext: 'Jharkhand focused',
+        rateLimit: `${MAX_CALLS_PER_MINUTE} calls per minute`
       }
     });
   } catch (error) {
