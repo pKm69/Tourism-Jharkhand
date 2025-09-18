@@ -290,33 +290,19 @@ export default function AIFeaturesPage() {
               <p className="text-xl text-maroon mb-8 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
                 Join the revolution in smart tourism with AI-powered planning and blockchain security
               </p>
-              <div className="button-group flex gap-6 justify-center">
-                <button className="btn primary text-lg px-8 py-4 min-w-[200px]" style={{
-                  background: '#f4d03f',
-                  color: '#800020',
-                  border: '2px solid #f4d03f',
-                  fontSize: '18px'
-                }} data-aos="fade-up" data-aos-delay="400">
-                  Download Mobile App
-                </button>
+              <div className="button-group flex justify-center">
                 <Link href="/destinations">
                   <button 
-                    className="btn secondary text-lg px-8 py-4 min-w-[200px]" 
+                    className="btn primary text-lg px-8 py-4 min-w-[200px]" 
                     style={{
-                      background: 'transparent',
-                      color: 'white',
+                      background: '#f4d03f',
+                      color: '#800020',
                       border: '2px solid #f4d03f',
                       fontSize: '18px',
                       transition: 'all 0.3s ease'
                     }}
-                    onMouseEnter={(e) => {
-                      (e.target as HTMLButtonElement).style.background = 'rgba(244, 208, 63, 0.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.target as HTMLButtonElement).style.background = 'transparent';
-                    }}
                     data-aos="fade-up" 
-                    data-aos-delay="600"
+                    data-aos-delay="400"
                   >
                     Start Planning
                   </button>

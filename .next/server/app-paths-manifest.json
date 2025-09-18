@@ -6,5 +6,8 @@
   "/destinations/[destination]/page": "app/destinations/[destination]/page.js",
   "/api/wikipedia/route": "app/api/wikipedia/route.js",
   "/travel-planner/page": "app/travel-planner/page.js",
-  "/ai-features/page": "app/ai-features/page.js"
+  "/ai-features/page": "app/ai-features/page.js",
+  "/marketplace/page": "app/marketplace/page.js",
+  "/feedback/page": "app/feedback/page.js",
+  "/about/page": "app/about/page.js"
 }
