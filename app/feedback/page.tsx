@@ -401,6 +401,16 @@ export default function FeedbackPage() {
                           padding: '0.5rem 0.75rem',
                           height: '42px'
                         }}
+                        onFocus={(e) => {
+                          e.target.style.background = 'rgba(255, 255, 255, 0.12)';
+                          e.target.style.color = 'white';
+                          e.target.style.border = '1px solid rgba(244, 208, 63, 0.5)';
+                        }}
+                        onBlur={(e) => {
+                          e.target.style.background = 'rgba(255, 255, 255, 0.08)';
+                          e.target.style.color = 'white';
+                          e.target.style.border = '1px solid rgba(244, 208, 63, 0.3)';
+                        }}
                       />
                     </div>
                     <div>
@@ -418,7 +428,7 @@ export default function FeedbackPage() {
                         }}
                       >
                         {languages.map(lang => (
-                          <option key={lang.code} value={lang.code}>{lang.name}</option>
+                          <option key={lang.code} value={lang.code} style={{ background: '#1a1a1a', color: 'white' }}>{lang.name}</option>
                         ))}
                       </select>
                     </div>
@@ -435,11 +445,12 @@ export default function FeedbackPage() {
                         style={{
                           background: 'rgba(255, 255, 255, 0.08)',
                           border: '1px solid rgba(244, 208, 63, 0.3)',
-                          color: 'white'
+                          color: 'white',
+                          height: '42px'
                         }}
                       >
                         {locations.slice(1).map(location => (
-                          <option key={location} value={location}>{location}</option>
+                          <option key={location} value={location} style={{ background: '#1a1a1a', color: 'white' }}>{location}</option>
                         ))}
                       </select>
                     </div>
@@ -453,11 +464,12 @@ export default function FeedbackPage() {
                         style={{
                           background: 'rgba(255, 255, 255, 0.08)',
                           border: '1px solid rgba(244, 208, 63, 0.3)',
-                          color: 'white'
+                          color: 'white',
+                          height: '42px'
                         }}
                       >
                         {categories.slice(1).map(category => (
-                          <option key={category} value={category}>{category}</option>
+                          <option key={category} value={category} style={{ background: '#1a1a1a', color: 'white' }}>{category}</option>
                         ))}
                       </select>
                     </div>
@@ -540,6 +552,16 @@ export default function FeedbackPage() {
                           border: '1px solid rgba(244, 208, 63, 0.3)',
                           color: 'white'
                         }}
+                        onFocus={(e) => {
+                          e.target.style.background = 'rgba(255, 255, 255, 0.12)';
+                          e.target.style.color = 'white';
+                          e.target.style.border = '1px solid rgba(244, 208, 63, 0.5)';
+                        }}
+                        onBlur={(e) => {
+                          e.target.style.background = 'rgba(255, 255, 255, 0.08)';
+                          e.target.style.color = 'white';
+                          e.target.style.border = '1px solid rgba(244, 208, 63, 0.3)';
+                        }}
                       />
                       
                     </div>
@@ -611,12 +633,13 @@ export default function FeedbackPage() {
                         border: '1px solid rgba(244, 208, 63, 0.3)',
                         color: 'white',
                         minWidth: '340px',
-                        marginBottom: '16px'
+                        marginBottom: '16px',
+                        height: '42px'
                       }}
                     >
-                      <option value="auto">Auto-detect</option>
+                      <option value="auto" style={{ background: '#1a1a1a', color: 'white' }}>Auto-detect</option>
                       {languages.map(lang => (
-                        <option key={lang.code} value={lang.code}>{lang.name}</option>
+                        <option key={lang.code} value={lang.code} style={{ background: '#1a1a1a', color: 'white' }}>{lang.name}</option>
                       ))}
                     </select>
                   </div>
@@ -736,11 +759,12 @@ export default function FeedbackPage() {
                         style={{
                           background: 'rgba(255, 255, 255, 0.08)',
                           border: '1px solid rgba(244, 208, 63, 0.25)',
-                          color: 'white'
+                          color: 'white',
+                          height: '42px'
                         }}
                       >
                         {locations.map(location => (
-                          <option key={location} value={location}>{location}</option>
+                          <option key={location} value={location} style={{ background: '#1a1a1a', color: 'white' }}>{location}</option>
                         ))}
                       </select>
                     </div>
@@ -754,11 +778,12 @@ export default function FeedbackPage() {
                         style={{
                           background: 'rgba(255, 255, 255, 0.08)',
                           border: '1px solid rgba(244, 208, 63, 0.25)',
-                          color: 'white'
+                          color: 'white',
+                          height: '42px'
                         }}
                       >
                         {categories.map(category => (
-                          <option key={category} value={category}>{category}</option>
+                          <option key={category} value={category} style={{ background: '#1a1a1a', color: 'white' }}>{category}</option>
                         ))}
                       </select>
                     </div>
@@ -772,13 +797,14 @@ export default function FeedbackPage() {
                         style={{
                           background: 'rgba(255, 255, 255, 0.08)',
                           border: '1px solid rgba(244, 208, 63, 0.25)',
-                          color: 'white'
+                          color: 'white',
+                          height: '42px'
                         }}
                       >
-                        <option value="All">All</option>
-                        <option value="positive">Positive</option>
-                        <option value="negative">Negative</option>
-                        <option value="neutral">Neutral</option>
+                        <option value="All" style={{ background: '#1a1a1a', color: 'white' }}>All</option>
+                        <option value="positive" style={{ background: '#1a1a1a', color: 'white' }}>Positive</option>
+                        <option value="negative" style={{ background: '#1a1a1a', color: 'white' }}>Negative</option>
+                        <option value="neutral" style={{ background: '#1a1a1a', color: 'white' }}>Neutral</option>
                       </select>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="600">
@@ -791,20 +817,21 @@ export default function FeedbackPage() {
                         style={{
                           background: 'rgba(255, 255, 255, 0.08)',
                           border: '1px solid rgba(244, 208, 63, 0.25)',
-                          color: 'white'
+                          color: 'white',
+                          height: '42px'
                         }}
                       >
-                        <option value="All">All</option>
-                        <option value="critical">Critical</option>
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
+                        <option value="All" style={{ background: '#1a1a1a', color: 'white' }}>All</option>
+                        <option value="critical" style={{ background: '#1a1a1a', color: 'white' }}>Critical</option>
+                        <option value="high" style={{ background: '#1a1a1a', color: 'white' }}>High</option>
+                        <option value="medium" style={{ background: '#1a1a1a', color: 'white' }}>Medium</option>
+                        <option value="low" style={{ background: '#1a1a1a', color: 'white' }}>Low</option>
                       </select>
                     </div>
                     <div className="flex flex-col gap-2" data-aos="fade-up" data-aos-delay="700">
                       <Label style={{ color: '#f4d03f', fontWeight: 700, marginTop: '12px' }}>Filters</Label>
                       <div className="space-y-1">
-                        <label className="flex items-center gap-2 text-sm">
+                        <label className="flex items-center gap-2 text-sm" style={{ color: 'white' }}>
                           <input
                             type="checkbox"
                             checked={filters.flagged}
@@ -812,7 +839,7 @@ export default function FeedbackPage() {
                           />
                           Flagged
                         </label>
-                        <label className="flex items-center gap-2 text-sm">
+                        <label className="flex items-center gap-2 text-sm" style={{ color: 'white' }}>
                           <input
                             type="checkbox"
                             checked={filters.hasVoice}
@@ -820,7 +847,7 @@ export default function FeedbackPage() {
                           />
                           Has Voice
                         </label>
-                        <label className="flex items-center gap-2 text-sm">
+                        <label className="flex items-center gap-2 text-sm" style={{ color: 'white' }}>
                           <input
                             type="checkbox"
                             checked={filters.hasImage}
@@ -867,9 +894,9 @@ export default function FeedbackPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Total</p>
-                      <p className="text-2xl font-bold">{sentimentStats.total}</p>
+                      <p className="text-2xl font-bold" style={{ color: 'white' }}>{sentimentStats.total}</p>
                     </div>
-                    <MessageCircle className="h-8 w-8 text-blue-600" />
+                    <MessageCircle className="h-8 w-8 text-blue-600" style={{ color: 'white' }}/>
                   </div>
                 </Card>
                 <Card className="p-4"
@@ -886,9 +913,9 @@ export default function FeedbackPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Positive</p>
-                      <p className="text-2xl font-bold text-green-600">{sentimentStats.positive}</p>
+                      <p className="text-2xl font-bold text-green-600" style={{ color: 'white' }}>{sentimentStats.positive}</p>
                     </div>
-                    <ThumbsUp className="h-8 w-8 text-green-600" />
+                    <ThumbsUp className="h-8 w-8 text-green-600" style={{ color: 'white' }}/>
                   </div>
                 </Card>
                 <Card className="p-4"
@@ -904,9 +931,9 @@ export default function FeedbackPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Negative</p>
-                      <p className="text-2xl font-bold text-red-600">{sentimentStats.negative}</p>
+                      <p className="text-2xl font-bold text-red-600" style={{ color: 'white' }}>{sentimentStats.negative}</p>
                     </div>
-                    <ThumbsDown className="h-8 w-8 text-red-600" />
+                    <ThumbsDown className="h-8 w-8 text-red-600" style={{ color: 'white' }}/>
                   </div>
                 </Card>
                 <Card className="p-4"
@@ -922,9 +949,9 @@ export default function FeedbackPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Neutral</p>
-                      <p className="text-2xl font-bold text-yellow-600">{sentimentStats.neutral}</p>
+                      <p className="text-2xl font-bold text-yellow-600" style={{ color: 'white' }}>{sentimentStats.neutral}</p>
                     </div>
-                    <Meh className="h-8 w-8 text-yellow-600" />
+                    <Meh className="h-8 w-8 text-yellow-600" style={{ color: 'white' }}/>
                   </div>
                 </Card>
                 <Card className="p-4"
@@ -940,9 +967,9 @@ export default function FeedbackPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Critical</p>
-                      <p className="text-2xl font-bold text-red-600">{urgencyStats.critical}</p>
+                      <p className="text-2xl font-bold text-red-600" style={{ color: 'white' }}>{urgencyStats.critical}</p>
                     </div>
-                    <AlertTriangle className="h-8 w-8 text-red-600" />
+                    <AlertTriangle className="h-8 w-8 text-red-600" style={{ color: 'white' }}/>
                   </div>
                 </Card>
                 <Card className="p-4"
@@ -958,9 +985,9 @@ export default function FeedbackPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>High</p>
-                      <p className="text-2xl font-bold text-orange-600">{urgencyStats.high}</p>
+                      <p className="text-2xl font-bold text-orange-600" style={{ color: 'white' }}>{urgencyStats.high}</p>
                     </div>
-                    <TrendingUp className="h-8 w-8 text-orange-600" />
+                    <TrendingUp className="h-8 w-8 text-orange-600" style={{ color: 'white' }}/>
                   </div>
                 </Card>
                 <Card className="p-4"
@@ -976,9 +1003,9 @@ export default function FeedbackPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Medium</p>
-                      <p className="text-2xl font-bold text-yellow-600">{urgencyStats.medium}</p>
+                      <p className="text-2xl font-bold text-yellow-600" style={{ color: 'white' }}>{urgencyStats.medium}</p>
                     </div>
-                    <TrendingUp className="h-8 w-8 text-yellow-600" />
+                    <TrendingUp className="h-8 w-8 text-yellow-600" style={{ color: 'white' }}/>
                   </div>
                 </Card>
                 <Card className="p-4"
@@ -994,9 +1021,9 @@ export default function FeedbackPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm" style={{ color: '#f4d03f', fontWeight: 700 }}>Low</p>
-                      <p className="text-2xl font-bold text-green-600">{urgencyStats.low}</p>
+                      <p className="text-2xl font-bold text-green-600" style={{ color: 'white' }}>{urgencyStats.low}</p>
                     </div>
-                    <CheckCircle className="h-8 w-8 text-green-600" />
+                    <CheckCircle className="h-8 w-8 text-green-600" style={{ color: 'white' }}/>
                   </div>
                 </Card>
               </div>
@@ -1029,20 +1056,25 @@ export default function FeedbackPage() {
                     <Card key={feedback.id}
                       className={`${feedback.flagged ? "border-red-200" : ""} ${feedback.urgencyLevel === 'critical' ? 'border-red-300 shadow-red-100 shadow-lg' : ''}`}
                       style={{
-                        background: 'rgba(255,255,255,0.08)',
-                        border: feedback.flagged ? '1px solid rgba(244, 63, 94, 0.4)' : '1px solid rgba(244, 208, 63, 0.3)',
-                        backdropFilter: 'blur(12px)'
+                        background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.15) 0%, rgba(30, 58, 138, 0.15) 100%)',
+                        border: feedback.flagged ? '2px solid rgba(244, 63, 94, 0.6)' : '2px solid rgba(244, 208, 63, 0.4)',
+                        backdropFilter: 'blur(15px)',
+                        borderRadius: '20px',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+                        marginBottom: '16px'
                       }}
+                      data-aos="fade-up"
+                      data-aos-delay="200"
                     >
                       <CardHeader>
                         <div className="flex items-start justify-between">
                           <div>
-                            <CardTitle className="text-lg flex items-center gap-2">
+                            <CardTitle className="text-lg flex items-center gap-2" style={{ color: '#f4d03f', fontWeight: 700 }}>
                               {feedback.userName}
                               {feedback.flagged && <AlertTriangle className="h-4 w-4 text-red-600" />}
                               {feedback.escalated && <TrendingUp className="h-4 w-4 text-orange-600" />}
                             </CardTitle>
-                            <CardDescription className="flex items-center gap-4 mt-1">
+                            <CardDescription className="flex items-center gap-4 mt-1" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
                               <span className="flex items-center gap-1">
                                 <MapPin className="h-3 w-3" />
                                 {feedback.location}
@@ -1053,7 +1085,16 @@ export default function FeedbackPage() {
                               </span>
                               <span className="flex items-center gap-1">
                                 {feedback.language && (
-                                  <Badge variant="outline" className="text-xs">
+                                  <Badge 
+                                    variant="outline" 
+                                    className="text-xs"
+                                    style={{
+                                      background: 'rgba(244, 208, 63, 0.15)',
+                                      border: '1px solid rgba(244, 208, 63, 0.3)',
+                                      color: '#f4d03f',
+                                      borderRadius: '8px'
+                                    }}
+                                  >
                                     {feedback.language.toUpperCase()}
                                   </Badge>
                                 )}
@@ -1061,12 +1102,28 @@ export default function FeedbackPage() {
                             </CardDescription>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Badge variant="outline">{feedback.category}</Badge>
-                            <Badge className={getSentimentColor(feedback.aiAnalysis.sentiment)}>
+                            <Badge 
+                              variant="outline" 
+                              style={{ 
+                                background: 'rgba(244, 208, 63, 0.2)', 
+                                border: '1px solid rgba(244, 208, 63, 0.5)', 
+                                color: '#f4d03f',
+                                borderRadius: '12px'
+                              }}
+                            >
+                              {feedback.category}
+                            </Badge>
+                            <Badge 
+                              className={getSentimentColor(feedback.aiAnalysis.sentiment)}
+                              style={{ borderRadius: '12px' }}
+                            >
                               {getSentimentIcon(feedback.aiAnalysis.sentiment)}
                               <span className="ml-1 capitalize">{feedback.aiAnalysis.sentiment}</span>
                             </Badge>
-                            <Badge className={getUrgencyColor(feedback.urgencyLevel)}>
+                            <Badge 
+                              className={getUrgencyColor(feedback.urgencyLevel)}
+                              style={{ borderRadius: '12px' }}
+                            >
                               {getUrgencyIcon(feedback.urgencyLevel)}
                               <span className="ml-1 capitalize">{feedback.urgencyLevel}</span>
                             </Badge>
@@ -1080,14 +1137,15 @@ export default function FeedbackPage() {
                             {[1, 2, 3, 4, 5].map(star => (
                               <Star
                                 key={star}
-                                className={`h-4 w-4 ${
+                                className="h-4 w-4"
+                                style={
                                   star <= feedback.rating
-                                    ? 'fill-current text-yellow-500'
-                                    : 'text-gray-300'
-                                }`}
+                                    ? { fill: '#f4d03f', color: '#f4d03f' }
+                                    : { fill: 'none', color: 'rgba(255, 255, 255, 0.3)' }
+                                }
                               />
                             ))}
-                            <span className="ml-2 text-sm text-muted-foreground">
+                            <span className="ml-2 text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
                               {feedback.rating}/5 stars
                             </span>
                             {feedback.emojiRating && (
@@ -1098,43 +1156,62 @@ export default function FeedbackPage() {
                           {/* Text Feedback */}
                           {feedback.textFeedback && (
                             <div>
-                              <p className="text-sm">{feedback.textFeedback}</p>
+                              <p className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.6' }}>
+                                {feedback.textFeedback}
+                              </p>
                             </div>
                           )}
 
                           {/* AI Analysis Summary */}
-                          <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-3 rounded-lg border border-purple-200">
-                            <div className="flex items-center gap-2 mb-2">
-                              <Brain className="h-4 w-4 text-purple-600" />
-                              <span className="font-medium text-purple-800 text-sm">AI Analysis</span>
+                          <div 
+                            className="p-4 rounded-xl border"
+                            style={{
+                              background: 'linear-gradient(135deg, rgba(244, 208, 63, 0.15) 0%, rgba(128, 0, 32, 0.1) 100%)',
+                              border: '1px solid rgba(244, 208, 63, 0.3)',
+                              backdropFilter: 'blur(10px)'
+                            }}
+                          >
+                            <div className="flex items-center gap-2 mb-3">
+                              <Brain className="h-5 w-5" style={{ color: '#f4d03f' }} />
+                              <span className="font-medium text-sm" style={{ color: '#f4d03f' }}>AI Analysis</span>
                             </div>
                             
                             <div className="grid grid-cols-2 gap-4 text-xs">
                               <div>
-                                <span className="text-purple-700">Sentiment:</span>
-                                <span className="ml-1 font-medium">{feedback.aiAnalysis.sentiment}</span>
+                                <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Sentiment:</span>
+                                <span className="ml-1 font-medium" style={{ color: 'white' }}>{feedback.aiAnalysis.sentiment}</span>
                               </div>
                               <div>
-                                <span className="text-purple-700">Confidence:</span>
-                                <span className="ml-1 font-medium">{(feedback.aiAnalysis.confidence * 100).toFixed(1)}%</span>
+                                <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Confidence:</span>
+                                <span className="ml-1 font-medium" style={{ color: 'white' }}>{(feedback.aiAnalysis.confidence * 100).toFixed(1)}%</span>
                               </div>
                               <div>
-                                <span className="text-purple-700">Language:</span>
-                                <span className="ml-1 font-medium">{feedback.aiAnalysis.language}</span>
+                                <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Language:</span>
+                                <span className="ml-1 font-medium" style={{ color: 'white' }}>{feedback.aiAnalysis.language}</span>
                               </div>
                               <div>
-                                <span className="text-purple-700">Urgency:</span>
-                                <span className="ml-1 font-medium capitalize">{feedback.urgencyLevel}</span>
+                                <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Urgency:</span>
+                                <span className="ml-1 font-medium capitalize" style={{ color: 'white' }}>{feedback.urgencyLevel}</span>
                               </div>
                             </div>
 
                             {/* Keywords */}
                             {feedback.aiAnalysis.keywords.length > 0 && (
-                              <div className="mt-2">
-                                <p className="text-xs font-medium text-purple-700 mb-1">Key Topics:</p>
+                              <div className="mt-3">
+                                <p className="text-xs font-medium mb-2" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Key Topics:</p>
                                 <div className="flex flex-wrap gap-1">
                                   {feedback.aiAnalysis.keywords.slice(0, 4).map((keyword, idx) => (
-                                    <Badge key={idx} variant="outline" className="text-xs bg-blue-100">
+                                    <Badge 
+                                      key={idx} 
+                                      variant="outline" 
+                                      className="text-xs"
+                                      style={{
+                                        background: 'rgba(244, 208, 63, 0.2)',
+                                        border: '1px solid rgba(244, 208, 63, 0.4)',
+                                        color: '#f4d03f',
+                                        borderRadius: '8px'
+                                      }}
+                                    >
                                       {keyword}
                                     </Badge>
                                   ))}
@@ -1144,23 +1221,43 @@ export default function FeedbackPage() {
                           </div>
 
                           {/* Status Indicators */}
-                          <div className="flex items-center justify-between pt-2 border-t border-gray-200">
+                          <div 
+                            className="flex items-center justify-between pt-3 mt-3"
+                            style={{ borderTop: '1px solid rgba(244, 208, 63, 0.2)' }}
+                          >
                             <div className="flex items-center gap-2">
-                              
                               {feedback.imageData && (
-                                <Badge variant="outline" className="text-xs">
+                                <Badge 
+                                  variant="outline" 
+                                  className="text-xs"
+                                  style={{
+                                    background: 'rgba(244, 208, 63, 0.15)',
+                                    border: '1px solid rgba(244, 208, 63, 0.3)',
+                                    color: '#f4d03f',
+                                    borderRadius: '8px'
+                                  }}
+                                >
                                   <Image className="h-3 w-3 mr-1" />
                                   Image
                                 </Badge>
                               )}
                               {feedback.isVerified && (
-                                <Badge variant="outline" className="text-xs bg-green-100 text-green-800">
+                                <Badge 
+                                  variant="outline" 
+                                  className="text-xs"
+                                  style={{
+                                    background: 'rgba(34, 197, 94, 0.15)',
+                                    border: '1px solid rgba(34, 197, 94, 0.3)',
+                                    color: '#22c55e',
+                                    borderRadius: '8px'
+                                  }}
+                                >
                                   <CheckCircle className="h-3 w-3 mr-1" />
                                   Verified
                                 </Badge>
                               )}
                             </div>
-                            <div className="text-xs text-muted-foreground">
+                            <div className="text-xs" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
                               ID: #{feedback.id}
                             </div>
                           </div>
