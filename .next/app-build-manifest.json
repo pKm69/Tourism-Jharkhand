@@ -1,7 +1,4 @@
 {
-<<<<<<< HEAD
-  "pages": {}
-=======
   "pages": {
     "/page": [
       "static/chunks/_4b9d0d._.css",
@@ -24,15 +21,16 @@
       "static/chunks/node_modules_next_dist_esm_build_templates_app-page_f8d041.js",
       "static/chunks/node_modules_next_dist_esm_build_templates_app-page_c94760.js"
     ],
-    "/ai-features/page": [
+    "/destinations/page": [
       "static/chunks/_4b9d0d._.css",
       "static/chunks/node_modules_f8094f._.js",
       "static/chunks/_adfe07._.js",
       "static/chunks/app_layout_tsx_823061._.js",
-      "static/chunks/_83848b._.js",
-      "static/chunks/node_modules_9a9d2d._.js",
+      "static/chunks/_7e4529._.js",
+      "static/chunks/node_modules_d10c96._.js",
       "static/chunks/node_modules_aos_dist_aos_941406.css",
-      "static/chunks/app_ai-features_page_tsx_d5ce6a._.js",
+      "static/chunks/public_destination_fcec3f.js",
+      "static/chunks/app_destinations_page_tsx_ff49c2._.js",
       "static/chunks/node_modules_next_dist_compiled_react_a1d82d._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_cjs_react-dom_development_c9a189.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_87a050._.js",
@@ -41,8 +39,27 @@
       "static/chunks/node_modules_next_dist_091837._.js",
       "static/chunks/node_modules_@swc_helpers_cjs_00636a._.js",
       "static/chunks/[turbopack]_dev_client_hmr-client_ts_4da20b._.js",
-      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_e978e7.js",
-      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_d18388.js"
+      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_611754.js",
+      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_645b03.js"
+    ],
+    "/destinations/[destination]/page": [
+      "static/chunks/_4b9d0d._.css",
+      "static/chunks/node_modules_f8094f._.js",
+      "static/chunks/_adfe07._.js",
+      "static/chunks/app_layout_tsx_823061._.js",
+      "static/chunks/node_modules_984315._.js",
+      "static/chunks/_6beff0._.js",
+      "static/chunks/app_destinations_[destination]_page_tsx_723ade._.js",
+      "static/chunks/node_modules_next_dist_compiled_react_a1d82d._.js",
+      "static/chunks/node_modules_next_dist_compiled_react-dom_cjs_react-dom_development_c9a189.js",
+      "static/chunks/node_modules_next_dist_compiled_react-dom_87a050._.js",
+      "static/chunks/node_modules_next_dist_compiled_e13b54._.js",
+      "static/chunks/node_modules_next_dist_client_8bb71d._.js",
+      "static/chunks/node_modules_next_dist_091837._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_00636a._.js",
+      "static/chunks/[turbopack]_dev_client_hmr-client_ts_4da20b._.js",
+      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_769c13.js",
+      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_5e545c.js"
     ],
     "/travel-planner/page": [
       "static/chunks/_4b9d0d._.css",
@@ -64,16 +81,15 @@
       "static/chunks/node_modules_next_dist_esm_build_templates_app-page_232268.js",
       "static/chunks/node_modules_next_dist_esm_build_templates_app-page_d39715.js"
     ],
-    "/destinations/page": [
+    "/ai-features/page": [
       "static/chunks/_4b9d0d._.css",
       "static/chunks/node_modules_f8094f._.js",
       "static/chunks/_adfe07._.js",
       "static/chunks/app_layout_tsx_823061._.js",
-      "static/chunks/_7e4529._.js",
-      "static/chunks/node_modules_d10c96._.js",
+      "static/chunks/_83848b._.js",
+      "static/chunks/node_modules_9a9d2d._.js",
       "static/chunks/node_modules_aos_dist_aos_941406.css",
-      "static/chunks/public_destination_fcec3f.js",
-      "static/chunks/app_destinations_page_tsx_ff49c2._.js",
+      "static/chunks/app_ai-features_page_tsx_d5ce6a._.js",
       "static/chunks/node_modules_next_dist_compiled_react_a1d82d._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_cjs_react-dom_development_c9a189.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_87a050._.js",
@@ -82,9 +98,8 @@
       "static/chunks/node_modules_next_dist_091837._.js",
       "static/chunks/node_modules_@swc_helpers_cjs_00636a._.js",
       "static/chunks/[turbopack]_dev_client_hmr-client_ts_4da20b._.js",
-      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_611754.js",
-      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_645b03.js"
+      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_e978e7.js",
+      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_d18388.js"
     ]
   }
->>>>>>> 835cdcb00f54f92b5ba601e0ce959840ad998a7b
 }

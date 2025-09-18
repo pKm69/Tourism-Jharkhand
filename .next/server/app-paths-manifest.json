@@ -1,12 +1,10 @@
-<<<<<<< HEAD
-{}
-=======
 {
   "/page": "app/page.js",
   "/api/feedback/route": "app/api/feedback/route.js",
   "/api/analytics/route": "app/api/analytics/route.js",
-  "/ai-features/page": "app/ai-features/page.js",
+  "/destinations/page": "app/destinations/page.js",
+  "/destinations/[destination]/page": "app/destinations/[destination]/page.js",
+  "/api/wikipedia/route": "app/api/wikipedia/route.js",
   "/travel-planner/page": "app/travel-planner/page.js",
-  "/destinations/page": "app/destinations/page.js"
+  "/ai-features/page": "app/ai-features/page.js"
 }
->>>>>>> 835cdcb00f54f92b5ba601e0ce959840ad998a7b

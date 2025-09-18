@@ -641,7 +641,7 @@ function ChatbotWidget() {
         columnNumber: 5
     }, this);
 }
-_s(ChatbotWidget, "hY2EWWyTqTqhhGNBPnVudZdBEUw=");
+_s(ChatbotWidget, "90+HqP/s04EiSTxMqU35jwHqo/w=");
 _c = ChatbotWidget;
 var _c;
 __turbopack_refresh__.register(_c, "ChatbotWidget");

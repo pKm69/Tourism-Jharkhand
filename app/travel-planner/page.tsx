@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import AOS from "aos"
 import "aos/dist/aos.css"
 import Link from "next/link"
@@ -48,6 +49,7 @@ interface ApiResponse {
 }
 
 export default function TravelPlannerPage() {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState<TravelPlannerForm>({
     destination: "",
     startDate: "",
@@ -72,6 +74,17 @@ export default function TravelPlannerPage() {
       offset: 100
     });
   }, []);
+
+  // Handle URL parameters to pre-fill destination
+  useEffect(() => {
+    const destination = searchParams.get('destination');
+    if (destination) {
+      setFormData(prev => ({
+        ...prev,
+        destination: decodeURIComponent(destination)
+      }));
+    }
+  }, [searchParams]);
 
   // Helper function to calculate duration from dates
   const calculateDuration = (startDate: string, endDate: string): string => {

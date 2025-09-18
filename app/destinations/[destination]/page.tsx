@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import axios from 'axios';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -57,7 +58,9 @@ export default function DestinationPage() {
                 <p style={{color: 'white'}}>{data.extract}</p>
               </div>
               <div className="mt-6">
-                <button className="btn primary" style={{padding: '16px 32px', fontSize: '16px', borderRadius: '25px', background: '#f4d03f', color: '#800020', border: '2px solid #f4d03f', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(244, 208, 63, 0.3)'}}>Plan Your Itinerary to This Place</button>
+                <Link href={`/travel-planner?destination=${encodeURIComponent(destination.replace(/%20/g, ' '))}`}>
+                  <button className="btn primary" style={{padding: '16px 32px', fontSize: '16px', borderRadius: '25px', background: '#f4d03f', color: '#800020', border: '2px solid #f4d03f', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(244, 208, 63, 0.3)'}}>Plan Your Trip to This Place</button>
+                </Link>
               </div>
             </div>
           )}
