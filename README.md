@@ -31,7 +31,7 @@ This repository contains an interactive platform for exploring tourist and cultu
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/pKm69/Tourism-Jharkhand.git
+git clone https://github.com/PRATHAM10805/Tourism-Jharkhand.git
 cd Tourism-Jharkhand/backend
 ```
 
