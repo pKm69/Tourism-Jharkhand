@@ -1,4 +1,7 @@
 {
+<<<<<<< HEAD
+  "pages": {}
+=======
   "pages": {
     "/page": [
       "static/chunks/_4b9d0d._.css",
@@ -83,4 +86,5 @@
       "static/chunks/node_modules_next_dist_esm_build_templates_app-page_645b03.js"
     ]
   }
+>>>>>>> 835cdcb00f54f92b5ba601e0ce959840ad998a7b
 }

@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+{}
+=======
 {
   "/page": "app/page.js",
   "/api/feedback/route": "app/api/feedback/route.js",
@@ -6,3 +9,4 @@
   "/travel-planner/page": "app/travel-planner/page.js",
   "/destinations/page": "app/destinations/page.js"
 }
+>>>>>>> 835cdcb00f54f92b5ba601e0ce959840ad998a7b
