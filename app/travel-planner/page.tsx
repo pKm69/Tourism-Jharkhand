@@ -586,9 +586,9 @@ export default function TravelPlannerPage() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 xl:grid-cols-5 gap-8">
                   {/* Itinerary Content */}
-                  <div className="lg:col-span-3">
+                  <div className="xl:col-span-4">
                     <div className="p-8 rounded-xl" style={{
                       background: 'linear-gradient(135deg, rgba(244, 208, 63, 0.15) 0%, rgba(128, 0, 32, 0.15) 100%)',
                       border: '2px solid rgba(244, 208, 63, 0.4)',
@@ -602,16 +602,184 @@ export default function TravelPlannerPage() {
                         </h3>
                         <div className="h-1 w-20 rounded-full mb-6" style={{ background: '#f4d03f' }}></div>
                       </div>
-                      <div className="prose prose-invert max-w-none">
+                      <div className="space-y-6">
                         <div 
-                          className="whitespace-pre-wrap font-sans text-base leading-relaxed p-6 rounded-lg"
+                          className="font-sans leading-relaxed p-8 rounded-lg"
                           style={{ 
                             color: 'white',
-                            background: 'rgba(0, 0, 0, 0.2)',
-                            border: '1px solid rgba(244, 208, 63, 0.2)'
+                            background: 'rgba(0, 0, 0, 0.3)',
+                            border: '1px solid rgba(244, 208, 63, 0.3)',
+                            maxHeight: '600px',
+                            overflowY: 'auto',
+                            fontSize: '15px',
+                            lineHeight: '1.6'
                           }}
                         >
-                          {generatedItinerary}
+                          {generatedItinerary.split('\n').map((line, index) => {
+                            // Main headings (Day 1, Day 2, etc.)
+                            if (line.match(/^\*\*(.*?)\*\*$/)) {
+                              const title = line.replace(/\*\*/g, '');
+                              return (
+                                <div key={index} className="mb-4 mt-6 first:mt-0">
+                                  <div 
+                                    className="p-4 rounded-lg border-l-4"
+                                    style={{ 
+                                      background: 'linear-gradient(135deg, rgba(244, 208, 63, 0.15) 0%, rgba(128, 0, 32, 0.15) 100%)',
+                                      borderLeftColor: '#f4d03f'
+                                    }}
+                                  >
+                                    <h3 className="font-bold text-xl m-0" style={{ color: '#f4d03f' }}>
+                                      {title}
+                                    </h3>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Time entries with clock emoji
+                            if (line.match(/^🕐/)) {
+                              return (
+                                <div key={index} className="mb-3">
+                                  <div 
+                                    className="p-3 rounded-md border-l-3"
+                                    style={{ 
+                                      background: 'rgba(244, 208, 63, 0.08)',
+                                      borderLeftColor: '#f4d03f',
+                                      borderLeftWidth: '3px',
+                                      borderLeftStyle: 'solid'
+                                    }}
+                                  >
+                                    <span className="font-semibold" style={{ color: '#f4d03f' }}>
+                                      {line}
+                                    </span>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Time entries without emoji
+                            if (line.match(/^\* .*?:/)) {
+                              const timeEntry = line.replace(/^\* /, '');
+                              return (
+                                <div key={index} className="mb-3">
+                                  <div 
+                                    className="p-3 rounded-md border-l-3"
+                                    style={{ 
+                                      background: 'rgba(244, 208, 63, 0.08)',
+                                      borderLeftColor: '#f4d03f',
+                                      borderLeftWidth: '3px',
+                                      borderLeftStyle: 'solid'
+                                    }}
+                                  >
+                                    <span className="font-semibold" style={{ color: '#f4d03f' }}>
+                                      🕐 {timeEntry}
+                                    </span>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Bullet points with dash (- **text**)
+                            if (line.match(/^- \*\*/)) {
+                              const content = line.replace(/^- \*\*/, '').replace(/\*\*/g, '');
+                              const parts = content.split(/(₹[0-9,]+)/g);
+                              return (
+                                <div key={index} className="mb-2">
+                                  <div 
+                                    className="p-3 rounded-md"
+                                    style={{ 
+                                      background: 'rgba(255, 255, 255, 0.05)',
+                                      color: 'white',
+                                      fontSize: '15px',
+                                      textAlign: 'left'
+                                    }}
+                                  >
+                                    • {parts.map((part, i) => 
+                                      part.match(/₹[0-9,]+/) ? 
+                                        <span key={i} style={{ color: '#f4d03f', fontWeight: '600' }}>{part}</span> : 
+                                        part
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Sub-activities
+                            if (line.match(/^\+ /)) {
+                              const activity = line.replace(/^\+ /, '');
+                              const parts = activity.split(/(₹[0-9,]+)/g);
+                              return (
+                                <div key={index} className="mb-2 ml-4">
+                                  <div 
+                                    className="p-2 rounded border-l-2"
+                                    style={{ 
+                                      background: 'rgba(255, 255, 255, 0.03)',
+                                      borderLeftColor: 'rgba(244, 208, 63, 0.5)',
+                                      color: 'rgba(255, 255, 255, 0.9)',
+                                      fontSize: '14px'
+                                    }}
+                                  >
+                                    → {parts.map((part, i) => 
+                                      part.match(/₹[0-9,]+/) ? 
+                                        <span key={i} style={{ color: '#f4d03f', fontWeight: '600' }}>{part}</span> : 
+                                        part
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Regular bullets
+                            if (line.match(/^\* /)) {
+                              const bullet = line.replace(/^\* /, '');
+                              const parts = bullet.split(/(₹[0-9,]+)/g);
+                              return (
+                                <div key={index} className="mb-2">
+                                  <div 
+                                    className="p-2 rounded"
+                                    style={{ 
+                                      background: 'rgba(255, 255, 255, 0.02)',
+                                      color: 'white'
+                                    }}
+                                  >
+                                    • {parts.map((part, i) => 
+                                      part.match(/₹[0-9,]+/) ? 
+                                        <span key={i} style={{ color: '#f4d03f', fontWeight: '600' }}>{part}</span> : 
+                                        part
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Empty lines
+                            if (line.trim() === '') {
+                              return <div key={index} className="mb-2"></div>;
+                            }
+                            
+                            // Regular text
+                            const parts = line.split(/(₹[0-9,]+)/g);
+                            return (
+                              <div key={index} className="mb-2">
+                                <p className="m-0" style={{ color: 'white' }}>
+                                  {parts.map((part, i) => 
+                                    part.match(/₹[0-9,]+/) ? 
+                                      <span key={i} style={{ color: '#f4d03f', fontWeight: '600' }}>{part}</span> : 
+                                      part
+                                  )}
+                                </p>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        
+                        <div className="text-center">
+                          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full" style={{ background: 'rgba(244, 208, 63, 0.2)', border: '1px solid rgba(244, 208, 63, 0.4)' }}>
+                            <Sparkles className="h-4 w-4" style={{ color: '#f4d03f' }} />
+                            <span style={{ color: '#f4d03f', fontSize: '14px', fontWeight: '600' }}>
+                              AI-Generated Itinerary • Personalized for You
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
