@@ -1,1 +1,6 @@
-{}
+{
+  "/page": "app/page.js",
+  "/api/analytics/route": "app/api/analytics/route.js",
+  "/api/feedback/route": "app/api/feedback/route.js",
+  "/api/chatbot/message/route": "app/api/chatbot/message/route.js"
+}
