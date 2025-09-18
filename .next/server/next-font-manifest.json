@@ -1,19 +1,6 @@
 {
-  "app": {
-    "[project]/app/page": [
-      "static/media/Geist_Variable-s.p.f406b17f.woff2",
-      "static/media/GeistMono_Variable.p.6bae060c.woff2"
-    ],
-    "[project]/app/ai-features/page": [
-      "static/media/Geist_Variable-s.p.f406b17f.woff2",
-      "static/media/GeistMono_Variable.p.6bae060c.woff2"
-    ],
-    "[project]/app/travel-planner/page": [
-      "static/media/Geist_Variable-s.p.f406b17f.woff2",
-      "static/media/GeistMono_Variable.p.6bae060c.woff2"
-    ]
-  },
-  "appUsingSizeAdjust": true,
+  "app": {},
+  "appUsingSizeAdjust": false,
   "pages": {},
   "pagesUsingSizeAdjust": false
 }
