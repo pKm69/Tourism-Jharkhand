@@ -180,6 +180,17 @@ body {
   min-height: 100vh;
 }
 
+/* Global Button Rounded Corners */
+button {
+  border-radius: 25px !important;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  border-radius: 25px !important;
+}
+
 /* Button Styles */
 .btn {
   padding: 16px 32px;

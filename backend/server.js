@@ -15,6 +15,7 @@ const imagesRoutes = require('./routes/images');
 const authRoutes = require('./routes/auth');
 const paymentRoutes = require('./routes/payment');
 const chatbotRoutes = require('./routes/chatbot');
+const travelPlannerRoutes = require('./routes/travelPlanner');
 
 const app = express();
 
@@ -75,6 +76,7 @@ app.use('/api/images', imagesRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/chatbot', chatbotRoutes);
+app.use('/api/travel-planner', travelPlannerRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -124,6 +126,11 @@ app.get('/api/docs', (req, res) => {
       chatbot: {
         'POST /api/chatbot/message': 'Send message to AI chatbot',
         'GET /api/chatbot/health': 'Check chatbot service health'
+      },
+      travelPlanner: {
+        'POST /api/travel-planner/generate': 'Generate AI-powered travel itinerary',
+        'GET /api/travel-planner/destinations': 'Get popular Jharkhand destinations',
+        'GET /api/travel-planner/health': 'Check travel planner service health'
       }
     }
   });
@@ -168,4 +175,5 @@ app.listen(PORT, () => {
   console.log(`📖 API Documentation: http://localhost:${PORT}/api/docs`);
   console.log(`🏥 Health Check: http://localhost:${PORT}/api/health`);
   console.log(`🤖 Chatbot API: http://localhost:${PORT}/api/chatbot/health`);
+  console.log(`✈️ Travel Planner API: http://localhost:${PORT}/api/travel-planner/health`);
 });

@@ -251,15 +251,16 @@ export default function AIFeaturesPage() {
               </div>
 
               {activeDemo === "itinerary" ? (
-                <button 
-                  className="btn primary"
-                  onClick={() => setShowItineraryModal(true)}
-                  data-aos="fade-up" 
-                  data-aos-delay="1500"
-                >
-                  Try This Feature
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </button>
+                <Link href="/travel-planner">
+                  <button 
+                    className="btn primary"
+                    data-aos="fade-up" 
+                    data-aos-delay="1500"
+                  >
+                    Try This Feature
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </button>
+                </Link>
               ) : (
                 <Link href={activeDemo === "analytics" ? "/analytics" : activeDemo === "ar-vr" ? "/ar-vr" : "#"}>
                   <button className="btn primary" data-aos="fade-up" data-aos-delay="1500">

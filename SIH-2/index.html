@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Travel Planner 🌍</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 30px;
+    }
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+      animation: fadeIn 1s ease;
+    }
+    h1 {
+      text-align: center;
+      color: #0077b6;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background: #0077b6;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #023e8a;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f1f1f1;
+      border-radius: 8px;
+      white-space: pre-line;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 AI Travel Planner</h1>
+    <label for="destination">Destination City</label>
+    <input type="text" id="destination" placeholder="e.g. Paris">
+
+    <label for="num_days">Number of Days</label>
+    <input type="number" id="num_days" placeholder="e.g. 5">
+
+    <label for="interests">Your Interests</label>
+    <textarea id="interests" placeholder="e.g. food, history, hiking"></textarea>
+
+    <button onclick="generateItinerary()">Generate Itinerary</button>
+
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    async function generateItinerary() {
+      const destination = document.getElementById("destination").value;
+      const num_days = document.getElementById("num_days").value;
+      const interests = document.getElementById("interests").value;
+      const resultDiv = document.getElementById("result");
+
+      resultDiv.innerHTML = "⏳ Generating itinerary...";
+
+      try {
+        const response = await fetch("http://127.0.0.1:5000/generate-itinerary", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ destination, num_days, interests })
+        });
+
+        const data = await response.json();
+        if (data.error) {
+          resultDiv.innerHTML = "⚠️ Error: " + data.error;
+        } else {
+          resultDiv.innerHTML = "<h3>✨ Your Itinerary ✨</h3><br>" + data.itinerary;
+        }
+      } catch (err) {
+        resultDiv.innerHTML = "⚠️ Failed to fetch itinerary. Is the backend running?";
+      }
+    }
+  </script>
+</body>
+</html>

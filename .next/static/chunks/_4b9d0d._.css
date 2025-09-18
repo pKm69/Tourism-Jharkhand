@@ -158,6 +158,14 @@ body {
   min-height: 100vh;
 }
 
+button {
+  border-radius: 25px !important;
+}
+
+input[type="button"], input[type="submit"], input[type="reset"] {
+  border-radius: 25px !important;
+}
+
 .btn {
   padding: 16px 32px;
   border: 2px solid #0000;
